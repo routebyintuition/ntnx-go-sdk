@@ -104,9 +104,9 @@ type Categories struct{}
 
 // State is the various states associated with a cluster
 type State struct {
-	ReadOnly    bool   `json:"readOnly"`
-	Type        string `json:"type"`
-	Description string `json:"description"`
+	ReadOnly    bool   `json:"readOnly,omitempty"`
+	Type        string `json:"type,omitempty"`
+	Description string `json:"description,omitempty"`
 }
 
 // Status is the main Status type across all Response calls
@@ -133,6 +133,120 @@ type MessageList struct {
 	Message string  `json:"message,omitempty"`
 	Reason  string  `json:"reason,omitempty"`
 	Details Details `json:"details,omitempty"`
+}
+
+// Properties are tied to response properties
+type Properties struct {
+	Kind                 Kind                 `json:"kind,omitempty"`
+	ProjectReference     ProjectReference     `json:"project_reference,omitempty"`
+	UUID                 UUID                 `json:"uuid,omitempty"`
+	Name                 Name                 `json:"name,omitempty"`
+	SpecVersion          SpecVersion          `json:"spec_version,omitempty"`
+	SpecHash             SpecHash             `json:"spec_hash,omitempty"`
+	Categories           Categories           `json:"categories,omitempty"`
+	CategoriesMapping    CategoriesMapping    `json:"categories_mapping,omitempty"`
+	UseCategoriesMapping UseCategoriesMapping `json:"use_categories_mapping,omitempty"`
+	CreationTime         CreationTime         `json:"creation_time,omitempty"`
+	LastUpdateTime       LastUpdateTime       `json:"last_update_time,omitempty"`
+	OwnerReference       OwnerReference       `json:"owner_reference,omitempty"`
+	ShouldForceTranslate ShouldForceTranslate `json:"should_force_translate,omitempty"`
+	EntityVersion        EntityVersion        `json:"entity_version,omitempty"`
+	Offset               Offset               `json:"offset,omitempty"`
+	Length               Length               `json:"length,omitempty"`
+	TotalMatches         TotalMatches         `json:"total_matches,omitempty"`
+	Filter               Filter               `json:"filter,omitempty"`
+	SortOrder            SortOrder            `json:"sort_order,omitempty"`
+	SortAttribute        SortAttribute        `json:"sort_attribute,omitempty"`
+	MessageList          MessageList          `json:"message_list,omitempty"`
+}
+
+type Kind struct {
+	Type        string   `json:"type,omitempty"`
+	ReadOnly    bool     `json:"readOnly,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Default     string   `json:"default,omitempty"`
+	XNtnxEnum   []string `json:"x-ntnx-enum,omitempty"`
+}
+
+type ShouldForceTranslate struct {
+	Description string `json:"description,omitempty"`
+	Type        string `json:"type,omitempty"`
+}
+
+type EntityVersion struct {
+	Type        string `json:"type,omitempty"`
+	ReadOnly    bool   `json:"readOnly,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+
+type UUID struct {
+	Description string `json:"description,omitempty"`
+	Type        string `json:"type,omitempty"`
+	Format      string `json:"format,omitempty"`
+	Pattern     string `json:"pattern,omitempty"`
+}
+
+type Offset struct {
+	Type        string `json:"type,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+type Length struct {
+	Type        string `json:"type,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+type TotalMatches struct {
+	Type        string `json:"type,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+type Filter struct {
+	Type        string `json:"type,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+type SortOrder struct {
+	Title       string   `json:"title,omitempty"`
+	Description string   `json:"description,omitempty"`
+	Type        string   `json:"type,omitempty"`
+	XNtnxEnum   []string `json:"x-ntnx-enum,omitempty"`
+}
+type SortAttribute struct {
+	Type        string `json:"type,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+type LastUpdateTime struct {
+	Type        string `json:"type,omitempty"`
+	ReadOnly    bool   `json:"readOnly,omitempty"`
+	Format      string `json:"format,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+
+type CreationTime struct {
+	Type        string `json:"type,omitempty"`
+	Format      string `json:"format,omitempty"`
+	ReadOnly    bool   `json:"readOnly,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+
+type Name struct {
+	Description string `json:"description,omitempty"`
+	Type        string `json:"type,omitempty"`
+	ReadOnly    bool   `json:"readOnly,omitempty"`
+	MaxLength   int    `json:"maxLength,omitempty"`
+}
+
+type SpecVersion struct {
+	Type        string `json:"type,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+
+type SpecHash struct {
+	Type        string `json:"type,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+
+type UseCategoriesMapping struct {
+	Type        string `json:"type,omitempty"`
+	Default     bool   `json:"default,omitempty"`
+	Description string `json:"description,omitempty"`
 }
 
 // HypervisorServerList is the hyprevisor list of servers
