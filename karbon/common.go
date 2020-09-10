@@ -38,6 +38,9 @@ type Properties struct {
 	Endpoint     Endpoint     `json:"endpoint"`
 	UUID         UUID         `json:"uuid"`
 	RegistryName RegistryName `json:"registry_name"`
+	BuildDate    BuildDate    `json:"build_date"`
+	GitCommit    GitCommit    `json:"git_commit"`
+	Version      Version      `json:"version"`
 }
 
 // Endpoint are the endpoint response details
@@ -61,6 +64,19 @@ type Items struct {
 
 // RegistryName is the naming format for the registry responses
 type RegistryName struct {
+	Description string `json:"description"`
+	Type        string `json:"type"`
+}
+
+type BuildDate struct {
+	Description string `json:"description"`
+	Type        string `json:"type"`
+}
+type GitCommit struct {
+	Description string `json:"description"`
+	Type        string `json:"type"`
+}
+type Version struct {
 	Description string `json:"description"`
 	Type        string `json:"type"`
 }
