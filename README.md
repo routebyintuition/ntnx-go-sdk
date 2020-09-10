@@ -14,6 +14,7 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
   - List
   - Update
   - Get
+  
 - VMs
   - List
   - Update
@@ -21,6 +22,7 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
   - Get
   - Delete
   - Clone
+
 - Users
   - Create
 
@@ -30,3 +32,40 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
   - Update
   - Delete
   - Get
+
+### Work in progress:
+- Action Templates
+- Action Rule Results
+- Action Rules
+- Action Trigger Types
+- Action Types
+- Address Groups
+- Alerts
+- App Runlogs
+- Apps
+- Audits
+- Availability Zones
+- AWS/regions
+- AWS/availability_zones
+- AWS/roles
+- AWS/key_pairs
+- AWS/machine_types
+- AWS/volume_types
+- AWS/elastic_ips
+- AWS/images
+- AWS/security_groups
+- AWS/subnets
+- AWS/vms
+- AWS/vpcs
+- Physical Availability Zones
+- Batch
+- Billing
+- Blackouts
+- Blueprint
+- App Tasks
+- Categories
+- Cell
+- Cloud
+- Reports
+- Datacenter
+- 
