@@ -8,6 +8,7 @@ import (
 	"sync"
 
 	"github.com/routebyintuition/ntnx-go-sdk/calm"
+	"github.com/routebyintuition/ntnx-go-sdk/karbon"
 	"github.com/routebyintuition/ntnx-go-sdk/pc"
 )
 
@@ -32,9 +33,10 @@ type Service struct {
 
 // Config is used to initialize the required client configs like URL, auth, etc....
 type Config struct {
-	PrismCentral *pc.ServiceConfig   `json:"prism_central,omitempty"`
-	PrismElement *PrismElement       `json:"prism_element,omitempty"`
-	Calm         *calm.ServiceConfig `json:"calm,omitempty"`
+	PrismCentral *pc.ServiceConfig     `json:"prism_central,omitempty"`
+	PrismElement *pe.ServiceConfig     `json:"prism_element,omitempty"`
+	Calm         *calm.ServiceConfig   `json:"calm,omitempty"`
+	Karbon       *karbon.ServiceConfig `json:"karbon,omitempty"`
 }
 
 // PrismElement is the config for PE requests
