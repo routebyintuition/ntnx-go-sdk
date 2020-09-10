@@ -12,8 +12,9 @@ type MetaGetRequest struct{}
 
 // MetaGetResponse are the version details
 type MetaGetResponse struct {
-	Type       string     `json:"type"`
-	Properties Properties `json:"properties"`
+	BuildDate string `json:"build_date"`
+	GitCommit string `json:"git_commit"`
+	Version   string `json:"version"`
 }
 
 // Get passes as name of a specific registry to get information about that registry

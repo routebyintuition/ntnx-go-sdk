@@ -10,6 +10,7 @@ import (
 	"github.com/routebyintuition/ntnx-go-sdk/calm"
 	"github.com/routebyintuition/ntnx-go-sdk/karbon"
 	"github.com/routebyintuition/ntnx-go-sdk/pc"
+	"github.com/routebyintuition/ntnx-go-sdk/pe"
 )
 
 // Client is an HTTP Client
@@ -22,7 +23,8 @@ type Client struct {
 
 	PC *pc.Client
 	// PE *pe.Service
-	Calm *calm.Client
+	Calm   *calm.Client
+	Karbon *karbon.Client
 	// VM      *pc.VMService
 }
 
@@ -58,7 +60,7 @@ func NewClient(httpClient *http.Client, conf *Config) (*Client, error) {
 	c := &Client{client: httpClient, config: conf}
 
 	c.common.client = c
-	var pcError, calmError error
+	var pcError, calmError, karbonError error
 	if conf.PrismCentral != nil {
 		c.PC, pcError = pc.NewClient(httpClient, conf.PrismCentral)
 		if pcError != nil {
@@ -75,8 +77,13 @@ func NewClient(httpClient *http.Client, conf *Config) (*Client, error) {
 		}
 	}
 
-	// c.Calm = (*calm.Service)(&c.common)
-	//c.Apps = (*AppsService)(&c.common)
+	if conf.Karbon != nil {
+		c.Karbon, karbonError = karbon.NewClient(httpClient, conf.Karbon)
+		if karbonError != nil {
+			fmt.Println("error in configuring Karbon connector: ", karbonError)
+			os.Exit(1)
+		}
+	}
 
 	return c, nil
 }

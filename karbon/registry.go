@@ -14,22 +14,24 @@ type RegistryListRequest struct{}
 
 // RegistryListResponse is the request needed to get a list of registries
 type RegistryListResponse struct {
-	Type  string `json:"type"`
-	Items Items  `json:"items"`
+	Endpoint string `json:"endpoint"`
+	Name     string `json:"name"`
+	UUID     string `json:"uuid"`
 }
 
 // RegistryCreateRequest is the request needed to create registries
 type RegistryCreateRequest struct {
-	Type       string     `json:"type"`
-	Required   []string   `json:"required"`
-	Properties Properties `json:"properties"`
+	Cert string
+	Name string
+	Port int
+	URL  string
 }
 
 // RegistryCreateResponse is the request needed to create registries
 type RegistryCreateResponse struct {
-	Type       string     `json:"type"`
-	Required   []string   `json:"required"`
-	Properties Properties `json:"properties"`
+	Endpoint string `json:"endpoint"`
+	Name     string `json:"name"`
+	UUID     string `json:"uuid"`
 }
 
 // RegistryGetRequest is the request needed to get registries
@@ -39,9 +41,9 @@ type RegistryGetRequest struct {
 
 // RegistryGetResponse is the request needed to get registries
 type RegistryGetResponse struct {
-	Type       string     `json:"type"`
-	Required   []string   `json:"required"`
-	Properties Properties `json:"properties"`
+	Endpoint string `json:"endpoint"`
+	Name     string `json:"name"`
+	UUID     string `json:"uuid"`
 }
 
 // RegistryDeleteRequest is the request needed to delete registries
@@ -51,9 +53,7 @@ type RegistryDeleteRequest struct {
 
 // RegistryDeleteResponse is the request needed to delete registries
 type RegistryDeleteResponse struct {
-	Type       string     `json:"type"`
-	Required   []string   `json:"required"`
-	Properties Properties `json:"properties"`
+	RegistryName string `json:"registry_name"`
 }
 
 // Delete will delete the virtual machine associated with the provided UUID
@@ -66,7 +66,7 @@ func (rs *RegistryService) Delete(reqdata *RegistryDeleteRequest) (*RegistryDele
 		return nil, nil, errors.New("invalid name format in RegistryDeleteRequest")
 	}
 
-	u := fmt.Sprintf("registries/%s", reqdata.Name)
+	u := fmt.Sprintf("v1-alpha.1/registries/%s", reqdata.Name)
 
 	u, err := addOptions(u, nil)
 	if err != nil {
@@ -97,7 +97,7 @@ func (rs *RegistryService) Get(reqdata *RegistryGetRequest) (*RegistryGetRespons
 		return nil, nil, errors.New("invalid name format in RegistryGetRequest")
 	}
 
-	u := fmt.Sprintf("registries/%s", reqdata.Name)
+	u := fmt.Sprintf("v1-alpha.1/registries/%s", reqdata.Name)
 
 	u, err := addOptions(u, nil)
 	if err != nil {
@@ -121,7 +121,7 @@ func (rs *RegistryService) Get(reqdata *RegistryGetRequest) (*RegistryGetRespons
 // List returns a list of all registries
 func (rs *RegistryService) List(reqdata *RegistryGetRequest) (*RegistryGetResponse, *http.Response, error) {
 
-	u := fmt.Sprintf("registries")
+	u := fmt.Sprintf("v1-alpha.1/registries")
 
 	u, err := addOptions(u, nil)
 	if err != nil {
@@ -144,7 +144,7 @@ func (rs *RegistryService) List(reqdata *RegistryGetRequest) (*RegistryGetRespon
 
 // Create makes the call to cluster list
 func (rs *RegistryService) Create(reqdata *RegistryCreateRequest) (*RegistryCreateResponse, *http.Response, error) {
-	u := "registries"
+	u := "v1-alpha.1/registries"
 
 	u, err := addOptions(u, nil)
 	if err != nil {
