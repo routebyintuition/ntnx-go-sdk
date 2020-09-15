@@ -51,8 +51,24 @@ type ClusterListResponse []struct {
 type ClusterGetNodePoolRequest struct{}
 type ClusterGetNodePoolResponse struct{}
 
-type ClusterCreateRequest struct{}
-type ClusterCreateResponse struct{}
+// ClusterCreateRequest Create a k8s cluster with the provided configuration.
+type ClusterCreateRequest struct {
+	CniConfig          CniConfig          `json:"cni_config"`
+	EtcdConfig         CreateEtcdConfig   `json:"etcd_config"`
+	MastersConfig      MastersConfig      `json:"masters_config"`
+	Metadata           Metadata           `json:"metadata"`
+	Name               string             `json:"name"`
+	StorageClassConfig StorageClassConfig `json:"storage_class_config"`
+	Version            string             `json:"version"`
+	WorkersConfig      WorkersConfig      `json:"workers_config"`
+}
+
+// ClusterCreateResponse cluster create response of new cluster
+type ClusterCreateResponse struct {
+	ClusterName string `json:"cluster_name"`
+	ClusterUUID string `json:"cluster_uuid"`
+	TaskUUID    string `json:"task_uuid"`
+}
 
 type ClusterGetRequest struct{}
 type ClusterGetResponse struct{}
@@ -63,11 +79,38 @@ type ClusterDeleteResponse struct{}
 type ClusterGetHealthRequest struct{}
 type ClusterGetHealthResponse struct{}
 
-type ClusterGetKubeConfigRequest struct{}
-type ClusterGetKubeConfigResponse struct{}
+type ClusterGetKubeConfigRequest struct {
+	ClusterName string
+}
+type ClusterGetKubeConfigResponse struct {
+	KubeConfig string `json:"kube_config"`
+}
 
 type ClusterGetSSHRequest struct{}
 type ClusterGetSSHResponse struct{}
+
+// Create makes the call to cluster create
+func (cs *ClusterService) Create(reqdata *ClusterCreateRequest) (*ClusterCreateResponse, *http.Response, error) {
+	u := "v1/k8s/clusters"
+
+	u, err := addOptions(u, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := cs.client.NewRequest("POST", u, reqdata)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var cluster *ClusterCreateResponse
+	resp, err := cs.client.Do(req, &cluster)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return cluster, resp, nil
+}
 
 // UpdateSecret the k8s secret and docker volume plugin password across k8s clusters deployed in Karbon. The update operation is performed only for the clusters where the provided Prism Element UUID and the username match.
 func (cs *ClusterService) UpdateSecret(reqdata *ClusterUpdateSecretRequest) (*ClusterUpdateSecretResponse, *http.Response, error) {
@@ -93,6 +136,37 @@ func (cs *ClusterService) UpdateSecret(reqdata *ClusterUpdateSecretRequest) (*Cl
 	return cluster, resp, nil
 }
 
+// GetKubeConfig Get the kubeconfig to access the K8s cluster.
+func (cs *ClusterService) GetKubeConfig(reqdata *ClusterGetKubeConfigRequest) (*ClusterGetKubeConfigResponse, *http.Response, error) {
+	if reqdata == nil {
+		return nil, nil, errors.New("ClusterGetKubeConfigRequest cannot be nil")
+	}
+
+	if len(reqdata.ClusterName) < 3 {
+		return nil, nil, errors.New("invalid cluster_name format in ClusterGetKubeConfigRequest")
+	}
+
+	u := fmt.Sprintf("v1/k8s/clusters/%s/kubeconfig", reqdata.ClusterName)
+
+	u, err := addOptions(u, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := cs.client.NewRequest("GET", u, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var cluster *ClusterGetKubeConfigResponse
+	resp, err := cs.client.Do(req, &cluster)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return cluster, resp, nil
+}
+
 // ListRegistries will list the private registries associated with a cluster
 func (cs *ClusterService) ListRegistries(reqdata *ClusterListRegistriesRequest) (*ClusterListRegistriesResponse, *http.Response, error) {
 	if reqdata == nil {
@@ -104,7 +178,6 @@ func (cs *ClusterService) ListRegistries(reqdata *ClusterListRegistriesRequest) 
 	}
 
 	u := fmt.Sprintf("v1-alpha.1/k8s/clusters/%s/registries", reqdata.ClusterName)
-	fmt.Println("karbon url list reg: ", u)
 
 	u, err := addOptions(u, nil)
 	if err != nil {
