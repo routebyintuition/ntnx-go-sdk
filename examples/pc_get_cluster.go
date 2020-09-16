@@ -18,6 +18,7 @@ func main() {
 	}}
 
 	// pccon := &pc.ServiceConfig{URL: nutanix.String("https://10.1.1.10:9440/api/nutanix/v3/")}
+	// con, err := nutanix.NewClient(httpClient, &nutanix.Config{PrismCentral: pccon})
 	con, err := nutanix.NewClient(httpClient, &nutanix.Config{PrismCentral: new(pc.ServiceConfig)})
 	if err != nil {
 		fmt.Println("error on NewClient: ", err)

@@ -1,6 +1,6 @@
 # nutanix-pc-go-sdk
 
-Go Client SDK for various Nutanix APIs. Currently, only Karbon is fully supported but additional APIs are being added.
+## Go Client SDK for Prism Central.
 
 This client API SDK for Go is based upon the Google, Github Go client SDK found here: https://github.com/google/go-github
 

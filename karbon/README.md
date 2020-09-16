@@ -22,7 +22,7 @@ Alpha functions are only available on systems running with Alpha releases which 
 
 ## Beta Functions
 
-Beta functions are only available on systems runnign with Beta releases which are not currently covered. Some of these calls are implemented but remain untested.
+Beta functions are only available on systems running with Beta releases which are not currently covered. Some of these calls are implemented but remain untested.
 
 - ListAllClusters
 - GetNodePoolConfig

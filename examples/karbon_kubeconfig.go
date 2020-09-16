@@ -5,15 +5,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/routebyintuition/ntnx-go-sdk/karbon"
 
 	nutanix "github.com/routebyintuition/ntnx-go-sdk"
 )
-
-type KubeConf struct {
-	KubeConfig string `json:"kube_config"`
-}
 
 func main() {
 	httpClient := &http.Client{Transport: &http.Transport{
@@ -29,7 +26,7 @@ func main() {
 
 	getRes, _, err := con.Karbon.Cluster.GetKubeConfig(cKubeRequest)
 	if err != nil {
-		fmt.Println("kuneconfig get error: ", err)
+		fmt.Println("kubeconfig get error: ", err)
 		return
 	}
 
@@ -38,5 +35,6 @@ func main() {
 	err = ioutil.WriteFile("/tmp/kube.txt", []byte(getRes.KubeConfig), 0644)
 	if err != nil {
 		fmt.Println("error writing to file: ", err)
+		os.Exit(1)
 	}
 }
