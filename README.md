@@ -10,6 +10,20 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
 
 Documentation available [KARBON](karbon/README.md)
 
-### Prism Central (v3 API)
+### Prism Central (v3 API) - partial support
 
 Documentation available [PrismCentral](pc/README.md)
+
+### Prism Element (v2 API) - limited support
+
+Documentation available [PrismElement](pe/README.md)
+
+### Calm - limited support
+
+Documentation available [Calm](calm/README.md)
+
+### Era - no support currently
+
+### Examples
+
+A basic example is included below but additional examples are available in the [examples folder](examples/)
