@@ -11,6 +11,11 @@ type WorkerConfig struct {
 	NodePools []string `json:"node_pools"`
 }
 
+// DeleteSkipCheck is used within the delete cluster call to pass into query parameters
+type DeleteSkipCheck struct {
+	SkipCheck bool `url:"skip-prechecks"`
+}
+
 type IPPoolConfigs struct {
 	Cidr string `json:"cidr"`
 }

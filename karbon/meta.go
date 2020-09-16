@@ -17,10 +17,10 @@ type MetaGetResponse struct {
 	Version   string `json:"version"`
 }
 
-// Get passes as name of a specific registry to get information about that registry
-func (ms *MetaService) Get(reqdata *MetaGetRequest) (*MetaGetResponse, *http.Response, error) {
+// GetVersion Get the Karbon controller version of the k8 cluster.
+func (ms *MetaService) GetVersion(reqdata *MetaGetRequest) (*MetaGetResponse, *http.Response, error) {
 
-	u := "version"
+	u := "v1-alpha.1/version"
 
 	u, err := addOptions(u, nil)
 	if err != nil {
