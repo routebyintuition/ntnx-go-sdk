@@ -27,3 +27,34 @@ Documentation available [Calm](calm/README.md)
 ### Examples
 
 A basic example is included below but additional examples are available in the [examples folder](examples/)
+
+The following example will both print out the KubeConfig for the cluster name identified but also write it to a file for use.
+
+```go
+func main() {
+	httpClient := &http.Client{Transport: &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}}
+
+	con, err := nutanix.NewClient(httpClient, &nutanix.Config{Karbon: new(karbon.ServiceConfig)})
+	if err != nil {
+		panic(err)
+	}
+
+	cKubeRequest := &karbon.ClusterGetKubeConfigRequest{ClusterName: "cluster-name-01"}
+
+	getRes, _, err := con.Karbon.Cluster.GetKubeConfig(cKubeRequest)
+	if err != nil {
+		fmt.Println("kubeconfig get error: ", err)
+		return
+	}
+
+	fmt.Println(getRes.KubeConfig)
+
+	err = ioutil.WriteFile("/tmp/kube.txt", []byte(getRes.KubeConfig), 0644)
+	if err != nil {
+		fmt.Println("error writing to file: ", err)
+		os.Exit(1)
+	}
+}
+```
