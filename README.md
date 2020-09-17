@@ -4,6 +4,8 @@ Go Client SDK for various Nutanix APIs. Currently, only Karbon is fully supporte
 
 This client API SDK for Go is based upon the Google, Github Go client SDK found here: https://github.com/google/go-github
 
+Currently, this is an alpha development release of the client library that is a work in progress.
+
 ## Current APIs and status:
 
 ### Karbon - fully supported.
