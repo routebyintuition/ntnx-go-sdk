@@ -69,7 +69,7 @@ It is NOT RECOMMENDED to hardcode connection and authentication information dire
 
 - NUTANIX_KARBON_USER = Nutanix Karbon username
 - NUTANIX_KARBON_PASS = Nutanix Karbon password
-- NUTANIX_KARBON_URL = Nutanix Karbon URL (e.g. [i] export NUTANIX_KARBON_URL="https://10.0.0.10:9440/karbon/" [/i])
+- NUTANIX_KARBON_URL = Nutanix Karbon URL (e.g. `export NUTANIX_KARBON_URL="https://10.0.0.10:9440/karbon/"`)
 
 #### Prism Central API
 
