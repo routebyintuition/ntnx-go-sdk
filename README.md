@@ -58,3 +58,21 @@ func main() {
 	}
 }
 ```
+
+### Configuration
+
+It is NOT RECOMMENDED to hardcode connection and authentication information directly in the code. While this can be done, environmental variables are recommended. The environmental variable list used for the API are below:
+
+#### Karbon API
+
+###### Environmental Variables
+
+- NUTANIX_KARBON_USER - Nutanix Karbon username
+- NUTANIX_KARBON_PASS = Nutanix Karbon password
+- NUTANIX_KARBON_URL = Nutanix Karbon URL (e.g. export NUTANIX_KARBON_URL="https://10.0.0.10:9440/karbon/")
+
+#### Prism Central API
+
+#### Prism Element API
+
+#### Calm API
