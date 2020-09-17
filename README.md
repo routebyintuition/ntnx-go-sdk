@@ -1,4 +1,4 @@
-# nutanix-pc-go-sdk
+# nutanix-go-sdk
 
 Go Client SDK for various Nutanix APIs. Currently, only Karbon is fully supported but additional APIs are being added.
 
@@ -86,6 +86,8 @@ Setting environmental variables is optional but recommended over hard-coded valu
 - NUTANIX_PE_URL = Nutanix Prism Element URL (e.g. `export NUTANIX_PC_URL="https://10.0.0.11:9440/api/nutanix/v2/"`)
 
 ###### Calm API
+
+This segment is not yet implemented.
 
 #### Manually setting credentials and configurations
 
