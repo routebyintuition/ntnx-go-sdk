@@ -91,10 +91,76 @@ Setting environmental variables is optional but recommended over hard-coded valu
 
 Not recommended! You may end up checking your credentials into a source repository. Use this for testing only!
 
+Credentials are set at a service level such that a single initialize of the client can have different credentials/endpoints for karbon, pc, pe, and calm. Examples can be found below:
+
+##### Karbon with credentials
+
+```go
+	karbonConfig := &karbon.ServiceConfig{
+		User: nutanix.String("username"),
+		Pass: nutanix.String("password"),
+		URL:  nutanix.String("https://0.0.0.0:9440/karbon"),
+	}
+	ntnx, err := nutanix.NewClient(httpClient, &nutanix.Config{Karbon: karbonConfig})
+	if err != nil {
+		panic(err)
+	}
+```
+
+##### All services with credentials
+
+```go
+	karbonConfig := &karbon.ServiceConfig{
+		User: nutanix.String("username"),
+		Pass: nutanix.String("password"),
+		URL:  nutanix.String("https://0.0.0.0:9440/karbon"),
+	}
+	peConfig := &pe.ServiceConfig{
+		User: nutanix.String("username"),
+		Pass: nutanix.String("password"),
+		URL:  nutanix.String("https://0.0.0.0:9440/api/nutanix/v2/"),
+	}
+	pcConfig := &pc.ServiceConfig{
+		User: nutanix.String("username"),
+		Pass: nutanix.String("password"),
+		URL:  nutanix.String("https://0.0.0.0:9440/api/nutanix/v3/"),
+	}
+
+	ntnxConfig := &nutanix.Config{
+		Karbon:       karbonConfig,
+		PrismElement: peConfig,
+		PrismCentral: pcConfig,
+	}
+
+	ntnx, err := nutanix.NewClient(httpClient, ntnxConfig)
+	if err != nil {
+		panic(err)
+	}
+```
+
 #### Initialization
 
-We initialize our service clients by providing struct configs for each service we wish to use. Only services that have a struct config will be initialized. In the examples below we will work through some examples.
+We initialize our service clients by providing struct configs for each service we wish to use. Only services that have a struct config will be initialized. In the example below we have initalized karbon, prism central, and prism element. Since the structs are empty, the library will look to the environmental variables for configuration.
+
+```go
+	ntnxEnvConfig := &nutanix.Config{
+		Karbon:       &karbon.ServiceConfig{},
+		PrismCentral: &pc.ServiceConfig{},
+		PrismElement: &pe.ServiceConfig{},
+	}
+	ntnx, err := nutanix.NewClient(httpClient, ntnxEnvConfig)
+	if err != nil {
+		panic(err)
+	}
+```
 
 ###### Initialize just the Karbon API
 
-###### Initialize both Karbon and Prism Central v3 API
+This example will only initialize the karbon library and will rely upon environmental variables for configuration.
+
+```go
+	ntnx, err := nutanix.NewClient(httpClient, &nutanix.Config{Karbon: new(karbon.ServiceConfig)})
+	if err != nil {
+		panic(err)
+	}
+```
