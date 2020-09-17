@@ -20,7 +20,7 @@ Documentation available [PrismCentral](pc/README.md)
 
 Documentation available [PrismElement](pe/README.md)
 
-### Calm - limited support
+### Calm - no support currently
 
 Documentation available [Calm](calm/README.md)
 
