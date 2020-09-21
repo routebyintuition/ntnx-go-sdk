@@ -6,23 +6,26 @@ import "time"
 // this same type can be used across the calls as it includes
 // type entries for other API calls
 type Metadata struct {
-	TotalMatches         int              `json:"total_matches,omitempty"`
-	Kind                 string           `json:"kind,omitempty"`
-	Length               int              `json:"length,omitempty"`
-	Offset               int              `json:"offset,omitempty"`
-	LastUpdateTime       time.Time        `json:"last_update_time,omitempty"`
-	UUID                 string           `json:"uuid,omitempty"`
-	ProjectReference     ProjectReference `json:"project_reference,omitempty"`
-	SpecVersion          int              `json:"spec_version,omitempty"`
-	CreationTime         time.Time        `json:"creation_time,omitempty"`
-	OwnerReference       OwnerReference   `json:"owner_reference,omitempty"`
-	Categories           Categories       `json:"categories,omitempty"`
-	SpecHash             string           `json:"spec_hash,omitempty"`
-	ShouldForceTranslate bool             `json:"should_force_translate,omitempty"`
-	Name                 string           `json:"name,omitempty"`
-	Filter               string           `json:"filter,omitempty"`
-	SortOrder            string           `json:"sort_order,omitempty"`
-	SortAttribute        string           `json:"sort_attribute,omitempty"`
+	TotalMatches         int               `json:"total_matches,omitempty"`
+	Kind                 string            `json:"kind,omitempty"`
+	Length               int               `json:"length,omitempty"`
+	Offset               int               `json:"offset,omitempty"`
+	LastUpdateTime       time.Time         `json:"last_update_time,omitempty"`
+	UUID                 string            `json:"uuid,omitempty"`
+	ProjectReference     ProjectReference  `json:"project_reference,omitempty"`
+	SpecVersion          int               `json:"spec_version,omitempty"`
+	CreationTime         time.Time         `json:"creation_time,omitempty"`
+	OwnerReference       OwnerReference    `json:"owner_reference,omitempty"`
+	Categories           Categories        `json:"categories,omitempty"`
+	SpecHash             string            `json:"spec_hash,omitempty"`
+	ShouldForceTranslate bool              `json:"should_force_translate,omitempty"`
+	Name                 string            `json:"name,omitempty"`
+	Filter               string            `json:"filter,omitempty"`
+	SortOrder            string            `json:"sort_order,omitempty"`
+	SortAttribute        string            `json:"sort_attribute,omitempty"`
+	CategoriesMapping    CategoriesMapping `json:"categories_mapping"`
+	UseCategoriesMapping bool              `json:"use_categories_mapping"`
+	EntityVersion        string            `json:"entity_version"`
 }
 
 // Config is the API response for Config used across all API requests
@@ -51,29 +54,47 @@ type Config struct {
 
 // Resources is the main Resources type across all Response calls
 type Resources struct {
-	BootConfig            BootConfig          `json:"boot_config,omitempty"`
-	DiskList              []DiskList          `json:"disk_list,omitempty"`
-	GpuList               []interface{}       `json:"gpu_list,omitempty"`
-	GuestCustomization    GuestCustomization  `json:"guest_customization,omitempty"`
-	HardwareClockTimezone string              `json:"hardware_clock_timezone,omitempty"`
-	HostReference         HostReference       `json:"host_reference,omitempty"`
-	HypervisorType        string              `json:"hypervisor_type,omitempty"`
-	MemorySizeMib         int                 `json:"memory_size_mib,omitempty"`
-	NicList               []NicList           `json:"nic_list,omitempty"`
-	NumSockets            int                 `json:"num_sockets,omitempty"`
-	NumThreadsPerCore     int                 `json:"num_threads_per_core,omitempty"`
-	NumVcpusPerSocket     int                 `json:"num_vcpus_per_socket,omitempty"`
-	PowerState            string              `json:"power_state,omitempty"`
-	PowerStateMechanism   PowerStateMechanism `json:"power_state_mechanism,omitempty"`
-	ProtectionType        string              `json:"protection_type,omitempty"`
-	SerialPortList        []interface{}       `json:"serial_port_list,omitempty"`
-	VgaConsoleEnabled     bool                `json:"vga_console_enabled,omitempty"`
-	VnumaConfig           VnumaConfig         `json:"vnuma_config,omitempty"`
-	Nodes                 Nodes               `json:"nodes,omitempty"`
-	Config                Config              `json:"config,omitempty"`
-	Network               Network             `json:"network,omitempty"`
-	Analysis              Analysis            `json:"analysis,omitempty"`
-	RuntimeStatusList     []string            `json:"runtime_status_list,omitempty"`
+	BootConfig             BootConfig               `json:"boot_config,omitempty"`
+	DiskList               []DiskList               `json:"disk_list,omitempty"`
+	GuestCustomization     GuestCustomization       `json:"guest_customization,omitempty"`
+	HardwareClockTimezone  string                   `json:"hardware_clock_timezone,omitempty"`
+	HostReference          HostReference            `json:"host_reference,omitempty"`
+	HypervisorType         string                   `json:"hypervisor_type,omitempty"`
+	MemorySizeMib          int                      `json:"memory_size_mib,omitempty"`
+	NicList                []NicList                `json:"nic_list,omitempty"`
+	NumSockets             int                      `json:"num_sockets,omitempty"`
+	NumThreadsPerCore      int                      `json:"num_threads_per_core,omitempty"`
+	NumVcpusPerSocket      int                      `json:"num_vcpus_per_socket,omitempty"`
+	PowerState             string                   `json:"power_state,omitempty"`
+	PowerStateMechanism    PowerStateMechanism      `json:"power_state_mechanism,omitempty"`
+	ProtectionType         string                   `json:"protection_type,omitempty"`
+	SerialPortList         []interface{}            `json:"serial_port_list,omitempty"`
+	VgaConsoleEnabled      bool                     `json:"vga_console_enabled,omitempty"`
+	VnumaConfig            VnumaConfig              `json:"vnuma_config,omitempty"`
+	Nodes                  Nodes                    `json:"nodes,omitempty"`
+	Config                 Config                   `json:"config,omitempty"`
+	Network                Network                  `json:"network,omitempty"`
+	Analysis               Analysis                 `json:"analysis,omitempty"`
+	RuntimeStatusList      []string                 `json:"runtime_status_list,omitempty"`
+	CPUModel               string                   `json:"cpu_model,omitempty"`
+	CPUCapacityHz          int                      `json:"cpu_capacity_hz,omitempty"`
+	NumCPUCores            int                      `json:"num_cpu_cores,omitempty"`
+	NumCPUSockets          int                      `json:"num_cpu_sockets,omitempty"`
+	MemoryCapacityMib      int                      `json:"memory_capacity_mib,omitempty"`
+	SerialNumber           string                   `json:"serial_number,omitempty"`
+	MonitoringState        string                   `json:"monitoring_state,omitempty"`
+	HostNicsIDList         []string                 `json:"host_nics_id_list,omitempty"`
+	WindowsDomain          WindowsDomain            `json:"windows_domain,omitempty"`
+	FailoverCluster        string                   `json:"failover_cluster,omitempty"`
+	Ipmi                   Ipmi                     `json:"ipmi,omitempty"`
+	ControllerVM           ControllerVM             `json:"controller_vm,omitempty"`
+	Hypervisor             Hypervisor               `json:"hypervisor,omitempty"`
+	Block                  Block                    `json:"block,omitempty"`
+	RackableUnitReference  RackableUnitReference    `json:"rackable_unit_reference,omitempty"`
+	HostDisksReferenceList []HostDisksReferenceList `json:"host_disks_reference_list,omitempty"`
+	GpuList                []GpuList                `json:"gpu_list,omitempty"`
+	GpuDriverVersion       string                   `json:"gpu_driver_version,omitempty"`
+	HostType               string                   `json:"host_type,omitempty"`
 }
 
 // Spec is the main Spec type across all Response calls
@@ -514,4 +535,193 @@ type ACPSpec struct {
 	Name        string       `json:"name"`
 	Description string       `json:"description"`
 	Resources   ACPResources `json:"resources"`
+}
+
+type AutoGenerated struct {
+	APIVersion string     `json:"api_version"`
+	Metadata   Metadata   `json:"metadata"`
+	Entities   []Entities `json:"entities"`
+}
+
+// OplogUsage produces the CVM OpLog utilization with a very precise result
+type OplogUsage struct {
+	OplogDiskPct  float64 `json:"oplog_disk_pct"`
+	OplogDiskSize int64   `json:"oplog_disk_size"`
+}
+
+// ControllerVM returns information about CVM and utilization
+type ControllerVM struct {
+	IP         string     `json:"ip"`
+	NatIP      string     `json:"nat_ip"`
+	NatPort    int        `json:"nat_port"`
+	OplogUsage OplogUsage `json:"oplog_usage"`
+}
+type DomainCredential struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+type WindowsDomain struct {
+	Name                 string           `json:"name"`
+	DomainName           string           `json:"domain_name"`
+	OrganizationUnitPath string           `json:"organization_unit_path"`
+	NamePrefix           string           `json:"name_prefix"`
+	NameServerIP         string           `json:"name_server_ip"`
+	DomainCredential     DomainCredential `json:"domain_credential"`
+}
+
+type ClusterReference struct {
+	Kind string `json:"kind"`
+	UUID string `json:"uuid"`
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
+type Ipmi struct {
+	IP string `json:"ip"`
+}
+type Hypervisor struct {
+	IP                 string `json:"ip"`
+	HypervisorFullName string `json:"hypervisor_full_name"`
+	NumVms             int    `json:"num_vms"`
+}
+type Block struct {
+	BlockSerialNumber string `json:"block_serial_number"`
+	BlockModel        string `json:"block_model"`
+}
+type RackableUnitReference struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type HostDisksReferenceList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type ConsumerReference struct {
+	Kind string `json:"kind"`
+	UUID string `json:"uuid"`
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+type GpuList struct {
+	Name                   string            `json:"name"`
+	Mode                   string            `json:"mode"`
+	DeviceID               int               `json:"device_id"`
+	Vendor                 string            `json:"vendor"`
+	Status                 string            `json:"status"`
+	Index                  int               `json:"index"`
+	NumVgpusAllocated      int               `json:"num_vgpus_allocated"`
+	Assignable             bool              `json:"assignable"`
+	PciAddress             string            `json:"pci_address"`
+	NumaNode               int               `json:"numa_node"`
+	GuestDriverVersion     string            `json:"guest_driver_version"`
+	FrameBufferSizeMib     int               `json:"frame_buffer_size_mib"`
+	MaxInstancesPerVM      int               `json:"max_instances_per_vm"`
+	NumVirtualDisplayHeads int               `json:"num_virtual_display_heads"`
+	MaxResolution          string            `json:"max_resolution"`
+	Fraction               int               `json:"fraction"`
+	UUID                   string            `json:"uuid"`
+	LicenseList            []string          `json:"license_list"`
+	ConsumerReference      ConsumerReference `json:"consumer_reference"`
+}
+
+// DiskAddress is the DiskAddress
+type DiskAddress struct {
+	DeviceIndex int    `json:"device_index,omitempty"`
+	AdapterType string `json:"adapter_type,omitempty"`
+}
+
+// DeviceProperties is the DeviceProperties
+type DeviceProperties struct {
+	DiskAddress DiskAddress `json:"disk_address,omitempty"`
+	DeviceType  string      `json:"device_type,omitempty"`
+}
+
+// VnumaConfig is the VnumaConfig
+type VnumaConfig struct {
+	NumVnumaNodes int `json:"num_vnuma_nodes,omitempty"`
+}
+
+// IPEndpointList is the IPEndpointList
+type IPEndpointList struct {
+	IP   string `json:"ip,omitempty"`
+	Type string `json:"type,omitempty"`
+}
+
+// SubnetReference is the SubnetReference
+type SubnetReference struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+
+// NicList is the NicList
+type NicList struct {
+	NicType         string           `json:"nic_type,omitempty"`
+	UUID            string           `json:"uuid,omitempty"`
+	IPEndpointList  []IPEndpointList `json:"ip_endpoint_list,omitempty"`
+	MacAddress      string           `json:"mac_address,omitempty"`
+	SubnetReference SubnetReference  `json:"subnet_reference,omitempty"`
+	IsConnected     bool             `json:"is_connected,omitempty"`
+}
+
+// HostReference is the HostReference
+type HostReference struct {
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+}
+
+// DataSourceReference is the DataSourceReference
+type DataSourceReference struct {
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+
+// DiskList is the DiskList
+type DiskList struct {
+	DataSourceReference DataSourceReference `json:"data_source_reference,omitempty"`
+	DeviceProperties    DeviceProperties    `json:"device_properties,omitempty"`
+	UUID                string              `json:"uuid,omitempty"`
+	DiskSizeBytes       int                 `json:"disk_size_bytes,omitempty"`
+	DiskSizeMib         int                 `json:"disk_size_mib,omitempty"`
+}
+
+// ExecutionContext is the ExecutionContext
+type ExecutionContext struct {
+	TaskUuids []string `json:"task_uuids,omitempty"`
+}
+
+// BootDevice is the BootDevice
+type BootDevice struct {
+	DiskAddress DiskAddress `json:"disk_address,omitempty"`
+}
+
+// BootConfig is the BootConfig
+type BootConfig struct {
+	BootDevice BootDevice `json:"boot_device,omitempty"`
+}
+
+// CloudInit is the CloudInit
+type CloudInit struct {
+	UserData string `json:"user_data,omitempty"`
+}
+
+// GuestCustomization is the GuestCustomization
+type GuestCustomization struct {
+	CloudInit     CloudInit `json:"cloud_init,omitempty"`
+	IsOverridable bool      `json:"is_overridable,omitempty"`
+}
+
+// GuestTransitionConfig is the GuestTransitionConfig
+type GuestTransitionConfig struct {
+	ShouldFailOnScriptFailure bool `json:"should_fail_on_script_failure,omitempty"`
+	EnableScriptExec          bool `json:"enable_script_exec,omitempty"`
+}
+
+// PowerStateMechanism is the PowerStateMechanism
+type PowerStateMechanism struct {
+	GuestTransitionConfig GuestTransitionConfig `json:"guest_transition_config,omitempty"`
+	Mechanism             string                `json:"mechanism,omitempty"`
 }

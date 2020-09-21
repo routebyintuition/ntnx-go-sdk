@@ -57,6 +57,8 @@ type Client struct {
 	Cluster *ClusterService
 	User    *UserService
 	VM      *VMService
+	Host    *HostService
+	ACPS    *AccessControlPoliciesService
 }
 
 // CheckConfig will ensure that the minimal amount of information is present in the config
@@ -120,6 +122,8 @@ func NewClient(httpClient *http.Client, conf *ServiceConfig) (*Client, error) {
 	c.Cluster = (*ClusterService)(&c.common)
 	c.User = (*UserService)(&c.common)
 	c.VM = (*VMService)(&c.common)
+	c.Host = (*HostService)(&c.common)
+	c.ACPS = (*AccessControlPoliciesService)(&c.common)
 
 	return c, nil
 }

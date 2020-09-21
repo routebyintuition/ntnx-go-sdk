@@ -9,13 +9,16 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
 - Clusters
 - VMs
 - Users
+- Hosts
 
 ### Currently supported API functions:
 
 - Clusters
+
   - List
   - Update
   - Get
+
 - VMs
 
   - List
@@ -24,6 +27,11 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
   - Get
   - Delete
   - Clone
+
+- Hosts
+
+  - List
+  - Get
 
 - Users
 

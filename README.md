@@ -8,15 +8,15 @@ Currently, this is an alpha development release of the client library that is a 
 
 ## Current APIs and status:
 
-### Karbon - fully supported.
+### Karbon - implemented.
 
 Documentation available [KARBON](karbon/README.md)
 
-### Prism Central (v3 API) - partial support
+### Prism Central (v3 API) - partial implementation
 
 Documentation available [PrismCentral](pc/README.md)
 
-### Prism Element (v2 API) - limited support
+### Prism Element (v2 API) - unimplemented
 
 Documentation available [PrismElement](pe/README.md)
 

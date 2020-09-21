@@ -1841,30 +1841,6 @@ type DomainCredencial struct {
 	Password string `json:"password,omitempty"`
 }
 
-// WindowsDomain means Hyper-V node domain
-type WindowsDomain struct {
-	Name                 string            `json:"name,omitempty"`
-	NameServerIP         string            `json:"name_server_ip,omitempty"`
-	OrganizationUnitPath string            `json:"organization_unit_path,omitempty"`
-	NamePrefix           string            `json:"name_prefix,omitempty"`
-	DomainName           string            `json:"domain_name,omitempty"`
-	DomainCredencial     *DomainCredencial `json:"domain_credencial,omitempty"`
-}
-
-// OplogUsage represents oplog disk usage
-type OplogUsage struct {
-	OplogDiskPct  *float64 `json:"oplog_disk_pct,omitempty"`
-	OplogDiskSize *int64   `json:"oplog_disk_size,omitempty"`
-}
-
-// ControllerVM means Hyper-V node domain
-type ControllerVM struct {
-	IP         string      `json:"ip,omitempty"`
-	NatIP      string      `json:"nat_ip,omitempty"`
-	NatPort    *int64      `json:"nat_port,omitempty"`
-	OplogUsage *OplogUsage `json:"oplog_usage,omitempty"`
-}
-
 // FailoverCluster means Hiper-V failover cluster
 type FailoverCluster struct {
 	IP               string            `json:"ip,omitempty"`
@@ -1904,19 +1880,6 @@ type GPU struct {
 	Fraction               *int64           `json:"fraction,omitempty"`
 	GuestDriverVersion     string           `json:"guest_driver_version,omitempty"`
 	DeviceID               *int64           `json:"device_id,omitempty"`
-}
-
-// Hypervisor Full name of hypervisor running on Host
-type Hypervisor struct {
-	NumVms             *int64 `json:"num_vms,omitempty"`
-	IP                 string `json:"ip,omitempty"`
-	HypervisorFullName string `json:"hypervisor_full_name,omitempty"`
-}
-
-// Block represents Host block config info.
-type Block struct {
-	BlockSerialNumber string `json:"block_serial_number,omitempty"`
-	BlockModel        string `json:"block_model,omitempty"`
 }
 
 // HostResources represents the host resources
@@ -1966,11 +1929,11 @@ type HostResponse struct {
 }
 
 // HostListResponse Response object for intentful operation of Host
-type HostListResponse struct {
-	APIVersion string              `json:"api_version,omitempty"`
-	Entities   []*HostResponse     `json:"entities,omitempty"`
-	Metadata   *ListMetadataOutput `json:"metadata,omitempty"`
-}
+// type HostListResponse struct {
+// 	APIVersion string              `json:"api_version,omitempty"`
+// 	Entities   []*HostResponse     `json:"entities,omitempty"`
+// 	Metadata   *ListMetadataOutput `json:"metadata,omitempty"`
+// }
 
 /* Project Resource */
 
