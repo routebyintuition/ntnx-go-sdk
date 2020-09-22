@@ -23,9 +23,9 @@ type Metadata struct {
 	Filter               string            `json:"filter,omitempty"`
 	SortOrder            string            `json:"sort_order,omitempty"`
 	SortAttribute        string            `json:"sort_attribute,omitempty"`
-	CategoriesMapping    CategoriesMapping `json:"categories_mapping"`
-	UseCategoriesMapping bool              `json:"use_categories_mapping"`
-	EntityVersion        string            `json:"entity_version"`
+	CategoriesMapping    CategoriesMapping `json:"categories_mapping,omitempty"`
+	UseCategoriesMapping bool              `json:"use_categories_mapping,omitempty"`
+	EntityVersion        string            `json:"entity_version,omitempty"`
 }
 
 // Config is the API response for Config used across all API requests
@@ -54,47 +54,59 @@ type Config struct {
 
 // Resources is the main Resources type across all Response calls
 type Resources struct {
-	BootConfig             BootConfig               `json:"boot_config,omitempty"`
-	DiskList               []DiskList               `json:"disk_list,omitempty"`
-	GuestCustomization     GuestCustomization       `json:"guest_customization,omitempty"`
-	HardwareClockTimezone  string                   `json:"hardware_clock_timezone,omitempty"`
-	HostReference          HostReference            `json:"host_reference,omitempty"`
-	HypervisorType         string                   `json:"hypervisor_type,omitempty"`
-	MemorySizeMib          int                      `json:"memory_size_mib,omitempty"`
-	NicList                []NicList                `json:"nic_list,omitempty"`
-	NumSockets             int                      `json:"num_sockets,omitempty"`
-	NumThreadsPerCore      int                      `json:"num_threads_per_core,omitempty"`
-	NumVcpusPerSocket      int                      `json:"num_vcpus_per_socket,omitempty"`
-	PowerState             string                   `json:"power_state,omitempty"`
-	PowerStateMechanism    PowerStateMechanism      `json:"power_state_mechanism,omitempty"`
-	ProtectionType         string                   `json:"protection_type,omitempty"`
-	SerialPortList         []interface{}            `json:"serial_port_list,omitempty"`
-	VgaConsoleEnabled      bool                     `json:"vga_console_enabled,omitempty"`
-	VnumaConfig            VnumaConfig              `json:"vnuma_config,omitempty"`
-	Nodes                  Nodes                    `json:"nodes,omitempty"`
-	Config                 Config                   `json:"config,omitempty"`
-	Network                Network                  `json:"network,omitempty"`
-	Analysis               Analysis                 `json:"analysis,omitempty"`
-	RuntimeStatusList      []string                 `json:"runtime_status_list,omitempty"`
-	CPUModel               string                   `json:"cpu_model,omitempty"`
-	CPUCapacityHz          int                      `json:"cpu_capacity_hz,omitempty"`
-	NumCPUCores            int                      `json:"num_cpu_cores,omitempty"`
-	NumCPUSockets          int                      `json:"num_cpu_sockets,omitempty"`
-	MemoryCapacityMib      int                      `json:"memory_capacity_mib,omitempty"`
-	SerialNumber           string                   `json:"serial_number,omitempty"`
-	MonitoringState        string                   `json:"monitoring_state,omitempty"`
-	HostNicsIDList         []string                 `json:"host_nics_id_list,omitempty"`
-	WindowsDomain          WindowsDomain            `json:"windows_domain,omitempty"`
-	FailoverCluster        string                   `json:"failover_cluster,omitempty"`
-	Ipmi                   Ipmi                     `json:"ipmi,omitempty"`
-	ControllerVM           ControllerVM             `json:"controller_vm,omitempty"`
-	Hypervisor             Hypervisor               `json:"hypervisor,omitempty"`
-	Block                  Block                    `json:"block,omitempty"`
-	RackableUnitReference  RackableUnitReference    `json:"rackable_unit_reference,omitempty"`
-	HostDisksReferenceList []HostDisksReferenceList `json:"host_disks_reference_list,omitempty"`
-	GpuList                []GpuList                `json:"gpu_list,omitempty"`
-	GpuDriverVersion       string                   `json:"gpu_driver_version,omitempty"`
-	HostType               string                   `json:"host_type,omitempty"`
+	RetrievalURIList              []string                        `json:"retrieval_uri_list,omitempty"`
+	SizeBytes                     int                             `json:"size_bytes,omitempty"`
+	CurrentClusterReferenceList   []CurrentClusterReferenceList   `json:"current_cluster_reference_list,omitempty"`
+	ImagePlacementPolicyStateList []ImagePlacementPolicyStateList `json:"image_placement_policy_state_list,omitempty"`
+	ImageType                     string                          `json:"image_type,omitempty"`
+	Checksum                      string                          `json:"checksum,omitempty"`
+	SourceURI                     string                          `json:"source_uri,omitempty"`
+	SourceOptions                 SourceOptions                   `json:"source_options,omitempty"`
+	InitialPlacementRefList       []InitialPlacementRefList       `json:"initial_placement_ref_list,omitempty"`
+	DataSourceReference           DataSourceReference             `json:"data_source_reference,omitempty"`
+	Version                       Version                         `json:"version,omitempty"`
+	Architecture                  string                          `json:"architecture,omitempty"`
+	BootConfig                    BootConfig                      `json:"boot_config,omitempty"`
+	DiskList                      []DiskList                      `json:"disk_list,omitempty"`
+	GuestCustomization            GuestCustomization              `json:"guest_customization,omitempty"`
+	HardwareClockTimezone         string                          `json:"hardware_clock_timezone,omitempty"`
+	HostReference                 HostReference                   `json:"host_reference,omitempty"`
+	HypervisorType                string                          `json:"hypervisor_type,omitempty"`
+	MemorySizeMib                 int                             `json:"memory_size_mib,omitempty"`
+	NicList                       []NicList                       `json:"nic_list,omitempty"`
+	NumSockets                    int                             `json:"num_sockets,omitempty"`
+	NumThreadsPerCore             int                             `json:"num_threads_per_core,omitempty"`
+	NumVcpusPerSocket             int                             `json:"num_vcpus_per_socket,omitempty"`
+	PowerState                    string                          `json:"power_state,omitempty"`
+	PowerStateMechanism           PowerStateMechanism             `json:"power_state_mechanism,omitempty"`
+	ProtectionType                string                          `json:"protection_type,omitempty"`
+	SerialPortList                []interface{}                   `json:"serial_port_list,omitempty"`
+	VgaConsoleEnabled             bool                            `json:"vga_console_enabled,omitempty"`
+	VnumaConfig                   VnumaConfig                     `json:"vnuma_config,omitempty"`
+	Nodes                         Nodes                           `json:"nodes,omitempty"`
+	Config                        Config                          `json:"config,omitempty"`
+	Network                       Network                         `json:"network,omitempty"`
+	Analysis                      Analysis                        `json:"analysis,omitempty"`
+	RuntimeStatusList             []string                        `json:"runtime_status_list,omitempty"`
+	CPUModel                      string                          `json:"cpu_model,omitempty"`
+	CPUCapacityHz                 int                             `json:"cpu_capacity_hz,omitempty"`
+	NumCPUCores                   int                             `json:"num_cpu_cores,omitempty"`
+	NumCPUSockets                 int                             `json:"num_cpu_sockets,omitempty"`
+	MemoryCapacityMib             int                             `json:"memory_capacity_mib,omitempty"`
+	SerialNumber                  string                          `json:"serial_number,omitempty"`
+	MonitoringState               string                          `json:"monitoring_state,omitempty"`
+	HostNicsIDList                []string                        `json:"host_nics_id_list,omitempty"`
+	WindowsDomain                 WindowsDomain                   `json:"windows_domain,omitempty"`
+	FailoverCluster               string                          `json:"failover_cluster,omitempty"`
+	Ipmi                          Ipmi                            `json:"ipmi,omitempty"`
+	ControllerVM                  ControllerVM                    `json:"controller_vm,omitempty"`
+	Hypervisor                    Hypervisor                      `json:"hypervisor,omitempty"`
+	Block                         Block                           `json:"block,omitempty"`
+	RackableUnitReference         RackableUnitReference           `json:"rackable_unit_reference,omitempty"`
+	HostDisksReferenceList        []HostDisksReferenceList        `json:"host_disks_reference_list,omitempty"`
+	GpuList                       []GpuList                       `json:"gpu_list,omitempty"`
+	GpuDriverVersion              string                          `json:"gpu_driver_version,omitempty"`
+	HostType                      string                          `json:"host_type,omitempty"`
 }
 
 // Spec is the main Spec type across all Response calls
@@ -104,6 +116,33 @@ type Spec struct {
 	Resources        Resources        `json:"resources,omitempty"`
 	Name             string           `json:"name,omitempty"`
 	APIVersion       string           `json:"api_version,omitempty"`
+}
+
+// ImageReferenceList is used for image service details
+type ImageReferenceList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+
+// SourceOptions used for Image Update
+type SourceOptions struct {
+	AllowInsecureConnection bool `json:"allow_insecure_connection"`
+}
+
+// InitialPlacementRefList used or image update and placement
+type InitialPlacementRefList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+
+// DataSourceReference used for image update
+type DataSourceReference struct {
+	Kind string `json:"kind"`
+	UUID string `json:"uuid"`
+	Name string `json:"name"`
+	URL  string `json:"url"`
 }
 
 // ProjectReference is the main ProjectReference type across all Response calls
@@ -130,15 +169,68 @@ type State struct {
 	Description string `json:"description,omitempty"`
 }
 
+type AvailabilityZoneReference struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+
+type ImagePlacementPolicyStateList struct {
+	ComplianceStatus string             `json:"compliance_status"`
+	EnforcementMode  string             `json:"enforcement_mode"`
+	PolicyReference  PolicyReference    `json:"policy_reference"`
+	PolicyInfo       PolicyInfo         `json:"policy_info"`
+	ErrorMessageList []ErrorMessageList `json:"error_message_list"`
+}
+
+type CurrentClusterReferenceList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type PolicyReference struct {
+	Kind string `json:"kind"`
+	UUID string `json:"uuid"`
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+type EnforcedPolicyClusterReferenceList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type CompletePolicyClusterReferenceList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type ConflictingImagePlacementPolicyReferenceList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type PolicyInfo struct {
+	EnforcedPolicyClusterReferenceList           []EnforcedPolicyClusterReferenceList           `json:"enforced_policy_cluster_reference_list"`
+	CompletePolicyClusterReferenceList           []CompletePolicyClusterReferenceList           `json:"complete_policy_cluster_reference_list"`
+	ConflictingImagePlacementPolicyReferenceList []ConflictingImagePlacementPolicyReferenceList `json:"conflicting_image_placement_policy_reference_list"`
+}
+
+type ErrorMessageList struct {
+	Message string  `json:"message"`
+	Reason  string  `json:"reason"`
+	Details Details `json:"details"`
+}
+
 // Status is the main Status type across all Response calls
 type Status struct {
-	State            string           `json:"state,omitempty"`
-	ClusterReference ClusterReference `json:"cluster_reference,omitempty"`
-	ExecutionContext ExecutionContext `json:"execution_context,omitempty"`
-	Description      string           `json:"description,omitempty"`
-	Resources        Resources        `json:"resources,omitempty"`
-	Name             string           `json:"name,omitempty"`
-	MessageList      []MessageList    `json:"message_list,omitempty"`
+	State                     string                    `json:"state,omitempty"`
+	ClusterReference          ClusterReference          `json:"cluster_reference,omitempty"`
+	ExecutionContext          ExecutionContext          `json:"execution_context,omitempty"`
+	Description               string                    `json:"description,omitempty"`
+	Resources                 Resources                 `json:"resources,omitempty"`
+	Name                      string                    `json:"name,omitempty"`
+	MessageList               []MessageList             `json:"message_list,omitempty"`
+	AvailabilityZoneReference AvailabilityZoneReference `json:"availability_zone_reference"`
 }
 
 // Entities is the main Entities type across all Response calls
@@ -673,12 +765,6 @@ type HostReference struct {
 	Name string `json:"name,omitempty"`
 }
 
-// DataSourceReference is the DataSourceReference
-type DataSourceReference struct {
-	Kind string `json:"kind,omitempty"`
-	UUID string `json:"uuid,omitempty"`
-}
-
 // DiskList is the DiskList
 type DiskList struct {
 	DataSourceReference DataSourceReference `json:"data_source_reference,omitempty"`
@@ -691,6 +777,12 @@ type DiskList struct {
 // ExecutionContext is the ExecutionContext
 type ExecutionContext struct {
 	TaskUuids []string `json:"task_uuids,omitempty"`
+}
+
+// Version is used for image version
+type Version struct {
+	ProductName    string `json:"product_name"`
+	ProductVersion string `json:"product_version"`
 }
 
 // BootDevice is the BootDevice
