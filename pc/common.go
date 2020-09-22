@@ -107,15 +107,26 @@ type Resources struct {
 	GpuList                       []GpuList                       `json:"gpu_list,omitempty"`
 	GpuDriverVersion              string                          `json:"gpu_driver_version,omitempty"`
 	HostType                      string                          `json:"host_type,omitempty"`
+	GuestOsID                     string                          `json:"guest_os_id"`
+	IsVcpuHardPinned              bool                            `json:"is_vcpu_hard_pinned"`
+	IsAgentVM                     bool                            `json:"is_agent_vm"`
+	DisableBranding               bool                            `json:"disable_branding"`
+	EnableCPUPassthrough          bool                            `json:"enable_cpu_passthrough"`
+	MachineType                   string                          `json:"machine_type"`
+	HardwareVirtualizationEnabled bool                            `json:"hardware_virtualization_enabled"`
+	ParentReference               ParentReference                 `json:"parent_reference"`
+	GuestTools                    GuestTools                      `json:"guest_tools"`
+	StorageConfig                 StorageConfig                   `json:"storage_config"`
 }
 
 // Spec is the main Spec type across all Response calls
 type Spec struct {
-	ClusterReference ClusterReference `json:"cluster_reference,omitempty"`
-	Description      string           `json:"description,omitempty"`
-	Resources        Resources        `json:"resources,omitempty"`
-	Name             string           `json:"name,omitempty"`
-	APIVersion       string           `json:"api_version,omitempty"`
+	ClusterReference          ClusterReference          `json:"cluster_reference,omitempty"`
+	Description               string                    `json:"description,omitempty"`
+	Resources                 Resources                 `json:"resources,omitempty"`
+	Name                      string                    `json:"name,omitempty"`
+	APIVersion                string                    `json:"api_version,omitempty"`
+	AvailabilityZoneReference AvailabilityZoneReference `json:"availability_zone_reference"`
 }
 
 // ImageReferenceList is used for image service details
@@ -139,10 +150,29 @@ type InitialPlacementRefList struct {
 
 // DataSourceReference used for image update
 type DataSourceReference struct {
+	Kind           string `json:"kind"`
+	UUID           string `json:"uuid"`
+	Name           string `json:"name"`
+	URL            string `json:"url"`
+	IsDirectAttach bool   `json:"is_direct_attach"`
+}
+
+type VolumeGroupReference struct {
 	Kind string `json:"kind"`
 	UUID string `json:"uuid"`
 	Name string `json:"name"`
 	URL  string `json:"url"`
+}
+type StorageContainerReference struct {
+	Kind string `json:"kind"`
+	UUID string `json:"uuid"`
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+type StorageConfig struct {
+	StorageContainerReference StorageContainerReference `json:"storage_container_reference"`
+	FlashMode                 string                    `json:"flash_mode"`
+	QosPolicy                 QosPolicy                 `json:"qos_policy"`
 }
 
 // ProjectReference is the main ProjectReference type across all Response calls
@@ -488,6 +518,19 @@ type Credentials struct {
 	Password string `json:"password,omitempty"`
 }
 
+type NutanixGuestTools struct {
+	NgtState              string      `json:"ngt_state"`
+	Credentials           Credentials `json:"credentials"`
+	State                 string      `json:"state"`
+	IsoMountState         string      `json:"iso_mount_state"`
+	EnabledCapabilityList []string    `json:"enabled_capability_list"`
+	Version               string      `json:"version"`
+}
+
+type GuestTools struct {
+	NutanixGuestTools NutanixGuestTools `json:"nutanix_guest_tools"`
+}
+
 // Address is the address
 type Address struct {
 	IP       string `json:"ip,omitempty"`
@@ -718,6 +761,13 @@ type GpuList struct {
 	ConsumerReference      ConsumerReference `json:"consumer_reference"`
 }
 
+type ParentReference struct {
+	Kind string `json:"kind"`
+	UUID string `json:"uuid"`
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
+
 // DiskAddress is the DiskAddress
 type DiskAddress struct {
 	DeviceIndex int    `json:"device_index,omitempty"`
@@ -737,8 +787,11 @@ type VnumaConfig struct {
 
 // IPEndpointList is the IPEndpointList
 type IPEndpointList struct {
-	IP   string `json:"ip,omitempty"`
-	Type string `json:"type,omitempty"`
+	IP                 string   `json:"ip,omitempty"`
+	Type               string   `json:"type,omitempty"`
+	IPType             string   `json:"ip_type"`
+	PrefixLength       int      `json:"prefix_length"`
+	GatewayAddressList []string `json:"gateway_address_list"`
 }
 
 // SubnetReference is the SubnetReference
@@ -748,14 +801,33 @@ type SubnetReference struct {
 	UUID string `json:"uuid,omitempty"`
 }
 
+type SerialPortList struct {
+	IsConnected bool `json:"is_connected"`
+	Index       int  `json:"index"`
+}
+type QosPolicy struct {
+	ThrottledIops int `json:"throttled_iops"`
+}
+
+type NetworkFunctionChainReference struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+
 // NicList is the NicList
 type NicList struct {
-	NicType         string           `json:"nic_type,omitempty"`
-	UUID            string           `json:"uuid,omitempty"`
-	IPEndpointList  []IPEndpointList `json:"ip_endpoint_list,omitempty"`
-	MacAddress      string           `json:"mac_address,omitempty"`
-	SubnetReference SubnetReference  `json:"subnet_reference,omitempty"`
-	IsConnected     bool             `json:"is_connected,omitempty"`
+	NicType                       string                        `json:"nic_type,omitempty"`
+	UUID                          string                        `json:"uuid,omitempty"`
+	IPEndpointList                []IPEndpointList              `json:"ip_endpoint_list,omitempty"`
+	MacAddress                    string                        `json:"mac_address,omitempty"`
+	SubnetReference               SubnetReference               `json:"subnet_reference,omitempty"`
+	IsConnected                   bool                          `json:"is_connected,omitempty"`
+	VlanMode                      string                        `json:"vlan_mode"`
+	TrunkedVlanList               []int                         `json:"trunked_vlan_list"`
+	NetworkFunctionChainReference NetworkFunctionChainReference `json:"network_function_chain_reference"`
+	NetworkFunctionNicType        string                        `json:"network_function_nic_type"`
+	Model                         string                        `json:"model"`
 }
 
 // HostReference is the HostReference
@@ -767,11 +839,13 @@ type HostReference struct {
 
 // DiskList is the DiskList
 type DiskList struct {
-	DataSourceReference DataSourceReference `json:"data_source_reference,omitempty"`
-	DeviceProperties    DeviceProperties    `json:"device_properties,omitempty"`
-	UUID                string              `json:"uuid,omitempty"`
-	DiskSizeBytes       int                 `json:"disk_size_bytes,omitempty"`
-	DiskSizeMib         int                 `json:"disk_size_mib,omitempty"`
+	DataSourceReference  DataSourceReference  `json:"data_source_reference,omitempty"`
+	DeviceProperties     DeviceProperties     `json:"device_properties,omitempty"`
+	UUID                 string               `json:"uuid,omitempty"`
+	DiskSizeBytes        int                  `json:"disk_size_bytes,omitempty"`
+	DiskSizeMib          int                  `json:"disk_size_mib,omitempty"`
+	VolumeGroupReference VolumeGroupReference `json:"volume_group_reference"`
+	StorageConfig        StorageConfig        `json:"storage_config"`
 }
 
 // ExecutionContext is the ExecutionContext
@@ -788,22 +862,32 @@ type Version struct {
 // BootDevice is the BootDevice
 type BootDevice struct {
 	DiskAddress DiskAddress `json:"disk_address,omitempty"`
+	MacAddress  string      `json:"mac_address"`
+}
+type CustomKeyValues struct {
+}
+type Sysprep struct {
+	InstallType     string          `json:"install_type"`
+	UnattendXML     string          `json:"unattend_xml"`
+	CustomKeyValues CustomKeyValues `json:"custom_key_values"`
+}
+type CloudInit struct {
+	MetaData        string          `json:"meta_data"`
+	UserData        string          `json:"user_data"`
+	CustomKeyValues CustomKeyValues `json:"custom_key_values"`
+}
+type GuestCustomization struct {
+	IsOverridable bool      `json:"is_overridable"`
+	Sysprep       Sysprep   `json:"sysprep"`
+	CloudInit     CloudInit `json:"cloud_init"`
 }
 
 // BootConfig is the BootConfig
 type BootConfig struct {
-	BootDevice BootDevice `json:"boot_device,omitempty"`
-}
-
-// CloudInit is the CloudInit
-type CloudInit struct {
-	UserData string `json:"user_data,omitempty"`
-}
-
-// GuestCustomization is the GuestCustomization
-type GuestCustomization struct {
-	CloudInit     CloudInit `json:"cloud_init,omitempty"`
-	IsOverridable bool      `json:"is_overridable,omitempty"`
+	BootDevice          BootDevice          `json:"boot_device,omitempty"`
+	BootDeviceOrderList []string            `json:"boot_device_order_list"`
+	BootType            string              `json:"boot_type"`
+	DataSourceReference DataSourceReference `json:"data_source_reference"`
 }
 
 // GuestTransitionConfig is the GuestTransitionConfig

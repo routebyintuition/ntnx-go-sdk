@@ -199,14 +199,6 @@ type VMDiskDeviceProperties struct {
 	DiskAddress *DiskAddress `json:"disk_address,omitempty" mapstructure:"disk_address,omitempty"`
 }
 
-// StorageContainerReference references to a kind. Either one of (kind, uuid) or url needs to be specified.
-type StorageContainerReference struct {
-	URL  string `json:"url,omitempty"`
-	Kind string `json:"kind,omitempty"`
-	UUID string `json:"uuid,omitempty"`
-	Name string `json:"name,omitempty"`
-}
-
 // VMStorageConfig specifies the storage configuration parameters for VM disks.
 type VMStorageConfig struct {
 	FlashMode                 string                     `json:"flash_mode,omitempty"`
