@@ -54,69 +54,76 @@ type Config struct {
 
 // Resources is the main Resources type across all Response calls
 type Resources struct {
-	RetrievalURIList              []string                        `json:"retrieval_uri_list,omitempty"`
-	SizeBytes                     int                             `json:"size_bytes,omitempty"`
-	CurrentClusterReferenceList   []CurrentClusterReferenceList   `json:"current_cluster_reference_list,omitempty"`
-	ImagePlacementPolicyStateList []ImagePlacementPolicyStateList `json:"image_placement_policy_state_list,omitempty"`
-	ImageType                     string                          `json:"image_type,omitempty"`
-	Checksum                      string                          `json:"checksum,omitempty"`
-	SourceURI                     string                          `json:"source_uri,omitempty"`
-	SourceOptions                 SourceOptions                   `json:"source_options,omitempty"`
-	InitialPlacementRefList       []InitialPlacementRefList       `json:"initial_placement_ref_list,omitempty"`
-	DataSourceReference           DataSourceReference             `json:"data_source_reference,omitempty"`
-	Version                       Version                         `json:"version,omitempty"`
-	Architecture                  string                          `json:"architecture,omitempty"`
-	BootConfig                    BootConfig                      `json:"boot_config,omitempty"`
-	DiskList                      []DiskList                      `json:"disk_list,omitempty"`
-	GuestCustomization            GuestCustomization              `json:"guest_customization,omitempty"`
-	HardwareClockTimezone         string                          `json:"hardware_clock_timezone,omitempty"`
-	HostReference                 HostReference                   `json:"host_reference,omitempty"`
-	HypervisorType                string                          `json:"hypervisor_type,omitempty"`
-	MemorySizeMib                 int                             `json:"memory_size_mib,omitempty"`
-	NicList                       []NicList                       `json:"nic_list,omitempty"`
-	NumSockets                    int                             `json:"num_sockets,omitempty"`
-	NumThreadsPerCore             int                             `json:"num_threads_per_core,omitempty"`
-	NumVcpusPerSocket             int                             `json:"num_vcpus_per_socket,omitempty"`
-	PowerState                    string                          `json:"power_state,omitempty"`
-	PowerStateMechanism           PowerStateMechanism             `json:"power_state_mechanism,omitempty"`
-	ProtectionType                string                          `json:"protection_type,omitempty"`
-	SerialPortList                []interface{}                   `json:"serial_port_list,omitempty"`
-	VgaConsoleEnabled             bool                            `json:"vga_console_enabled,omitempty"`
-	VnumaConfig                   VnumaConfig                     `json:"vnuma_config,omitempty"`
-	Nodes                         Nodes                           `json:"nodes,omitempty"`
-	Config                        Config                          `json:"config,omitempty"`
-	Network                       Network                         `json:"network,omitempty"`
-	Analysis                      Analysis                        `json:"analysis,omitempty"`
-	RuntimeStatusList             []string                        `json:"runtime_status_list,omitempty"`
-	CPUModel                      string                          `json:"cpu_model,omitempty"`
-	CPUCapacityHz                 int                             `json:"cpu_capacity_hz,omitempty"`
-	NumCPUCores                   int                             `json:"num_cpu_cores,omitempty"`
-	NumCPUSockets                 int                             `json:"num_cpu_sockets,omitempty"`
-	MemoryCapacityMib             int                             `json:"memory_capacity_mib,omitempty"`
-	SerialNumber                  string                          `json:"serial_number,omitempty"`
-	MonitoringState               string                          `json:"monitoring_state,omitempty"`
-	HostNicsIDList                []string                        `json:"host_nics_id_list,omitempty"`
-	WindowsDomain                 WindowsDomain                   `json:"windows_domain,omitempty"`
-	FailoverCluster               string                          `json:"failover_cluster,omitempty"`
-	Ipmi                          Ipmi                            `json:"ipmi,omitempty"`
-	ControllerVM                  ControllerVM                    `json:"controller_vm,omitempty"`
-	Hypervisor                    Hypervisor                      `json:"hypervisor,omitempty"`
-	Block                         Block                           `json:"block,omitempty"`
-	RackableUnitReference         RackableUnitReference           `json:"rackable_unit_reference,omitempty"`
-	HostDisksReferenceList        []HostDisksReferenceList        `json:"host_disks_reference_list,omitempty"`
-	GpuList                       []GpuList                       `json:"gpu_list,omitempty"`
-	GpuDriverVersion              string                          `json:"gpu_driver_version,omitempty"`
-	HostType                      string                          `json:"host_type,omitempty"`
-	GuestOsID                     string                          `json:"guest_os_id"`
-	IsVcpuHardPinned              bool                            `json:"is_vcpu_hard_pinned"`
-	IsAgentVM                     bool                            `json:"is_agent_vm"`
-	DisableBranding               bool                            `json:"disable_branding"`
-	EnableCPUPassthrough          bool                            `json:"enable_cpu_passthrough"`
-	MachineType                   string                          `json:"machine_type"`
-	HardwareVirtualizationEnabled bool                            `json:"hardware_virtualization_enabled"`
-	ParentReference               ParentReference                 `json:"parent_reference"`
-	GuestTools                    GuestTools                      `json:"guest_tools"`
-	StorageConfig                 StorageConfig                   `json:"storage_config"`
+	RetrievalURIList                 []string                           `json:"retrieval_uri_list,omitempty"`
+	SizeBytes                        int                                `json:"size_bytes,omitempty"`
+	CurrentClusterReferenceList      []CurrentClusterReferenceList      `json:"current_cluster_reference_list,omitempty"`
+	ImagePlacementPolicyStateList    []ImagePlacementPolicyStateList    `json:"image_placement_policy_state_list,omitempty"`
+	ImageType                        string                             `json:"image_type,omitempty"`
+	Checksum                         string                             `json:"checksum,omitempty"`
+	SourceURI                        string                             `json:"source_uri,omitempty"`
+	SourceOptions                    SourceOptions                      `json:"source_options,omitempty"`
+	InitialPlacementRefList          []InitialPlacementRefList          `json:"initial_placement_ref_list,omitempty"`
+	DataSourceReference              DataSourceReference                `json:"data_source_reference,omitempty"`
+	Version                          Version                            `json:"version,omitempty"`
+	Architecture                     string                             `json:"architecture,omitempty"`
+	BootConfig                       BootConfig                         `json:"boot_config,omitempty"`
+	DiskList                         []DiskList                         `json:"disk_list,omitempty"`
+	GuestCustomization               GuestCustomization                 `json:"guest_customization,omitempty"`
+	HardwareClockTimezone            string                             `json:"hardware_clock_timezone,omitempty"`
+	HostReference                    HostReference                      `json:"host_reference,omitempty"`
+	HypervisorType                   string                             `json:"hypervisor_type,omitempty"`
+	MemorySizeMib                    int                                `json:"memory_size_mib,omitempty"`
+	NicList                          []NicList                          `json:"nic_list,omitempty"`
+	NumSockets                       int                                `json:"num_sockets,omitempty"`
+	NumThreadsPerCore                int                                `json:"num_threads_per_core,omitempty"`
+	NumVcpusPerSocket                int                                `json:"num_vcpus_per_socket,omitempty"`
+	PowerState                       string                             `json:"power_state,omitempty"`
+	PowerStateMechanism              PowerStateMechanism                `json:"power_state_mechanism,omitempty"`
+	ProtectionType                   string                             `json:"protection_type,omitempty"`
+	SerialPortList                   []interface{}                      `json:"serial_port_list,omitempty"`
+	VgaConsoleEnabled                bool                               `json:"vga_console_enabled,omitempty"`
+	VnumaConfig                      VnumaConfig                        `json:"vnuma_config,omitempty"`
+	Nodes                            Nodes                              `json:"nodes,omitempty"`
+	Config                           Config                             `json:"config,omitempty"`
+	Network                          Network                            `json:"network,omitempty"`
+	Analysis                         Analysis                           `json:"analysis,omitempty"`
+	RuntimeStatusList                []string                           `json:"runtime_status_list,omitempty"`
+	CPUModel                         string                             `json:"cpu_model,omitempty"`
+	CPUCapacityHz                    int                                `json:"cpu_capacity_hz,omitempty"`
+	NumCPUCores                      int                                `json:"num_cpu_cores,omitempty"`
+	NumCPUSockets                    int                                `json:"num_cpu_sockets,omitempty"`
+	MemoryCapacityMib                int                                `json:"memory_capacity_mib,omitempty"`
+	SerialNumber                     string                             `json:"serial_number,omitempty"`
+	MonitoringState                  string                             `json:"monitoring_state,omitempty"`
+	HostNicsIDList                   []string                           `json:"host_nics_id_list,omitempty"`
+	WindowsDomain                    WindowsDomain                      `json:"windows_domain,omitempty"`
+	FailoverCluster                  string                             `json:"failover_cluster,omitempty"`
+	Ipmi                             Ipmi                               `json:"ipmi,omitempty"`
+	ControllerVM                     ControllerVM                       `json:"controller_vm,omitempty"`
+	Hypervisor                       Hypervisor                         `json:"hypervisor,omitempty"`
+	Block                            Block                              `json:"block,omitempty"`
+	RackableUnitReference            RackableUnitReference              `json:"rackable_unit_reference,omitempty"`
+	HostDisksReferenceList           []HostDisksReferenceList           `json:"host_disks_reference_list,omitempty"`
+	GpuList                          []GpuList                          `json:"gpu_list,omitempty"`
+	GpuDriverVersion                 string                             `json:"gpu_driver_version,omitempty"`
+	HostType                         string                             `json:"host_type,omitempty"`
+	GuestOsID                        string                             `json:"guest_os_id"`
+	IsVcpuHardPinned                 bool                               `json:"is_vcpu_hard_pinned"`
+	IsAgentVM                        bool                               `json:"is_agent_vm"`
+	DisableBranding                  bool                               `json:"disable_branding"`
+	EnableCPUPassthrough             bool                               `json:"enable_cpu_passthrough"`
+	MachineType                      string                             `json:"machine_type"`
+	HardwareVirtualizationEnabled    bool                               `json:"hardware_virtualization_enabled"`
+	ParentReference                  ParentReference                    `json:"parent_reference"`
+	GuestTools                       GuestTools                         `json:"guest_tools"`
+	StorageConfig                    StorageConfig                      `json:"storage_config"`
+	DirectoryServiceUser             DirectoryServiceUser               `json:"directory_service_user"`
+	IdentityProviderUser             IdentityProviderUser               `json:"identity_provider_user"`
+	UserType                         string                             `json:"user_type"`
+	DisplayName                      string                             `json:"display_name"`
+	ProjectsReferenceList            []ProjectsReferenceList            `json:"projects_reference_list"`
+	AccessControlPolicyReferenceList []AccessControlPolicyReferenceList `json:"access_control_policy_reference_list"`
+	ResourceUsageSummary             ResourceUsageSummary               `json:"resource_usage_summary"`
 }
 
 // Spec is the main Spec type across all Response calls
@@ -136,9 +143,25 @@ type ImageReferenceList struct {
 	UUID string `json:"uuid"`
 }
 
+type ProjectsReferenceList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+
+type AccessControlPolicyReferenceList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+
 // SourceOptions used for Image Update
 type SourceOptions struct {
 	AllowInsecureConnection bool `json:"allow_insecure_connection"`
+}
+
+type ResourceUsageSummary struct {
+	ResourceDomain string `json:"resource_domain"`
 }
 
 // InitialPlacementRefList used or image update and placement
@@ -175,11 +198,37 @@ type StorageConfig struct {
 	QosPolicy                 QosPolicy                 `json:"qos_policy"`
 }
 
+type DirectoryServiceReference struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type DirectoryServiceUser struct {
+	UserPrincipalName         string                    `json:"user_principal_name"`
+	DefaultUserPrincipalName  string                    `json:"default_user_principal_name"`
+	DirectoryServiceReference DirectoryServiceReference `json:"directory_service_reference"`
+}
+type IdentityProviderReference struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type IdentityProviderUser struct {
+	Username                  string                    `json:"username"`
+	IdentityProviderReference IdentityProviderReference `json:"identity_provider_reference"`
+}
+
 // ProjectReference is the main ProjectReference type across all Response calls
 type ProjectReference struct {
 	Kind string `json:"kind,omitempty"`
 	Name string `json:"name,omitempty"`
 	UUID string `json:"uuid,omitempty"`
+}
+
+// ProjectResourceDomainList used for user resource/domain get information
+type ProjectResourceDomainList struct {
+	ProjectReference ProjectReference `json:"project_reference"`
+	ResourceDomain   string           `json:"resource_domain"`
 }
 
 // OwnerReference is the main OwnerReference type across all Response calls
