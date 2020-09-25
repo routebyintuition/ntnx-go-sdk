@@ -650,37 +650,6 @@ type IPPool struct {
 	Range *string `json:"range,omitempty" mapstructure:"range,omitempty"`
 }
 
-// DHCPOptions Spec for defining DHCP options.
-type DHCPOptions struct {
-	BootFileName *string `json:"boot_file_name,omitempty" mapstructure:"boot_file_name,omitempty"`
-
-	DomainName *string `json:"domain_name,omitempty" mapstructure:"domain_name,omitempty"`
-
-	DomainNameServerList []*string `json:"domain_name_server_list,omitempty" mapstructure:"domain_name_server_list,omitempty"`
-
-	DomainSearchList []*string `json:"domain_search_list,omitempty" mapstructure:"domain_search_list,omitempty"`
-
-	TFTPServerName *string `json:"tftp_server_name,omitempty" mapstructure:"tftp_server_name,omitempty"`
-}
-
-// IPConfig represents the configurtion of IP.
-type IPConfig struct {
-
-	// Default gateway IP address.
-	DefaultGatewayIP *string `json:"default_gateway_ip,omitempty" mapstructure:"default_gateway_ip,omitempty"`
-
-	DHCPOptions *DHCPOptions `json:"dhcp_options,omitempty" mapstructure:"dhcp_options,omitempty"`
-
-	DHCPServerAddress *Address `json:"dhcp_server_address,omitempty" mapstructure:"dhcp_server_address,omitempty"`
-
-	PoolList []*IPPool `json:"pool_list,omitempty" mapstructure:"pool_list,omitempty"`
-
-	PrefixLength *int64 `json:"prefix_length,omitempty" mapstructure:"prefix_length,omitempty"`
-
-	// Subnet IP address.
-	SubnetIP *string `json:"subnet_ip,omitempty" mapstructure:"subnet_ip,omitempty"`
-}
-
 // SubnetResources represents Subnet creation/modification spec.
 type SubnetResources struct {
 	IPConfig *IPConfig `json:"ip_config,omitempty" mapstructure:"ip_config,omitempty"`
