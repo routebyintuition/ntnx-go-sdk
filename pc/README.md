@@ -8,55 +8,38 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
 
 - Clusters - functions available in 5.15
 - VMs - functions available in 5.15
-- Users
+- Users - functions available in 5.15
 - Hosts - functions available in 5.15
 - Images - functions available in 5.15
-
-- Users
-
-  - Create
-
-- Access Control Policies
-  - Create
-  - List
-  - Update
-  - Delete
-  - Get
+- Access Control Policies - functions available in 5.15
 
 ### Work in progress:
 
-- Action Templates
-- Action Rule Results
-- Action Rules
-- Action Trigger Types
-- Action Types
-- Address Groups
-- Alerts
-- App Runlogs
-- Apps
-- Audits
-- Availability Zones
-- AWS/regions
-- AWS/availability_zones
-- AWS/roles
-- AWS/key_pairs
-- AWS/machine_types
-- AWS/volume_types
-- AWS/elastic_ips
-- AWS/images
-- AWS/security_groups
-- AWS/subnets
-- AWS/vms
-- AWS/vpcs
-- Physical Availability Zones
-- Batch
-- Billing
-- Blackouts
-- Blueprint
-- App Tasks
-- Categories
-- Cell
-- Cloud
-- Reports
-- Datacenter
--
+- categories
+- network_security_rules
+- whatif
+- reports
+- identity_providers
+- service_groups
+- directory_services
+- projects
+- image_placement_policies
+- remote_syslog_servers
+- roles
+- audits
+- access_control_policies
+- protection_rules
+- tasks
+- recovery_plans
+- blackouts
+- address_groups
+- subnets
+- ngt_policies
+- permissions
+- remote_syslog_modules
+- alerts
+- network_function_chains
+- user_groups
+- recovery_plan_jobs
+- batch
+- idempotence_identifiers
