@@ -61,6 +61,46 @@ func main() {
 }
 ```
 
+The following example will list Nutanix clusters registered with the current Prism Central using the skip SSL verify in the main configuration without passing
+in an HTTP client.
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+
+	nutanix "github.com/routebyintuition/ntnx-go-sdk"
+	"github.com/routebyintuition/ntnx-go-sdk/pc"
+)
+
+func main() {
+
+	nconf := &nutanix.Config{
+		PrismCentral:       new(pc.ServiceConfig),
+		InsecureSkipVerify: true,
+	}
+
+	con, err := nutanix.NewClient(nil, nconf)
+	if err != nil {
+		fmt.Println("error on NewClient: ", err)
+		return
+	}
+
+	cListRequest := new(pc.ClusterListRequest)
+	fmt.Println("performing new list request")
+	listRes, _, err := con.PC.Cluster.List(cListRequest)
+	if err != nil {
+		fmt.Println("cluster list error: ", err)
+		return
+	}
+
+	out, _ := json.MarshalIndent(listRes, "", "  ")
+	fmt.Println(string(out))
+}
+```
+
 ### Configuration
 
 It is NOT RECOMMENDED to hardcode connection and authentication information directly in the code. While this can be done, environmental variables are recommended. The environmental variable list used for the API are below:
