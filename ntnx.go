@@ -1,6 +1,7 @@
 package nutanix
 
 import (
+	"crypto/tls"
 	"errors"
 	"fmt"
 	"net/http"
@@ -55,7 +56,13 @@ func NewClient(httpClient *http.Client, conf *Config) (*Client, error) {
 		return nil, errors.New("no service configurations provided")
 	}
 	if httpClient == nil {
-		httpClient = &http.Client{}
+		if conf.InsecureSkipVerify {
+			httpClient = &http.Client{Transport: &http.Transport{
+				TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+			}}
+		} else {
+			httpClient = &http.Client{}
+		}
 	}
 
 	c := &Client{client: httpClient, config: conf}
