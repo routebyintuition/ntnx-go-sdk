@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	fmt.Println("testing...")
 
 	// pccon := &pc.ServiceConfig{URL: nutanix.String("https://10.1.1.10:9440/api/nutanix/v3/", User: nutanix.String("admin"), Pass: nutanix.String("password")}
 	nconf := &nutanix.Config{
@@ -33,5 +32,5 @@ func main() {
 
 	// fmt.Println("cluster list response: ", listResp)
 	out, _ := json.MarshalIndent(listRes, "", "  ")
-	fmt.Println("cluster list result: ", string(out))
+	fmt.Println(string(out))
 }
