@@ -336,14 +336,32 @@ type Status struct {
 
 // Entities is the main Entities type across all Response calls
 type Entities struct {
-	Status        Status       `json:"status,omitempty"`
-	Spec          Spec         `json:"spec,omitempty"`
-	APIVersion    string       `json:"api_version,omitempty"`
-	Metadata      Metadata     `json:"metadata,omitempty"`
-	Name          string       `json:"name,omitempty"`
-	Capabilities  Capabilities `json:"capabilities,omitempty"`
-	Description   string       `json:"description,omitempty"`
-	SystemDefined bool         `json:"system_defined,omitempty"`
+	Status               Status                 `json:"status,omitempty"`
+	Spec                 Spec                   `json:"spec,omitempty"`
+	APIVersion           string                 `json:"api_version,omitempty"`
+	Metadata             Metadata               `json:"metadata,omitempty"`
+	Name                 string                 `json:"name,omitempty"`
+	Capabilities         Capabilities           `json:"capabilities,omitempty"`
+	Description          string                 `json:"description,omitempty"`
+	SystemDefined        bool                   `json:"system_defined,omitempty"`
+	UUID                 string                 `json:"uuid,omitempty"`
+	LogicalTimestamp     int                    `json:"logical_timestamp,omitempty"`
+	ProgressMessage      string                 `json:"progress_message,omitempty"`
+	OperationType        string                 `json:"operation_type,omitempty"`
+	PercentageComplete   int                    `json:"percentage_complete,omitempty"`
+	ParentTaskReference  ParentTaskReference    `json:"parent_task_reference,omitempty"`
+	SubtaskReferenceList []SubtaskReferenceList `json:"subtask_reference_list,omitempty"`
+	ClusterReference     ClusterReference       `json:"cluster_reference,omitempty"`
+	CreationTime         string                 `json:"creation_time,omitempty"`
+	CreationTimeUsecs    int                    `json:"creation_time_usecs,omitempty"`
+	LastUpdateTime       string                 `json:"last_update_time,omitempty"`
+	StartTime            string                 `json:"start_time,omitempty"`
+	StartTimeUsecs       int                    `json:"start_time_usecs,omitempty"`
+	CompletionTime       string                 `json:"completion_time,omitempty"`
+	CompletionTimeUsecs  int                    `json:"completion_time_usecs,omitempty"`
+	EntityReferenceList  []EntityReferenceList  `json:"entity_reference_list,omitempty"`
+	ErrorCode            string                 `json:"error_code,omitempty"`
+	ErrorDetail          string                 `json:"error_detail,omitempty"`
 }
 
 // MessageList is the list of messages
@@ -1130,4 +1148,26 @@ type DefaultEnvironmentReference struct {
 	Kind string `json:"kind,omitempty"`
 	Name string `json:"name,omitempty"`
 	UUID string `json:"uuid,omitempty"`
+}
+
+// ParentTaskReference used for task get details
+type ParentTaskReference struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+
+// SubtaskReferenceList used for task get details
+type SubtaskReferenceList struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+
+// EntityReferenceList used for task get details
+type EntityReferenceList struct {
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+	URL  string `json:"url,omitempty"`
 }
