@@ -27,11 +27,19 @@ type VMListResponse struct {
 }
 
 // VMCreateRequest is the JSON sent to the REST API
+// creates a new VM with provided configuration
 type VMCreateRequest struct {
+	APIVersion string   `json:"api_version"`
+	Metadata   Metadata `json:"metadata"`
+	Spec       Spec     `json:"spec"`
 }
 
 // VMCreateResponse is the response recieved from the REST API request
 type VMCreateResponse struct {
+	APIVersion string   `json:"api_version"`
+	Metadata   Metadata `json:"metadata"`
+	Spec       Spec     `json:"spec"`
+	Status     Status   `json:"status"`
 }
 
 // VMUpdateRequest is an update request
@@ -145,6 +153,30 @@ type VMUpdateIPsResponse struct {
 	TaskUUID string `json:"task_uuid"`
 }
 
+// Create This operation submits a request to create a new VM based on the input parameters.
+func (vms *VMService) Create(reqdata *VMCreateRequest) (*VMCreateResponse, *http.Response, error) {
+
+	u := "vms"
+
+	u, err := addOptions(u, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := vms.client.NewRequest("POST", u, reqdata)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var vmdata *VMCreateResponse
+	resp, err := vms.client.Do(req, &vmdata)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return vmdata, resp, nil
+}
+
 // List makes the call to cluster list
 func (vms *VMService) List(reqdata *VMListRequest) (*VMListResponse, *http.Response, error) {
 
@@ -185,30 +217,6 @@ func (vms *VMService) Update(reqdata *VMUpdateRequest) (*VMUpdateResponse, *http
 	}
 
 	var vmdata *VMUpdateResponse
-	resp, err := vms.client.Do(req, &vmdata)
-	if err != nil {
-		return nil, resp, err
-	}
-
-	return vmdata, resp, nil
-}
-
-// Create makes the call to create a new virtual machine
-func (vms *VMService) Create(reqdata *VMCreateRequest) (*VMCreateResponse, *http.Response, error) {
-
-	u := "vms"
-
-	u, err := addOptions(u, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	req, err := vms.client.NewRequest("POST", u, reqdata)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	var vmdata *VMCreateResponse
 	resp, err := vms.client.Do(req, &vmdata)
 	if err != nil {
 		return nil, resp, err

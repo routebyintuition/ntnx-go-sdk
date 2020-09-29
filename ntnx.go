@@ -1,6 +1,7 @@
 package nutanix
 
 import (
+	"crypto/tls"
 	"errors"
 	"fmt"
 	"net/http"
@@ -35,10 +36,11 @@ type Service struct {
 
 // Config is used to initialize the required client configs like URL, auth, etc....
 type Config struct {
-	PrismCentral *pc.ServiceConfig     `json:"prism_central,omitempty"`
-	PrismElement *pe.ServiceConfig     `json:"prism_element,omitempty"`
-	Calm         *calm.ServiceConfig   `json:"calm,omitempty"`
-	Karbon       *karbon.ServiceConfig `json:"karbon,omitempty"`
+	PrismCentral       *pc.ServiceConfig     `json:"prism_central,omitempty"`
+	PrismElement       *pe.ServiceConfig     `json:"prism_element,omitempty"`
+	Calm               *calm.ServiceConfig   `json:"calm,omitempty"`
+	Karbon             *karbon.ServiceConfig `json:"karbon,omitempty"`
+	InsecureSkipVerify bool                  `json:"insecure,omitempty"`
 }
 
 // PrismElement is the config for PE requests
@@ -54,7 +56,13 @@ func NewClient(httpClient *http.Client, conf *Config) (*Client, error) {
 		return nil, errors.New("no service configurations provided")
 	}
 	if httpClient == nil {
-		httpClient = &http.Client{}
+		if conf.InsecureSkipVerify {
+			httpClient = &http.Client{Transport: &http.Transport{
+				TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+			}}
+		} else {
+			httpClient = &http.Client{}
+		}
 	}
 
 	c := &Client{client: httpClient, config: conf}

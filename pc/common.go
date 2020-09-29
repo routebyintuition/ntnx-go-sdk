@@ -127,6 +127,15 @@ type Resources struct {
 	ProjectsReferenceList            []ProjectsReferenceList            `json:"projects_reference_list"`
 	AccessControlPolicyReferenceList []AccessControlPolicyReferenceList `json:"access_control_policy_reference_list"`
 	ResourceUsageSummary             ResourceUsageSummary               `json:"resource_usage_summary"`
+	SubnetType                       string                             `json:"subnet_type"`
+	VlanID                           int                                `json:"vlan_id"`
+	IPConfig                         IPConfig                           `json:"ip_config"`
+	VswitchName                      string                             `json:"vswitch_name"`
+	NetworkFunctionChainReference    NetworkFunctionChainReference      `json:"network_function_chain_reference"`
+	VirtualNetworkReference          VirtualNetworkReference            `json:"virtual_network_reference"`
+	VpcReference                     VpcReference                       `json:"vpc_reference"`
+	AvailabilityZoneReferenceList    []AvailabilityZoneReferenceList    `json:"availability_zone_reference_list"`
+	ExternalConnectivityState        string                             `json:"external_connectivity_state"`
 }
 
 // Spec is the main Spec type across all Response calls
@@ -1027,4 +1036,46 @@ type AssignmentRule struct {
 	SelectionCriteriaList []SelectionCriteriaList `json:"selection_criteria_list,omitempty"`
 	ExclusionList         []ExclusionList         `json:"exclusion_list,omitempty"`
 	InclusionList         []InclusionList         `json:"inclusion_list,omitempty"`
+
+type DhcpOptions struct {
+	BootFileName         string   `json:"boot_file_name"`
+	DomainName           string   `json:"domain_name"`
+	DomainNameServerList []string `json:"domain_name_server_list"`
+	DomainSearchList     []string `json:"domain_search_list"`
+	TftpServerName       string   `json:"tftp_server_name"`
+}
+type DhcpServerAddress struct {
+	IP       string `json:"ip"`
+	Ipv6     string `json:"ipv6"`
+	Fqdn     string `json:"fqdn"`
+	Port     int    `json:"port"`
+	IsBackup bool   `json:"is_backup"`
+}
+
+type PoolList struct {
+	Range string `json:"range"`
+}
+type IPConfig struct {
+	SubnetIP          string            `json:"subnet_ip"`
+	PrefixLength      int               `json:"prefix_length"`
+	DefaultGatewayIP  string            `json:"default_gateway_ip"`
+	DhcpOptions       DhcpOptions       `json:"dhcp_options"`
+	DhcpServerAddress DhcpServerAddress `json:"dhcp_server_address"`
+	PoolList          []PoolList        `json:"pool_list"`
+}
+
+type VirtualNetworkReference struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type VpcReference struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+}
+type AvailabilityZoneReferenceList struct {
+	Kind string `json:"kind"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
 }
