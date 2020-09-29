@@ -10,32 +10,32 @@ type AccessControlPoliciesService Service
 
 // CreateACPRequest is the request data to create a new access control policy
 type CreateACPRequest struct {
-	APIVersion string      `json:"api_version"`
-	Metadata   ACPMetadata `json:"metadata"`
-	Spec       ACPSpec     `json:"spec"`
+	APIVersion string      `json:"api_version,omitempty"`
+	Metadata   ACPMetadata `json:"metadata,omitempty"`
+	Spec       ACPSpec     `json:"spec,omitempty"`
 }
 
 type CreateACPResponse struct {
-	Type        string     `json:"type"`
-	Title       string     `json:"title"`
-	Description string     `json:"description"`
-	Required    []string   `json:"required"`
-	Properties  Properties `json:"properties"`
+	Type        string     `json:"type,omitempty"`
+	Title       string     `json:"title,omitempty"`
+	Description string     `json:"description,omitempty"`
+	Required    []string   `json:"required,omitempty"`
+	Properties  Properties `json:"properties,omitempty"`
 }
 
 type ListACPRequest struct {
-	Type        string     `json:"type"`
-	Title       string     `json:"title"`
-	Description string     `json:"description"`
-	Properties  Properties `json:"properties"`
+	Type        string     `json:"type,omitempty"`
+	Title       string     `json:"title,omitempty"`
+	Description string     `json:"description,omitempty"`
+	Properties  Properties `json:"properties,omitempty"`
 }
 
 type ListACPResponse struct {
-	Type        string     `json:"type"`
-	Title       string     `json:"title"`
-	Description string     `json:"description"`
-	Required    []string   `json:"required"`
-	Properties  Properties `json:"properties"`
+	Type        string     `json:"type,omitempty"`
+	Title       string     `json:"title,omitempty"`
+	Description string     `json:"description,omitempty"`
+	Required    []string   `json:"required,omitempty"`
+	Properties  Properties `json:"properties,omitempty"`
 }
 
 type DeleteACPRequest struct {
@@ -43,11 +43,11 @@ type DeleteACPRequest struct {
 }
 
 type DeleteACPResponse struct {
-	Type        string     `json:"type"`
-	Title       string     `json:"title"`
-	Description string     `json:"description"`
-	Required    []string   `json:"required"`
-	Properties  Properties `json:"properties"`
+	Type        string     `json:"type,omitempty"`
+	Title       string     `json:"title,omitempty"`
+	Description string     `json:"description,omitempty"`
+	Required    []string   `json:"required,omitempty"`
+	Properties  Properties `json:"properties,omitempty"`
 }
 
 type GetACPRequest struct {
@@ -55,28 +55,28 @@ type GetACPRequest struct {
 }
 
 type GetACPResponse struct {
-	Type        string     `json:"type"`
-	Title       string     `json:"title"`
-	Description string     `json:"description"`
-	Required    []string   `json:"required"`
-	Properties  Properties `json:"properties"`
+	Type        string     `json:"type,omitempty"`
+	Title       string     `json:"title,omitempty"`
+	Description string     `json:"description,omitempty"`
+	Required    []string   `json:"required,omitempty"`
+	Properties  Properties `json:"properties,omitempty"`
 }
 
 type UpdateACPRequest struct {
-	UUID        string     `json:"uuid"`
-	Type        string     `json:"type"`
-	Title       string     `json:"title"`
-	Description string     `json:"description"`
-	Required    []string   `json:"required"`
-	Properties  Properties `json:"properties"`
+	UUID        string     `json:"uuid,omitempty"`
+	Type        string     `json:"type,omitempty"`
+	Title       string     `json:"title,omitempty"`
+	Description string     `json:"description,omitempty"`
+	Required    []string   `json:"required,omitempty"`
+	Properties  Properties `json:"properties,omitempty"`
 }
 
 type UpdateACPResponse struct {
-	Type        string     `json:"type"`
-	Title       string     `json:"title"`
-	Description string     `json:"description"`
-	Required    []string   `json:"required"`
-	Properties  Properties `json:"properties"`
+	Type        string     `json:"type,omitempty"`
+	Title       string     `json:"title,omitempty"`
+	Description string     `json:"description,omitempty"`
+	Required    []string   `json:"required,omitempty"`
+	Properties  Properties `json:"properties,omitempty"`
 }
 
 // Create makes the call to acp list

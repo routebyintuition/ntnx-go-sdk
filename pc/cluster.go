@@ -33,10 +33,10 @@ type ClusterGetRequest struct {
 
 // ClusterGetResponse are the details associated with a cluster
 type ClusterGetResponse struct {
-	Status     Status   `json:"status"`
-	Spec       Spec     `json:"spec"`
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
+	Status     Status   `json:"status,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
 }
 
 // ClusterUpdateRequest is used to update a cluster. The UUID of the cluster is needed along with
@@ -50,10 +50,10 @@ type ClusterUpdateRequest struct {
 
 // ClusterUpdateResponse is the response from the update request
 type ClusterUpdateResponse struct {
-	Status     Status   `json:"status"`
-	Spec       Spec     `json:"spec"`
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
+	Status     Status   `json:"status,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
 }
 
 // List makes the call to cluster list

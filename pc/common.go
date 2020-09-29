@@ -110,42 +110,42 @@ type Resources struct {
 	GpuList                          []GpuList                          `json:"gpu_list,omitempty"`
 	GpuDriverVersion                 string                             `json:"gpu_driver_version,omitempty"`
 	HostType                         string                             `json:"host_type,omitempty"`
-	GuestOsID                        string                             `json:"guest_os_id"`
-	IsVcpuHardPinned                 bool                               `json:"is_vcpu_hard_pinned"`
-	IsAgentVM                        bool                               `json:"is_agent_vm"`
-	DisableBranding                  bool                               `json:"disable_branding"`
-	EnableCPUPassthrough             bool                               `json:"enable_cpu_passthrough"`
-	MachineType                      string                             `json:"machine_type"`
-	HardwareVirtualizationEnabled    bool                               `json:"hardware_virtualization_enabled"`
-	ParentReference                  ParentReference                    `json:"parent_reference"`
-	GuestTools                       GuestTools                         `json:"guest_tools"`
-	StorageConfig                    StorageConfig                      `json:"storage_config"`
-	DirectoryServiceUser             DirectoryServiceUser               `json:"directory_service_user"`
-	IdentityProviderUser             IdentityProviderUser               `json:"identity_provider_user"`
-	UserType                         string                             `json:"user_type"`
-	DisplayName                      string                             `json:"display_name"`
-	ProjectsReferenceList            []ProjectsReferenceList            `json:"projects_reference_list"`
-	AccessControlPolicyReferenceList []AccessControlPolicyReferenceList `json:"access_control_policy_reference_list"`
-	ResourceUsageSummary             ResourceUsageSummary               `json:"resource_usage_summary"`
-	SubnetType                       string                             `json:"subnet_type"`
-	VlanID                           int                                `json:"vlan_id"`
-	IPConfig                         IPConfig                           `json:"ip_config"`
-	VswitchName                      string                             `json:"vswitch_name"`
-	NetworkFunctionChainReference    NetworkFunctionChainReference      `json:"network_function_chain_reference"`
-	VirtualNetworkReference          VirtualNetworkReference            `json:"virtual_network_reference"`
-	VpcReference                     VpcReference                       `json:"vpc_reference"`
-	AvailabilityZoneReferenceList    []AvailabilityZoneReferenceList    `json:"availability_zone_reference_list"`
-	ExternalConnectivityState        string                             `json:"external_connectivity_state"`
-	ResourceDomain                   string                             `json:"resource_domain"`
-	DefaultSubnetReference           DefaultSubnetReference             `json:"default_subnet_reference"`
-	SubnetReferenceList              []SubnetReferenceList              `json:"subnet_reference_list"`
-	UserReferenceList                []UserReferenceList                `json:"user_reference_list"`
-	ExternalUserGroupReferenceList   []ExternalUserGroupReferenceList   `json:"external_user_group_reference_list"`
-	AccountReferenceList             []AccountReferenceList             `json:"account_reference_list"`
-	TunnelReferenceList              []TunnelReferenceList              `json:"tunnel_reference_list"`
-	ExternalNetworkList              []ExternalNetworkList              `json:"external_network_list"`
-	EnvironmentReferenceList         []EnvironmentReferenceList         `json:"environment_reference_list"`
-	DefaultEnvironmentReference      DefaultEnvironmentReference        `json:"default_environment_reference"`
+	GuestOsID                        string                             `json:"guest_os_id,omitempty"`
+	IsVcpuHardPinned                 bool                               `json:"is_vcpu_hard_pinned,omitempty"`
+	IsAgentVM                        bool                               `json:"is_agent_vm,omitempty"`
+	DisableBranding                  bool                               `json:"disable_branding,omitempty"`
+	EnableCPUPassthrough             bool                               `json:"enable_cpu_passthrough,omitempty"`
+	MachineType                      string                             `json:"machine_type,omitempty"`
+	HardwareVirtualizationEnabled    bool                               `json:"hardware_virtualization_enabled,omitempty"`
+	ParentReference                  ParentReference                    `json:"parent_reference,omitempty"`
+	GuestTools                       GuestTools                         `json:"guest_tools,omitempty"`
+	StorageConfig                    StorageConfig                      `json:"storage_config,omitempty"`
+	DirectoryServiceUser             DirectoryServiceUser               `json:"directory_service_user,omitempty"`
+	IdentityProviderUser             IdentityProviderUser               `json:"identity_provider_user,omitempty"`
+	UserType                         string                             `json:"user_type,omitempty"`
+	DisplayName                      string                             `json:"display_name,omitempty"`
+	ProjectsReferenceList            []ProjectsReferenceList            `json:"projects_reference_list,omitempty"`
+	AccessControlPolicyReferenceList []AccessControlPolicyReferenceList `json:"access_control_policy_reference_list,omitempty"`
+	ResourceUsageSummary             ResourceUsageSummary               `json:"resource_usage_summary,omitempty"`
+	SubnetType                       string                             `json:"subnet_type,omitempty"`
+	VlanID                           int                                `json:"vlan_id,omitempty"`
+	IPConfig                         IPConfig                           `json:"ip_config,omitempty"`
+	VswitchName                      string                             `json:"vswitch_name,omitempty"`
+	NetworkFunctionChainReference    NetworkFunctionChainReference      `json:"network_function_chain_reference,omitempty"`
+	VirtualNetworkReference          VirtualNetworkReference            `json:"virtual_network_reference,omitempty"`
+	VpcReference                     VpcReference                       `json:"vpc_reference,omitempty"`
+	AvailabilityZoneReferenceList    []AvailabilityZoneReferenceList    `json:"availability_zone_reference_list,omitempty"`
+	ExternalConnectivityState        string                             `json:"external_connectivity_state,omitempty"`
+	ResourceDomain                   string                             `json:"resource_domain,omitempty"`
+	DefaultSubnetReference           DefaultSubnetReference             `json:"default_subnet_reference,omitempty"`
+	SubnetReferenceList              []SubnetReferenceList              `json:"subnet_reference_list,omitempty"`
+	UserReferenceList                []UserReferenceList                `json:"user_reference_list,omitempty"`
+	ExternalUserGroupReferenceList   []ExternalUserGroupReferenceList   `json:"external_user_group_reference_list,omitempty"`
+	AccountReferenceList             []AccountReferenceList             `json:"account_reference_list,omitempty"`
+	TunnelReferenceList              []TunnelReferenceList              `json:"tunnel_reference_list,omitempty"`
+	ExternalNetworkList              []ExternalNetworkList              `json:"external_network_list,omitempty"`
+	EnvironmentReferenceList         []EnvironmentReferenceList         `json:"environment_reference_list,omitempty"`
+	DefaultEnvironmentReference      DefaultEnvironmentReference        `json:"default_environment_reference,omitempty"`
 }
 
 // Spec is the main Spec type across all Response calls
@@ -155,89 +155,89 @@ type Spec struct {
 	Resources                 Resources                 `json:"resources,omitempty"`
 	Name                      string                    `json:"name,omitempty"`
 	APIVersion                string                    `json:"api_version,omitempty"`
-	AvailabilityZoneReference AvailabilityZoneReference `json:"availability_zone_reference"`
+	AvailabilityZoneReference AvailabilityZoneReference `json:"availability_zone_reference,omitempty"`
 }
 
 // ImageReferenceList is used for image service details
 type ImageReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 
 type ProjectsReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 
 type AccessControlPolicyReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 
 // SourceOptions used for Image Update
 type SourceOptions struct {
-	AllowInsecureConnection bool `json:"allow_insecure_connection"`
+	AllowInsecureConnection bool `json:"allow_insecure_connection,omitempty"`
 }
 
 type ResourceUsageSummary struct {
-	ResourceDomain string `json:"resource_domain"`
+	ResourceDomain string `json:"resource_domain,omitempty"`
 }
 
 // InitialPlacementRefList used or image update and placement
 type InitialPlacementRefList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 
 // DataSourceReference used for image update
 type DataSourceReference struct {
-	Kind           string `json:"kind"`
-	UUID           string `json:"uuid"`
-	Name           string `json:"name"`
-	URL            string `json:"url"`
-	IsDirectAttach bool   `json:"is_direct_attach"`
+	Kind           string `json:"kind,omitempty"`
+	UUID           string `json:"uuid,omitempty"`
+	Name           string `json:"name,omitempty"`
+	URL            string `json:"url,omitempty"`
+	IsDirectAttach bool   `json:"is_direct_attach,omitempty"`
 }
 
 type VolumeGroupReference struct {
-	Kind string `json:"kind"`
-	UUID string `json:"uuid"`
-	Name string `json:"name"`
-	URL  string `json:"url"`
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+	URL  string `json:"url,omitempty"`
 }
 type StorageContainerReference struct {
-	Kind string `json:"kind"`
-	UUID string `json:"uuid"`
-	Name string `json:"name"`
-	URL  string `json:"url"`
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+	URL  string `json:"url,omitempty"`
 }
 type StorageConfig struct {
-	StorageContainerReference StorageContainerReference `json:"storage_container_reference"`
-	FlashMode                 string                    `json:"flash_mode"`
-	QosPolicy                 QosPolicy                 `json:"qos_policy"`
+	StorageContainerReference StorageContainerReference `json:"storage_container_reference,omitempty"`
+	FlashMode                 string                    `json:"flash_mode,omitempty"`
+	QosPolicy                 QosPolicy                 `json:"qos_policy,omitempty"`
 }
 
 type DirectoryServiceReference struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type DirectoryServiceUser struct {
-	UserPrincipalName         string                    `json:"user_principal_name"`
-	DefaultUserPrincipalName  string                    `json:"default_user_principal_name"`
-	DirectoryServiceReference DirectoryServiceReference `json:"directory_service_reference"`
+	UserPrincipalName         string                    `json:"user_principal_name,omitempty"`
+	DefaultUserPrincipalName  string                    `json:"default_user_principal_name,omitempty"`
+	DirectoryServiceReference DirectoryServiceReference `json:"directory_service_reference,omitempty"`
 }
 type IdentityProviderReference struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type IdentityProviderUser struct {
-	Username                  string                    `json:"username"`
-	IdentityProviderReference IdentityProviderReference `json:"identity_provider_reference"`
+	Username                  string                    `json:"username,omitempty"`
+	IdentityProviderReference IdentityProviderReference `json:"identity_provider_reference,omitempty"`
 }
 
 // ProjectReference is the main ProjectReference type across all Response calls
@@ -249,8 +249,8 @@ type ProjectReference struct {
 
 // ProjectResourceDomainList used for user resource/domain get information
 type ProjectResourceDomainList struct {
-	ProjectReference ProjectReference `json:"project_reference"`
-	ResourceDomain   string           `json:"resource_domain"`
+	ProjectReference ProjectReference `json:"project_reference,omitempty"`
+	ResourceDomain   string           `json:"resource_domain,omitempty"`
 }
 
 // OwnerReference is the main OwnerReference type across all Response calls
@@ -271,55 +271,55 @@ type State struct {
 }
 
 type AvailabilityZoneReference struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 
 type ImagePlacementPolicyStateList struct {
-	ComplianceStatus string             `json:"compliance_status"`
-	EnforcementMode  string             `json:"enforcement_mode"`
-	PolicyReference  PolicyReference    `json:"policy_reference"`
-	PolicyInfo       PolicyInfo         `json:"policy_info"`
-	ErrorMessageList []ErrorMessageList `json:"error_message_list"`
+	ComplianceStatus string             `json:"compliance_status,omitempty"`
+	EnforcementMode  string             `json:"enforcement_mode,omitempty"`
+	PolicyReference  PolicyReference    `json:"policy_reference,omitempty"`
+	PolicyInfo       PolicyInfo         `json:"policy_info,omitempty"`
+	ErrorMessageList []ErrorMessageList `json:"error_message_list,omitempty"`
 }
 
 type CurrentClusterReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type PolicyReference struct {
-	Kind string `json:"kind"`
-	UUID string `json:"uuid"`
-	Name string `json:"name"`
-	URL  string `json:"url"`
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+	URL  string `json:"url,omitempty"`
 }
 type EnforcedPolicyClusterReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type CompletePolicyClusterReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type ConflictingImagePlacementPolicyReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type PolicyInfo struct {
-	EnforcedPolicyClusterReferenceList           []EnforcedPolicyClusterReferenceList           `json:"enforced_policy_cluster_reference_list"`
-	CompletePolicyClusterReferenceList           []CompletePolicyClusterReferenceList           `json:"complete_policy_cluster_reference_list"`
-	ConflictingImagePlacementPolicyReferenceList []ConflictingImagePlacementPolicyReferenceList `json:"conflicting_image_placement_policy_reference_list"`
+	EnforcedPolicyClusterReferenceList           []EnforcedPolicyClusterReferenceList           `json:"enforced_policy_cluster_reference_list,omitempty"`
+	CompletePolicyClusterReferenceList           []CompletePolicyClusterReferenceList           `json:"complete_policy_cluster_reference_list,omitempty"`
+	ConflictingImagePlacementPolicyReferenceList []ConflictingImagePlacementPolicyReferenceList `json:"conflicting_image_placement_policy_reference_list,omitempty"`
 }
 
 type ErrorMessageList struct {
-	Message string  `json:"message"`
-	Reason  string  `json:"reason"`
-	Details Details `json:"details"`
+	Message string  `json:"message,omitempty"`
+	Reason  string  `json:"reason,omitempty"`
+	Details Details `json:"details,omitempty"`
 }
 
 // Status is the main Status type across all Response calls
@@ -331,7 +331,7 @@ type Status struct {
 	Resources                 Resources                 `json:"resources,omitempty"`
 	Name                      string                    `json:"name,omitempty"`
 	MessageList               []MessageList             `json:"message_list,omitempty"`
-	AvailabilityZoneReference AvailabilityZoneReference `json:"availability_zone_reference"`
+	AvailabilityZoneReference AvailabilityZoneReference `json:"availability_zone_reference,omitempty"`
 }
 
 // Entities is the main Entities type across all Response calls
@@ -469,25 +469,25 @@ type UseCategoriesMapping struct {
 
 // Results is used for category query results
 type Results struct {
-	Kind                string              `json:"kind"`
-	TotalEntityCount    int                 `json:"total_entity_count"`
-	FilteredEntityCount int                 `json:"filtered_entity_count"`
-	KindReferenceList   []KindReferenceList `json:"kind_reference_list"`
+	Kind                string              `json:"kind,omitempty"`
+	TotalEntityCount    int                 `json:"total_entity_count,omitempty"`
+	FilteredEntityCount int                 `json:"filtered_entity_count,omitempty"`
+	KindReferenceList   []KindReferenceList `json:"kind_reference_list,omitempty"`
 }
 
 // KindReferenceList is used for category query results
 type KindReferenceList struct {
-	Kind       string     `json:"kind"`
-	UUID       string     `json:"uuid"`
-	Name       string     `json:"name"`
-	Type       string     `json:"type"`
-	Categories Categories `json:"categories"`
+	Kind       string     `json:"kind,omitempty"`
+	UUID       string     `json:"uuid,omitempty"`
+	Name       string     `json:"name,omitempty"`
+	Type       string     `json:"type,omitempty"`
+	Categories Categories `json:"categories,omitempty"`
 }
 
 type CategoryFilter struct {
-	Type     string   `json:"type"`
-	KindList []string `json:"kind_list"`
-	Params   Params   `json:"params"`
+	Type     string   `json:"type,omitempty"`
+	KindList []string `json:"kind_list,omitempty"`
+	Params   Params   `json:"params,omitempty"`
 }
 
 type Params struct {
@@ -620,16 +620,16 @@ type Credentials struct {
 }
 
 type NutanixGuestTools struct {
-	NgtState              string      `json:"ngt_state"`
-	Credentials           Credentials `json:"credentials"`
-	State                 string      `json:"state"`
-	IsoMountState         string      `json:"iso_mount_state"`
-	EnabledCapabilityList []string    `json:"enabled_capability_list"`
-	Version               string      `json:"version"`
+	NgtState              string      `json:"ngt_state,omitempty"`
+	Credentials           Credentials `json:"credentials,omitempty"`
+	State                 string      `json:"state,omitempty"`
+	IsoMountState         string      `json:"iso_mount_state,omitempty"`
+	EnabledCapabilityList []string    `json:"enabled_capability_list,omitempty"`
+	Version               string      `json:"version,omitempty"`
 }
 
 type GuestTools struct {
-	NutanixGuestTools NutanixGuestTools `json:"nutanix_guest_tools"`
+	NutanixGuestTools NutanixGuestTools `json:"nutanix_guest_tools,omitempty"`
 }
 
 // Address is the address
@@ -706,20 +706,20 @@ type CategoriesMapping struct {
 }
 
 type ACPMetadata struct {
-	Kind                 string            `json:"kind"`
-	ProjectReference     ProjectReference  `json:"project_reference"`
-	UUID                 string            `json:"uuid"`
-	Name                 string            `json:"name"`
-	SpecVersion          int               `json:"spec_version"`
-	SpecHash             string            `json:"spec_hash"`
-	Categories           Categories        `json:"categories"`
-	CategoriesMapping    CategoriesMapping `json:"categories_mapping"`
-	UseCategoriesMapping bool              `json:"use_categories_mapping"`
-	CreationTime         string            `json:"creation_time"`
-	LastUpdateTime       string            `json:"last_update_time"`
-	OwnerReference       OwnerReference    `json:"owner_reference"`
-	ShouldForceTranslate bool              `json:"should_force_translate"`
-	EntityVersion        string            `json:"entity_version"`
+	Kind                 string            `json:"kind,omitempty"`
+	ProjectReference     ProjectReference  `json:"project_reference,omitempty"`
+	UUID                 string            `json:"uuid,omitempty"`
+	Name                 string            `json:"name,omitempty"`
+	SpecVersion          int               `json:"spec_version,omitempty"`
+	SpecHash             string            `json:"spec_hash,omitempty"`
+	Categories           Categories        `json:"categories,omitempty"`
+	CategoriesMapping    CategoriesMapping `json:"categories_mapping,omitempty"`
+	UseCategoriesMapping bool              `json:"use_categories_mapping,omitempty"`
+	CreationTime         string            `json:"creation_time,omitempty"`
+	LastUpdateTime       string            `json:"last_update_time,omitempty"`
+	OwnerReference       OwnerReference    `json:"owner_reference,omitempty"`
+	ShouldForceTranslate bool              `json:"should_force_translate,omitempty"`
+	EntityVersion        string            `json:"entity_version,omitempty"`
 }
 type UserReferenceList struct {
 	Kind string `json:"kind,omitempty"`

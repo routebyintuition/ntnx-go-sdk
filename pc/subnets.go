@@ -10,9 +10,9 @@ type SubnetService Service
 
 // SubnetCreateRequest is the definition of the subnet to create
 type SubnetCreateRequest struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
 }
 
 // SubnetCreateResponse is the response with definition for creating subnets
@@ -35,9 +35,9 @@ type SubnetListRequest struct {
 
 // SubnetListResponse contains a list and details about each subnet
 type SubnetListResponse struct {
-	APIVersion string     `json:"api_version"`
-	Metadata   Metadata   `json:"metadata"`
-	Entities   []Entities `json:"entities"`
+	APIVersion string     `json:"api_version,omitempty"`
+	Metadata   Metadata   `json:"metadata,omitempty"`
+	Entities   []Entities `json:"entities,omitempty"`
 }
 
 // SubnetGetRequest provides UUID of subnet to get
@@ -47,10 +47,10 @@ type SubnetGetRequest struct {
 
 // SubnetGetResponse details on subnet identified by UUID
 type SubnetGetResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // SubnetUpdateRequest provides UUID and subnet data to update
@@ -61,17 +61,17 @@ type SubnetUpdateRequest struct {
 
 // SubnetUpdateRequestData new details about subnet to provide for update
 type SubnetUpdateRequestData struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
 }
 
 // SubnetUpdateResponse provides details about subnet update
 type SubnetUpdateResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // SubnetDeleteRequest provides UUID of subnet to delete
@@ -81,10 +81,10 @@ type SubnetDeleteRequest struct {
 
 // SubnetDeleteResponse provides details from delete subnet request
 type SubnetDeleteResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // Delete - This operation submits a request to delete a existing subnet.

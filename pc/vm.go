@@ -29,17 +29,17 @@ type VMListResponse struct {
 // VMCreateRequest is the JSON sent to the REST API
 // creates a new VM with provided configuration
 type VMCreateRequest struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
 }
 
 // VMCreateResponse is the response recieved from the REST API request
 type VMCreateResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // VMUpdateRequest is an update request
@@ -50,17 +50,17 @@ type VMUpdateRequest struct {
 
 // VMUpdateRequestData is the configuration of the VM being updated
 type VMUpdateRequestData struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
 }
 
 // VMUpdateResponse is an update response
 type VMUpdateResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // VMGetRequest is a get request - This operation gets an existing VM by UUID
@@ -70,10 +70,10 @@ type VMGetRequest struct {
 
 // VMGetResponse is the get response
 type VMGetResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // VMDeleteRequest is the delete request - This operation submits a request to delete an existing VM.
@@ -83,10 +83,10 @@ type VMDeleteRequest struct {
 
 // VMDeleteResponse is the delete response
 type VMDeleteResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // VMCloneRequest is the clone request
@@ -97,18 +97,18 @@ type VMCloneRequest struct {
 
 // VMCloneRequestData is the data passed in the request body
 type VMCloneRequestData struct {
-	Metadata VMCloneRequestMetadata `json:"metadata"`
+	Metadata VMCloneRequestMetadata `json:"metadata,omitempty"`
 }
 
 // VMCloneRequestMetadata is the metadata passed to the clone request in the request body
 type VMCloneRequestMetadata struct {
-	UUID          string `json:"uuid"`
-	EntityVersion string `json:"entity_version"`
+	UUID          string `json:"uuid,omitempty"`
+	EntityVersion string `json:"entity_version,omitempty"`
 }
 
 // VMCloneResponse is the clone response
 type VMCloneResponse struct {
-	TaskUUID string `json:"task_uuid"`
+	TaskUUID string `json:"task_uuid,omitempty"`
 }
 
 // VMResumeReplicationRequest is the request to API to resume replication for a given VM protected using sync protection policy.
@@ -118,7 +118,7 @@ type VMResumeReplicationRequest struct {
 
 // VMResumeReplicationResponse response task UUID to resume replication
 type VMResumeReplicationResponse struct {
-	TaskUUID string `json:"task_uuid"`
+	TaskUUID string `json:"task_uuid,omitempty"`
 }
 
 // VMPauseReplicationRequest is the request to API to pause replication for a given VM protected using sync protection policy.
@@ -128,7 +128,7 @@ type VMPauseReplicationRequest struct {
 
 // VMPauseReplicationResponse is the response to a pause request
 type VMPauseReplicationResponse struct {
-	TaskUUID string `json:"task_uuid"`
+	TaskUUID string `json:"task_uuid,omitempty"`
 }
 
 // VMUpdateIPsRequest is the UUID and associated data to Request a new IP address the currently allocated IP address.
@@ -139,18 +139,18 @@ type VMUpdateIPsRequest struct {
 
 // VMUpdateIPsRequestData is the slice of updates requested
 type VMUpdateIPsRequestData struct {
-	UpdateList []VMUpdateIPsRequestUpdateList `json:"update_list"`
+	UpdateList []VMUpdateIPsRequestUpdateList `json:"update_list,omitempty"`
 }
 
 // VMUpdateIPsRequestUpdateList is each updated for an address requested
 type VMUpdateIPsRequestUpdateList struct {
-	UUID string `json:"uuid"`
-	IP   string `json:"ip"`
+	UUID string `json:"uuid,omitempty"`
+	IP   string `json:"ip,omitempty"`
 }
 
 // VMUpdateIPsResponse task id being processed for the update request
 type VMUpdateIPsResponse struct {
-	TaskUUID string `json:"task_uuid"`
+	TaskUUID string `json:"task_uuid,omitempty"`
 }
 
 // Create This operation submits a request to create a new VM based on the input parameters.

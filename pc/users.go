@@ -37,9 +37,9 @@ type UserListRequest struct {
 
 // UserListResponse is the user list response
 type UserListResponse struct {
-	APIVersion string     `json:"api_version"`
-	Metadata   Metadata   `json:"metadata"`
-	Entities   []Entities `json:"entities"`
+	APIVersion string     `json:"api_version,omitempty"`
+	Metadata   Metadata   `json:"metadata,omitempty"`
+	Entities   []Entities `json:"entities,omitempty"`
 }
 
 // UserMeRequest Displays the user currently logged in.
@@ -47,10 +47,10 @@ type UserMeRequest struct{}
 
 // UserMeResponse Displays the user currently logged in.
 type UserMeResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // UserGetRequest is the request to get details on a user
@@ -60,10 +60,10 @@ type UserGetRequest struct {
 
 // UserGetResponse is the response details on a user from a get request
 type UserGetResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // UserDeleteRequest is the request to delete a user
@@ -73,10 +73,10 @@ type UserDeleteRequest struct {
 
 // UserDeleteResponse is the response to the user delete request
 type UserDeleteResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // UserGetDomainRequest request to get user resources
@@ -87,8 +87,8 @@ type UserGetDomainRequest struct {
 
 // UserGetDomainResponse is the response of the user resources
 type UserGetDomainResponse struct {
-	APIVersion                string                      `json:"api_version"`
-	ProjectResourceDomainList []ProjectResourceDomainList `json:"project_resource_domain_list"`
+	APIVersion                string                      `json:"api_version,omitempty"`
+	ProjectResourceDomainList []ProjectResourceDomainList `json:"project_resource_domain_list,omitempty"`
 }
 
 // UserUpdateRequest submits a request to update a existing User based on the input parameters.
@@ -99,17 +99,17 @@ type UserUpdateRequest struct {
 
 // UserUpdateRequestData provides details for user update
 type UserUpdateRequestData struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
 }
 
 // UserUpdateResponse provides the response to an update request
 type UserUpdateResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // Update submits a request to update a existing User based on the input parameters.

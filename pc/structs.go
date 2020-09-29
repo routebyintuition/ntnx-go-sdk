@@ -6,9 +6,9 @@ import (
 
 // Reference ...
 type Reference struct {
-	Kind *string `json:"kind" mapstructure:"kind"`
+	Kind *string `json:"kind,omitempty" mapstructure:"kind"`
 	Name *string `json:"name,omitempty" mapstructure:"name,omitempty"`
-	UUID *string `json:"uuid" mapstructure:"uuid"`
+	UUID *string `json:"uuid,omitempty" mapstructure:"uuid"`
 }
 
 // VMVnumaConfig Indicates how VM vNUMA should be configured
@@ -62,14 +62,6 @@ type VMNic struct {
 
 	IsConnected *bool `json:"is_connected,omitempty" mapstructure:"is_connected,omitempty"`
 }
-
-// DiskAddress Disk Address.
-/*
-type DiskAddress struct {
-	AdapterType *string `json:"adapter_type,omitempty" mapstructure:"adapter_type,omitempty"`
-	DeviceIndex *int64  `json:"device_index,omitempty" mapstructure:"device_index,omitempty"`
-}
-*/
 
 // VMBootDevice Indicates which device a VM should boot from. One of disk_address or mac_address should be provided.
 type VMBootDevice struct {
@@ -156,23 +148,6 @@ type GuestCustomizationSysprep struct {
 	// This field contains a Sysprep unattend xml definition, as a *string. The value must be base64 encoded.
 	UnattendXML *string `json:"unattend_xml,omitempty" mapstructure:"unattend_xml,omitempty"`
 }
-
-// GuestCustomization VM guests may be customized at boot time using one of several different methods. Currently,
-// cloud-init w/ ConfigDriveV2 (for Linux VMs) and Sysprep (for Windows VMs) are supported. Only ONE OF sysprep or
-// cloud_init should be provided. Note that guest customization can currently only be set during VM creation. Attempting
-// to change it after creation will result in an error. Additional properties can be specified. For example - in the
-// context of VM template creation if \"override_script\" is set to \"True\" then the deployer can upload their own
-// custom script.
-/*
-type GuestCustomization struct {
-	CloudInit *GuestCustomizationCloudInit `json:"cloud_init,omitempty" mapstructure:"cloud_init,omitempty"`
-
-	// Flag to allow override of customization by deployer.
-	IsOverridable *bool `json:"is_overridable,omitempty" mapstructure:"is_overridable,omitempty"`
-
-	Sysprep *GuestCustomizationSysprep `json:"sysprep,omitempty" mapstructure:"sysprep,omitempty"`
-}
-*/
 
 // VMGuestPowerStateTransitionConfig Extra configs related to power state transition.
 type VMGuestPowerStateTransitionConfig struct {
@@ -294,7 +269,7 @@ type VM struct {
 	Description *string `json:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// vm Name.
-	Name *string `json:"name" mapstructure:"name"`
+	Name *string `json:"name,omitempty" mapstructure:"name"`
 
 	Resources *VMResources `json:"resources,omitempty" mapstructure:"resources,omitempty"`
 }
@@ -303,9 +278,9 @@ type VM struct {
 type VMIntentInput struct {
 	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version,omitempty"`
 
-	Metadata *Metadata `json:"metadata" mapstructure:"metadata"`
+	Metadata *Metadata `json:"metadata,omitempty" mapstructure:"metadata"`
 
-	Spec *VM `json:"spec" mapstructure:"spec"`
+	Spec *VM `json:"spec,omitempty" mapstructure:"spec"`
 }
 
 // MessageResource ...
@@ -315,10 +290,10 @@ type MessageResource struct {
 	Details map[string]string `json:"details,omitempty" mapstructure:"details,omitempty"`
 
 	// If state is ERROR, a message describing the error.
-	Message *string `json:"message" mapstructure:"message"`
+	Message *string `json:"message,omitempty" mapstructure:"message"`
 
 	// If state is ERROR, a machine-readable snake-cased *string.
-	Reason *string `json:"reason" mapstructure:"reason"`
+	Reason *string `json:"reason,omitempty" mapstructure:"reason"`
 }
 
 // VMStatus The status of a REST API call. Only used when there is a failure to report.
@@ -532,16 +507,9 @@ type VMDefStatus struct {
 	ExecutionContext *ExecutionContext `json:"execution_context,omitempty" mapstructure:"execution_context,omitempty"`
 }
 
-//ExecutionContext ...
-/*
-type ExecutionContext struct {
-	TaskUUID interface{} `json:"task_uuid,omitempty" mapstructure:"task_uuid,omitempty"`
-}
-*/
-
 // VMIntentResponse Response object for intentful operations on a vm
 type VMIntentResponse struct {
-	APIVersion *string `json:"api_version" mapstructure:"api_version"`
+	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version"`
 
 	Metadata *Metadata `json:"metadata,omitempty" mapstructure:"metadata,omitempty"`
 
@@ -576,7 +544,7 @@ type DSMetadata struct {
 type VMIntentResource struct {
 	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version,omitempty"`
 
-	Metadata *Metadata `json:"metadata" mapstructure:"metadata"`
+	Metadata *Metadata `json:"metadata,omitempty" mapstructure:"metadata"`
 
 	Spec *VM `json:"spec,omitempty" mapstructure:"spec,omitempty"`
 
@@ -585,11 +553,11 @@ type VMIntentResource struct {
 
 // VMListIntentResponse Response object for intentful operation of vms
 type VMListIntentResponse struct {
-	APIVersion *string `json:"api_version" mapstructure:"api_version"`
+	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version"`
 
 	Entities []*VMIntentResource `json:"entities,omitempty" mapstructure:"entities,omitempty"`
 
-	Metadata *ListMetadataOutput `json:"metadata" mapstructure:"metadata"`
+	Metadata *ListMetadataOutput `json:"metadata,omitempty" mapstructure:"metadata"`
 }
 
 // SubnetMetadata The subnet kind metadata
@@ -602,7 +570,7 @@ type SubnetMetadata struct {
 	CreationTime *time.Time `json:"creation_time,omitempty" mapstructure:"creation_time,omitempty"`
 
 	// The kind name
-	Kind *string `json:"kind" mapstructure:"kind"`
+	Kind *string `json:"kind,omitempty" mapstructure:"kind"`
 
 	// UTC date and time in RFC-3339 format when subnet was last updated
 	LastUpdateTime *time.Time `json:"last_update_time,omitempty" mapstructure:"last_update_time,omitempty"`
@@ -625,24 +593,6 @@ type SubnetMetadata struct {
 	UUID *string `json:"uuid,omitempty" mapstructure:"uuid,omitempty"`
 }
 
-// Address represents the Host address.
-/*
-type Address struct {
-
-	// Fully qualified domain name.
-	FQDN *string `json:"fqdn,omitempty" mapstructure:"fqdn,omitempty"`
-
-	// IPV4 address.
-	IP *string `json:"ip,omitempty" mapstructure:"ip,omitempty"`
-
-	// IPV6 address.
-	IPV6 *string `json:"ipv6,omitempty" mapstructure:"ipv6,omitempty"`
-
-	// Port Number
-	Port *int64 `json:"port,omitempty" mapstructure:"port,omitempty"`
-}
-*/
-
 // IPPool represents IP pool.
 type IPPool struct {
 
@@ -656,7 +606,7 @@ type SubnetResources struct {
 
 	NetworkFunctionChainReference *Reference `json:"network_function_chain_reference,omitempty" mapstructure:"network_function_chain_reference,omitempty"`
 
-	SubnetType *string `json:"subnet_type" mapstructure:"subnet_type"`
+	SubnetType *string `json:"subnet_type,omitempty" mapstructure:"subnet_type"`
 
 	VlanID *int64 `json:"vlan_id,omitempty" mapstructure:"vlan_id,omitempty"`
 
@@ -673,7 +623,7 @@ type Subnet struct {
 	Description *string `json:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// subnet Name.
-	Name *string `json:"name" mapstructure:"name"`
+	Name *string `json:"name,omitempty" mapstructure:"name"`
 
 	Resources *SubnetResources `json:"resources,omitempty" mapstructure:"resources,omitempty"`
 }
@@ -682,9 +632,9 @@ type Subnet struct {
 type SubnetIntentInput struct {
 	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version,omitempty"`
 
-	Metadata *Metadata `json:"metadata" mapstructure:"metadata"`
+	Metadata *Metadata `json:"metadata,omitempty" mapstructure:"metadata"`
 
-	Spec *Subnet `json:"spec" mapstructure:"spec"`
+	Spec *Subnet `json:"spec,omitempty" mapstructure:"spec"`
 }
 
 // SubnetStatus represents The status of a REST API call. Only used when there is a failure to report.
@@ -708,7 +658,7 @@ type SubnetResourcesDefStatus struct {
 
 	NetworkFunctionChainReference *Reference `json:"network_function_chain_reference,omitempty" mapstructure:"network_function_chain_reference,omitempty"`
 
-	SubnetType *string `json:"subnet_type" mapstructure:"subnet_type"`
+	SubnetType *string `json:",omitempty" mapstructure:"subnet_type"`
 
 	VlanID *int64 `json:"vlan_id,omitempty" mapstructure:"vlan_id,omitempty"`
 
@@ -722,13 +672,13 @@ type SubnetDefStatus struct {
 	ClusterReference *Reference `json:"cluster_reference,omitempty" mapstructure:"cluster_reference,omitempty"`
 
 	// A description for subnet.
-	Description *string `json:"description" mapstructure:"description"`
+	Description *string `json:"description,omitempty" mapstructure:"description"`
 
 	// Any error messages for the subnet, if in an error state.
 	MessageList []*MessageResource `json:"message_list,omitempty" mapstructure:"message_list,omitempty"`
 
 	// subnet Name.
-	Name *string `json:"name" mapstructure:"name"`
+	Name *string `json:"name,omitempty" mapstructure:"name"`
 
 	Resources *SubnetResourcesDefStatus `json:"resources,omitempty" mapstructure:"resources,omitempty"`
 
@@ -740,7 +690,7 @@ type SubnetDefStatus struct {
 
 // SubnetIntentResponse represents the response object for intentful operations on a subnet
 type SubnetIntentResponse struct {
-	APIVersion *string `json:"api_version" mapstructure:"api_version"`
+	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version"`
 
 	Metadata *Metadata `json:"metadata,omitempty" mapstructure:"metadata,omitempty"`
 
@@ -753,7 +703,7 @@ type SubnetIntentResponse struct {
 type SubnetIntentResource struct {
 	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version,omitempty"`
 
-	Metadata *Metadata `json:"metadata" mapstructure:"metadata"`
+	Metadata *Metadata `json:"metadata,omitempty" mapstructure:"metadata"`
 
 	Spec *Subnet `json:"spec,omitempty" mapstructure:"spec,omitempty"`
 
@@ -762,11 +712,11 @@ type SubnetIntentResource struct {
 
 // SubnetListIntentResponse represents the response object for intentful operation of subnets
 type SubnetListIntentResponse struct {
-	APIVersion *string `json:"api_version" mapstructure:"api_version"`
+	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version"`
 
 	Entities []*SubnetIntentResponse `json:"entities,omitempty" mapstructure:"entities,omitempty"`
 
-	Metadata *ListMetadataOutput `json:"metadata" mapstructure:"metadata"`
+	Metadata *ListMetadataOutput `json:"metadata,omitempty" mapstructure:"metadata"`
 }
 
 // SubnetListMetadata ...
@@ -793,18 +743,18 @@ type SubnetListMetadata struct {
 
 // Checksum represents the image checksum
 type Checksum struct {
-	ChecksumAlgorithm *string `json:"checksum_algorithm" mapstructure:"checksum_algorithm"`
-	ChecksumValue     *string `json:"checksum_value" mapstructure:"checksum_value"`
+	ChecksumAlgorithm *string `json:"checksum_algorithm,omitempty" mapstructure:"checksum_algorithm"`
+	ChecksumValue     *string `json:"checksum_value,omitempty" mapstructure:"checksum_value"`
 }
 
 // ImageVersionResources The image version, which is composed of a product name and product version.
 type ImageVersionResources struct {
 
 	// Name of the producer/distribution of the image. For example windows or red hat.
-	ProductName *string `json:"product_name" mapstructure:"product_name"`
+	ProductName *string `json:"product_name,omitempty" mapstructure:"product_name"`
 
 	// Version *string for the disk image.
-	ProductVersion *string `json:"product_version" mapstructure:"product_version"`
+	ProductVersion *string `json:"product_version,omitempty" mapstructure:"product_version"`
 }
 
 // ImageResources describes the image spec resources object.
@@ -839,7 +789,7 @@ type Image struct {
 	// image Name.
 	Name *string `json:"name,omitempty" mapstructure:"name,omitempty"`
 
-	Resources *ImageResources `json:"resources" mapstructure:"resources"`
+	Resources *ImageResources `json:"resources,omitempty" mapstructure:"resources"`
 }
 
 // ImageMetadata Metadata The image kind metadata
@@ -852,7 +802,7 @@ type ImageMetadata struct {
 	CreationTime *time.Time `json:"creation_time,omitempty" mapstructure:"creation_time,omitempty"`
 
 	// The kind name
-	Kind *string `json:"kind" mapstructure:"kind"`
+	Kind *string `json:"kind,omitempty" mapstructure:"kind"`
 
 	// UTC date and time in RFC-3339 format when image was last updated
 	LastUpdateTime *time.Time `json:"last_update_time,omitempty" mapstructure:"last_update_time,omitempty"`
@@ -903,10 +853,10 @@ type ImageStatus struct {
 type ImageVersionStatus struct {
 
 	// Name of the producer/distribution of the image. For example windows or red hat.
-	ProductName *string `json:"product_name" mapstructure:"product_name"`
+	ProductName *string `json:"product_name,omitempty" mapstructure:"product_name"`
 
 	// Version *string for the disk image.
-	ProductVersion *string `json:"product_version" mapstructure:"product_version"`
+	ProductVersion *string `json:"product_version,omitempty" mapstructure:"product_version"`
 }
 
 // ImageResourcesDefStatus describes the image status resources object.
@@ -948,9 +898,9 @@ type ImageDefStatus struct {
 	MessageList []*MessageResource `json:"message_list,omitempty" mapstructure:"message_list,omitempty"`
 
 	// image Name.
-	Name *string `json:"name" mapstructure:"name"`
+	Name *string `json:"name,omitempty" mapstructure:"name"`
 
-	Resources ImageResourcesDefStatus `json:"resources" mapstructure:"resources"`
+	Resources ImageResourcesDefStatus `json:"resources,omitempty" mapstructure:"resources"`
 
 	// The state of the image.
 	State *string `json:"state,omitempty" mapstructure:"state,omitempty"`
@@ -960,9 +910,9 @@ type ImageDefStatus struct {
 
 // ImageIntentResponse represents the response object for intentful operations on a image
 type ImageIntentResponse struct {
-	APIVersion *string `json:"api_version" mapstructure:"api_version"`
+	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version"`
 
-	Metadata *Metadata `json:"metadata" mapstructure:"metadata"`
+	Metadata *Metadata `json:"metadata,omitempty" mapstructure:"metadata"`
 
 	Spec *Image `json:"spec,omitempty" mapstructure:"spec,omitempty"`
 
@@ -995,7 +945,7 @@ type ImageListMetadata struct {
 type ImageIntentResource struct {
 	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version,omitempty"`
 
-	Metadata *Metadata `json:"metadata" mapstructure:"metadata"`
+	Metadata *Metadata `json:"metadata,omitempty" mapstructure:"metadata"`
 
 	Spec *Image `json:"spec,omitempty" mapstructure:"spec,omitempty"`
 
@@ -1004,25 +954,25 @@ type ImageIntentResource struct {
 
 // ImageListIntentResponse represents the response object for intentful operation of images
 type ImageListIntentResponse struct {
-	APIVersion *string `json:"api_version" mapstructure:"api_version"`
+	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version"`
 
 	Entities []*ImageIntentResponse `json:"entities,omitempty" mapstructure:"entities,omitempty"`
 
-	Metadata *ListMetadataOutput `json:"metadata" mapstructure:"metadata"`
+	Metadata *ListMetadataOutput `json:"metadata,omitempty" mapstructure:"metadata"`
 }
 
 // ClusterListIntentResponse ...
 type ClusterListIntentResponse struct {
-	APIVersion *string                  `json:"api_version" mapstructure:"api_version"`
+	APIVersion *string                  `json:"api_version,omitempty" mapstructure:"api_version"`
 	Entities   []*ClusterIntentResponse `json:"entities,omitempty" mapstructure:"entities,omitempty"`
-	Metadata   *ListMetadataOutput      `json:"metadata" mapstructure:"metadata"`
+	Metadata   *ListMetadataOutput      `json:"metadata,omitempty" mapstructure:"metadata"`
 }
 
 // ClusterIntentResponse ...
 type ClusterIntentResponse struct {
 	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version,omitempty"`
 
-	Metadata *Metadata `json:"metadata" mapstructure:"metadata"`
+	Metadata *Metadata `json:"metadata,omitempty" mapstructure:"metadata"`
 
 	Spec *Cluster `json:"spec,omitempty" mapstructure:"spec,omitempty"`
 
@@ -1063,14 +1013,6 @@ type SoftwareMapValues struct {
 	Status       *string `json:"status,omitempty" mapstructure:"status,omitempty"`
 	Version      *string `json:"version,omitempty" mapstructure:"version,omitempty"`
 }
-
-// SoftwareMap ...
-/*
-type SoftwareMap struct {
-	NCC *SoftwareMapValues `json:"ncc,omitempty" mapstructure:"ncc,omitempty"`
-	NOS *SoftwareMapValues `json:"nos,omitempty" mapstructure:"nos,omitempty"`
-}
-*/
 
 // ClusterConfig ...
 type ClusterConfig struct {
@@ -1119,13 +1061,6 @@ type CaCert struct {
 	Certificate *string `json:"certificate,omitempty" mapstructure:"certificate,omitempty"`
 }
 
-// ExternalConfigurations ...
-/*
-type ExternalConfigurations struct {
-	CitrixConnectorConfig *CitrixConnectorConfigDetails `json:"citrix_connector_config,omitempty" mapstructure:"citrix_connector_config,omitempty"`
-}
-*/
-
 // CitrixConnectorConfigDetails ...
 type CitrixConnectorConfigDetails struct {
 	CitrixVMReferenceList *[]Reference            `json:"citrix_vm_reference_list,omitempty" mapstructure:"citrix_vm_reference_list,omitempty"`
@@ -1141,43 +1076,11 @@ type CitrixResourceLocation struct {
 	Name *string `json:"name,omitempty" mapstructure:"name,omitempty"`
 }
 
-// SslKey ...
-/*
-type SslKey struct {
-	KeyType        *string                   `json:"key_type,omitempty" mapstructure:"key_type,omitempty"`
-	KeyName        *string                   `json:"key_name,omitempty" mapstructure:"key_name,omitempty"`
-	SigningInfo    *CertificationSigningInfo `json:"signing_info,omitempty" mapstructure:"signing_info,omitempty"`
-	ExpireDatetime *string                   `json:"expire_datetime,omitempty" mapstructure:"expire_datetime,omitempty"`
-}
-*/
-
-// CertificationSigningInfo ...
-/*
-type CertificationSigningInfo struct {
-	City             *string `json:"city,omitempty" mapstructure:"city,omitempty"`
-	CommonNameSuffix *string `json:"common_name_suffix,omitempty" mapstructure:"common_name_suffix,omitempty"`
-	State            *string `json:"state,omitempty" mapstructure:"state,omitempty"`
-	CountryCode      *string `json:"country_code,omitempty" mapstructure:"country_code,omitempty"`
-	CommonName       *string `json:"common_name,omitempty" mapstructure:"common_name,omitempty"`
-	Organization     *string `json:"organization,omitempty" mapstructure:"organization,omitempty"`
-	EmailAddress     *string `json:"email_address,omitempty" mapstructure:"email_address,omitempty"`
-}
-*/
-
 // PublicKey ...
 type PublicKey struct {
 	Key  *string `json:"key,omitempty" mapstructure:"key,omitempty"`
 	Name *string `json:"name,omitempty" mapstructure:"name,omitempty"`
 }
-
-// ClientAuth ...
-/*
-type ClientAuth struct {
-	Status  *string `json:"status,omitempty" mapstructure:"status,omitempty"`
-	CaChain *string `json:"ca_chain,omitempty" mapstructure:"ca_chain,omitempty"`
-	Name    *string `json:"name,omitempty" mapstructure:"name,omitempty"`
-}
-*/
 
 // HypervisorServer ...
 type HypervisorServer struct {
@@ -1246,14 +1149,6 @@ type ClusterNetwork struct {
 	InternalSubnet         *string                 `json:"internal_subnet,omitempty" mapstructure:"internal_subnet,omitempty"`
 }
 
-// HTTPProxyWhitelist ...
-/*
-type HTTPProxyWhitelist struct {
-	Target     *string `json:"target,omitempty" mapstructure:"target,omitempty"`
-	TargetType *string `json:"target_type,omitempty" mapstructure:"target_type,omitempty"`
-}
-*/
-
 // ClusterDomainServer ...
 type ClusterDomainServer struct {
 	Nameserver        *string      `json:"nameserver,omitempty" mapstructure:"nameserver,omitempty"`
@@ -1261,40 +1156,12 @@ type ClusterDomainServer struct {
 	DomainCredentials *Credentials `json:"external_data_services_ip,omitempty" mapstructure:"external_data_services_ip,omitempty"`
 }
 
-// SMTPServer ...
-/*
-type SMTPServer struct {
-	Type         *string               `json:"type,omitempty" mapstructure:"type,omitempty"`
-	EmailAddress *string               `json:"email_address,omitempty" mapstructure:"email_address,omitempty"`
-	Server       *ClusterNetworkEntity `json:"server,omitempty" mapstructure:"server,omitempty"`
-}
-*/
-
 // ClusterNetworkEntity ...
 type ClusterNetworkEntity struct {
 	Credentials   *Credentials `json:"credentials,omitempty" mapstructure:"credentials,omitempty"`
 	ProxyTypeList []*string    `json:"proxy_type_list,omitempty" mapstructure:"proxy_type_list,omitempty"`
 	Address       *Address     `json:"address,omitempty" mapstructure:"address,omitempty"`
 }
-
-// Credentials ...
-/*
-type Credentials struct {
-	Username *string `json:"username,omitempty" mapstructure:"username,omitempty"`
-	Password *string `json:"password,omitempty" mapstructure:"password,omitempty"`
-}
-*/
-
-// VMEfficiencyMap ...
-/*
-type VMEfficiencyMap struct {
-	BullyVMNum           *string `json:"bully_vm_num,omitempty" mapstructure:"bully_vm_num,omitempty"`
-	ConstrainedVMNum     *string `json:"constrained_vm_num,omitempty" mapstructure:"constrained_vm_num,omitempty"`
-	DeadVMNum            *string `json:"dead_vm_num,omitempty" mapstructure:"dead_vm_num,omitempty"`
-	InefficientVMNum     *string `json:"inefficient_vm_num,omitempty" mapstructure:"inefficient_vm_num,omitempty"`
-	OverprovisionedVMNum *string `json:"overprovisioned_vm_num,omitempty" mapstructure:"overprovisioned_vm_num,omitempty"`
-}
-*/
 
 // ClusterAnalysis ...
 type ClusterAnalysis struct {
@@ -1333,7 +1200,7 @@ type CategoryKeyStatus struct {
 	Description *string `json:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// Name of the category.
-	Name *string `json:"name" mapstructure:"name"`
+	Name *string `json:"name,omitempty" mapstructure:"name"`
 
 	// Specifying whether its a system defined category.
 	SystemDefined *bool `json:"system_defined,omitempty" mapstructure:"system_defined,omitempty"`
@@ -1360,7 +1227,7 @@ type CategoryKey struct {
 	Description *string `json:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// Name of the category.
-	Name *string `json:"name" mapstructure:"name"`
+	Name *string `json:"name,omitempty" mapstructure:"name"`
 }
 
 // CategoryStatus represents The status of a REST API call. Only used when there is a failure to report.
@@ -1581,35 +1448,16 @@ type NetworkSecurityRuleResources struct {
 
 // NetworkSecurityRule ...
 type NetworkSecurityRule struct {
-	Description *string                       `json:"description" mapstructure:"description"`
+	Description *string                       `json:"description,omitempty" mapstructure:"description"`
 	Name        *string                       `json:"name,omitempty" mapstructure:"name,omitempty"`
 	Resources   *NetworkSecurityRuleResources `json:"resources,omitempty" `
 }
 
-// Metadata Metadata The kind metadata
-/*
-type Metadata struct {
-	LastUpdateTime   *time.Time        `json:"last_update_time,omitempty" mapstructure:"last_update_time,omitempty"`   //
-	Kind             *string           `json:"kind" mapstructure:"kind"`                                               //
-	UUID             *string           `json:"uuid,omitempty" mapstructure:"uuid,omitempty"`                           //
-	ProjectReference *Reference        `json:"project_reference,omitempty" mapstructure:"project_reference,omitempty"` // project reference
-	CreationTime     *time.Time        `json:"creation_time,omitempty" mapstructure:"creation_time,omitempty"`
-	SpecVersion      *int64            `json:"spec_version,omitempty" mapstructure:"spec_version,omitempty"`
-	SpecHash         *string           `json:"spec_hash,omitempty" mapstructure:"spec_hash,omitempty"`
-	OwnerReference   *Reference        `json:"owner_reference,omitempty" mapstructure:"owner_reference,omitempty"`
-	Categories       map[string]string `json:"categories,omitempty" mapstructure:"categories,omitempty"`
-	Name             *string           `json:"name,omitempty" mapstructure:"name,omitempty"`
-
-	// Applied on Prism Central only. Indicate whether force to translate the spec of the fanout request to fit the target cluster API schema.
-	ShouldForceTranslate *bool `json:"should_force_translate,omitempty" mapstructure:"should_force_translate,omitempty"`
-}
-*/
-
 // NetworkSecurityRuleIntentInput An intentful representation of a network_security_rule
 type NetworkSecurityRuleIntentInput struct {
 	APIVersion *string              `json:"api_version,omitempty" mapstructure:"api_version,omitempty"`
-	Metadata   *Metadata            `json:"metadata" mapstructure:"metadata"`
-	Spec       *NetworkSecurityRule `json:"spec" mapstructure:"spec"`
+	Metadata   *Metadata            `json:"metadata,omitempty" mapstructure:"metadata"`
+	Spec       *NetworkSecurityRule `json:"spec,omitempty" mapstructure:"spec"`
 }
 
 // NetworkSecurityRuleDefStatus ... Network security rule status
@@ -1624,7 +1472,7 @@ type NetworkSecurityRuleDefStatus struct {
 // NetworkSecurityRuleIntentResponse Response object for intentful operations on a network_security_rule
 type NetworkSecurityRuleIntentResponse struct {
 	APIVersion *string                       `json:"api_version,omitempty" mapstructure:"api_version,omitempty"`
-	Metadata   *Metadata                     `json:"metadata" mapstructure:"metadata"`
+	Metadata   *Metadata                     `json:"metadata,omitempty" mapstructure:"metadata"`
 	Spec       *NetworkSecurityRule          `json:"spec,omitempty" mapstructure:"spec,omitempty"`
 	Status     *NetworkSecurityRuleDefStatus `json:"status,omitempty" mapstructure:"status,omitempty"`
 }
@@ -1669,9 +1517,9 @@ type NetworkSecurityRuleIntentResource struct {
 
 // NetworkSecurityRuleListIntentResponse Response object for intentful operation of network_security_rules
 type NetworkSecurityRuleListIntentResponse struct {
-	APIVersion string                               `json:"api_version" mapstructure:"api_version"`
+	APIVersion string                               `json:"api_version,omitempty" mapstructure:"api_version"`
 	Entities   []*NetworkSecurityRuleIntentResource `json:"entities,omitempty" bson:"entities,omitempty" mapstructure:"entities,omitempty"`
-	Metadata   *ListMetadataOutput                  `json:"metadata" mapstructure:"metadata"`
+	Metadata   *ListMetadataOutput                  `json:"metadata,omitempty" mapstructure:"metadata"`
 }
 
 // VolumeGroupInput Represents the request body for create volume_grop request
@@ -1683,9 +1531,9 @@ type VolumeGroupInput struct {
 
 // VolumeGroup Represents volume group input spec.
 type VolumeGroup struct {
-	Name        *string               `json:"name" mapstructure:"name"`                                   // Volume Group name (required)
+	Name        *string               `json:"name,omitempty" mapstructure:"name"`                         // Volume Group name (required)
 	Description *string               `json:"description,omitempty" mapstructure:"description,omitempty"` // Volume Group description.
-	Resources   *VolumeGroupResources `json:"resources" mapstructure:"resources"`                         // Volume Group resources.
+	Resources   *VolumeGroupResources `json:"resources,omitempty" mapstructure:"resources"`               // Volume Group resources.
 }
 
 // VolumeGroupResources Represents the volume group resources
@@ -1700,41 +1548,41 @@ type VolumeGroupResources struct {
 
 // VMAttachment VMs attached to volume group.
 type VMAttachment struct {
-	VMReference        *Reference `json:"vm_reference" mapstructure:"vm_reference"`                 // Reference to a kind
-	IscsiInitiatorName *string    `json:"iscsi_initiator_name" mapstructure:"iscsi_initiator_name"` // Name of the iSCSI initiator of the workload outside Nutanix cluster.
+	VMReference        *Reference `json:"vm_reference,omitempty" mapstructure:"vm_reference"`                 // Reference to a kind
+	IscsiInitiatorName *string    `json:"iscsi_initiator_name,omitempty" mapstructure:"iscsi_initiator_name"` // Name of the iSCSI initiator of the workload outside Nutanix cluster.
 }
 
 // VGDisk Volume group disk specification.
 type VGDisk struct {
-	VmdiskUUID           *string    `json:"vmdisk_uuid" mapstructure:"vmdisk_uuid"`                       // The UUID of this volume disk
-	Index                *int64     `json:"index" mapstructure:"index"`                                   // Index of the volume disk in the group.
-	DataSourceReference  *Reference `json:"data_source_reference" mapstructure:"data_source_reference"`   // Reference to a kind
-	DiskSizeMib          *int64     `json:"disk_size_mib" mapstructure:"disk_size_mib"`                   // Size of the disk in MiB.
-	StorageContainerUUID *string    `json:"storage_container_uuid" mapstructure:"storage_container_uuid"` // Container UUID on which to create the disk.
+	VmdiskUUID           *string    `json:"vmdisk_uuid,omitempty" mapstructure:"vmdisk_uuid"`                       // The UUID of this volume disk
+	Index                *int64     `json:"index,omitempty" mapstructure:"index"`                                   // Index of the volume disk in the group.
+	DataSourceReference  *Reference `json:"data_source_reference,omitempty" mapstructure:"data_source_reference"`   // Reference to a kind
+	DiskSizeMib          *int64     `json:"disk_size_mib,omitempty" mapstructure:"disk_size_mib"`                   // Size of the disk in MiB.
+	StorageContainerUUID *string    `json:"storage_container_uuid,omitempty" mapstructure:"storage_container_uuid"` // Container UUID on which to create the disk.
 }
 
 // VolumeGroupResponse Response object for intentful operations on a volume_group
 type VolumeGroupResponse struct {
-	APIVersion *string               `json:"api_version" mapstructure:"api_version"`           //
-	Metadata   *Metadata             `json:"metadata" mapstructure:"metadata"`                 // The volume_group kind metadata
+	APIVersion *string               `json:"api_version,omitempty" mapstructure:"api_version"` //
+	Metadata   *Metadata             `json:"metadata,omitempty" mapstructure:"metadata"`       // The volume_group kind metadata
 	Spec       *VolumeGroup          `json:"spec,omitempty" mapstructure:"spec,omitempty"`     // Volume group input spec.
 	Status     *VolumeGroupDefStatus `json:"status,omitempty" mapstructure:"status,omitempty"` // Volume group configuration.
 }
 
 // VolumeGroupDefStatus  Volume group configuration.
 type VolumeGroupDefStatus struct {
-	State       *string               `json:"state" mapstructure:"state"`               // The state of the volume group entity.
-	MessageList []*MessageResource    `json:"message_list" mapstructure:"message_list"` // Volume group message list.
-	Name        *string               `json:"name" mapstructure:"name"`                 // Volume group name.
-	Resources   *VolumeGroupResources `json:"resources" mapstructure:"resources"`       // Volume group resources.
-	Description *string               `json:"description" mapstructure:"description"`   // Volume group description.
+	State       *string               `json:"state,omitempty" mapstructure:"state"`               // The state of the volume group entity.
+	MessageList []*MessageResource    `json:"message_list,omitempty" mapstructure:"message_list"` // Volume group message list.
+	Name        *string               `json:"name,omitempty" mapstructure:"name"`                 // Volume group name.
+	Resources   *VolumeGroupResources `json:"resources,omitempty" mapstructure:"resources"`       // Volume group resources.
+	Description *string               `json:"description,omitempty" mapstructure:"description"`   // Volume group description.
 }
 
 // VolumeGroupListResponse Response object for intentful operation of volume_groups
 type VolumeGroupListResponse struct {
-	APIVersion *string                `json:"api_version" mapstructure:"api_version"`
+	APIVersion *string                `json:"api_version,omitempty" mapstructure:"api_version"`
 	Entities   []*VolumeGroupResponse `json:"entities,omitempty" mapstructure:"entities,omitempty"`
-	Metadata   *ListMetadataOutput    `json:"metadata" mapstructure:"metadata"`
+	Metadata   *ListMetadataOutput    `json:"metadata,omitempty" mapstructure:"metadata"`
 }
 
 // TasksResponse ...
@@ -1747,7 +1595,7 @@ type TasksResponse struct {
 	CreationTime         *time.Time   `json:"creation_time,omitempty" mapstructure:"creation_time,omitempty"`
 	ClusterReference     *Reference   `json:"cluster_reference,omitempty" mapstructure:"cluster_reference,omitempty"`
 	SubtaskReferenceList []*Reference `json:"subtask_reference_list,omitempty" mapstructure:"subtask_reference_list,omitempty"`
-	CompletionTime       *time.Time   `json:"completion_timev" mapstructure:"completion_timev"`
+	CompletionTime       *time.Time   `json:"completion_timev,omitempty" mapstructure:"completion_timev"`
 	ProgressMessage      *string      `json:"progress_message,omitempty" mapstructure:"progress_message,omitempty"`
 	OperationType        *string      `json:"operation_type,omitempty" mapstructure:"operation_type,omitempty"`
 	PercentageComplete   *int64       `json:"percentage_complete,omitempty" mapstructure:"percentage_complete,omitempty"`
@@ -1758,16 +1606,16 @@ type TasksResponse struct {
 
 // DeleteResponse ...
 type DeleteResponse struct {
-	Status     *DeleteStatus `json:"status" mapstructure:"status"`
-	Spec       string        `json:"spec" mapstructure:"spec"`
-	APIVersion string        `json:"api_version" mapstructure:"api_version"`
-	Metadata   *Metadata     `json:"metadata" mapstructure:"metadata"`
+	Status     *DeleteStatus `json:"status,omitempty" mapstructure:"status"`
+	Spec       string        `json:"spec,omitempty" mapstructure:"spec"`
+	APIVersion string        `json:"api_version,omitempty" mapstructure:"api_version"`
+	Metadata   *Metadata     `json:"metadata,omitempty" mapstructure:"metadata"`
 }
 
 // DeleteStatus ...
 type DeleteStatus struct {
-	State            string            `json:"state" mapstructure:"state"`
-	ExecutionContext *ExecutionContext `json:"execution_context" mapstructure:"execution_context"`
+	State            string            `json:"state,omitempty" mapstructure:"state"`
+	ExecutionContext *ExecutionContext `json:"execution_context,omitempty" mapstructure:"execution_context"`
 }
 
 /* Host Resource */

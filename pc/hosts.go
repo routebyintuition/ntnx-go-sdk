@@ -33,10 +33,10 @@ type HostGetRequest struct {
 
 // HostGetResponse returns host details
 type HostGetResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // Get passes as UUID of a specific cluster to get information about that cluster
