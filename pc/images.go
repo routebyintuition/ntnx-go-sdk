@@ -26,17 +26,17 @@ type ImageUploadResponse struct{}
 
 // ImageCreateRequest provides am image configuration to create
 type ImageCreateRequest struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
 }
 
 // ImageCreateResponse is the response from an image create
 type ImageCreateResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // ImageListRequest This operation gets a list of images, allowing for sorting and pagination. Note: Entities that have not been created successfully are not listed.
@@ -51,9 +51,9 @@ type ImageListRequest struct {
 
 // ImageListResponse response of all images in system
 type ImageListResponse struct {
-	APIVersion string     `json:"api_version"`
-	Metadata   Metadata   `json:"metadata"`
-	Entities   []Entities `json:"entities"`
+	APIVersion string     `json:"api_version,omitempty"`
+	Metadata   Metadata   `json:"metadata,omitempty"`
+	Entities   []Entities `json:"entities,omitempty"`
 }
 
 // ImageDeleteRequest provides UUID of image to delete
@@ -110,7 +110,7 @@ type ImageMigrateRequest struct {
 
 // ImageMigrateResponse migration task UUID response
 type ImageMigrateResponse struct {
-	TaskUUID string `json:"task_uuid"`
+	TaskUUID string `json:"task_uuid,omitempty"`
 }
 
 // GetFile Downloads the image based on the UUID specified.

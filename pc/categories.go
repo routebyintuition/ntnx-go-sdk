@@ -122,18 +122,18 @@ type CategoryUpdateValueRequest struct {
 type CategoryUpdateValueRequestData struct {
 	APIVersion     string         `json:"api_version,omitempty"`
 	Value          string         `json:"value,omitempty"`
-	Description    string         `json:"description"`
-	AssignmentRule AssignmentRule `json:"assignment_rule"`
+	Description    string         `json:"description,omitempty"`
+	AssignmentRule AssignmentRule `json:"assignment_rule,omitempty"`
 }
 
 // CategoryUpdateValueResponse is the response upon update or creation of a category value
 type CategoryUpdateValueResponse struct {
-	APIVersion     string         `json:"api_version"`
-	Name           string         `json:"name"`
-	Value          string         `json:"value"`
-	AssignmentRule AssignmentRule `json:"assignment_rule"`
-	Description    string         `json:"description"`
-	SystemDefined  bool           `json:"system_defined"`
+	APIVersion     string         `json:"api_version,omitempty"`
+	Name           string         `json:"name,omitempty"`
+	Value          string         `json:"value,omitempty"`
+	AssignmentRule AssignmentRule `json:"assignment_rule,omitempty"`
+	Description    string         `json:"description,omitempty"`
+	SystemDefined  bool           `json:"system_defined,omitempty"`
 }
 
 // CategoryListValuesRequest is the category name and data associated to list values
@@ -144,19 +144,19 @@ type CategoryListValuesRequest struct {
 
 // CategoryListValuesRequestData is the filter and sort for the category value list
 type CategoryListValuesRequestData struct {
-	Kind          string `json:"kind"`
-	Offset        int    `json:"offset"`
-	Length        int    `json:"length"`
-	Filter        string `json:"filter"`
-	SortOrder     string `json:"sort_order"`
-	SortAttribute string `json:"sort_attribute"`
+	Kind          string `json:"kind,omitempty"`
+	Offset        int    `json:"offset,omitempty"`
+	Length        int    `json:"length,omitempty"`
+	Filter        string `json:"filter,omitempty"`
+	SortOrder     string `json:"sort_order,omitempty"`
+	SortAttribute string `json:"sort_attribute,omitempty"`
 }
 
 // CategoryListValuesResponse provides the list of values associated to a category key
 type CategoryListValuesResponse struct {
-	APIVersion string     `json:"api_version"`
-	Metadata   Metadata   `json:"metadata"`
-	Entities   []Entities `json:"entities"`
+	APIVersion string     `json:"api_version,omitempty"`
+	Metadata   Metadata   `json:"metadata,omitempty"`
+	Entities   []Entities `json:"entities,omitempty"`
 }
 
 // ListValues - List the values for a specified key.
