@@ -1406,19 +1406,6 @@ type CategoryValueStatus struct {
 	Value *string `json:"value,omitempty" mapstructure:"value,omitempty"`
 }
 
-// CategoryFilter represents A category filter.
-type CategoryFilter struct {
-
-	// List of kinds associated with this filter.
-	KindList []*string `json:"kind_list,omitempty" mapstructure:"kind_list,omitempty"`
-
-	// A list of category key and list of values.
-	Params map[string][]string `json:"params,omitempty" mapstructure:"params,omitempty"`
-
-	// The type of the filter being used.
-	Type *string `json:"type,omitempty" mapstructure:"type,omitempty"`
-}
-
 // CategoryQueryInput represents Categories query input object.
 type CategoryQueryInput struct {
 
@@ -1487,17 +1474,6 @@ type CategoryQueryResponseResults struct {
 
 	// Total number of the matched results.
 	TotalEntityCount *int64 `json:"total_entity_count,omitempty" mapstructure:"total_entity_count,omitempty"`
-}
-
-// CategoryQueryResponse represents Categories query response object.
-type CategoryQueryResponse struct {
-
-	// API version.
-	APIVersion *string `json:"api_version,omitempty" mapstructure:"api_version,omitempty"`
-
-	Metadata *CategoryQueryResponseMetadata `json:"metadata,omitempty" mapstructure:"metadata,omitempty"`
-
-	Results []*CategoryQueryResponseResults `json:"results,omitempty" mapstructure:"results,omitempty"`
 }
 
 // CategoryValue represents Category value definition.
