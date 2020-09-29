@@ -15,4 +15,3 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
 - Users - functions available in 5.15
 - Categories - functions available in 5.15
 - Access Control Policies
-

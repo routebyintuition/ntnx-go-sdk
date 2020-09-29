@@ -1036,6 +1036,7 @@ type AssignmentRule struct {
 	SelectionCriteriaList []SelectionCriteriaList `json:"selection_criteria_list,omitempty"`
 	ExclusionList         []ExclusionList         `json:"exclusion_list,omitempty"`
 	InclusionList         []InclusionList         `json:"inclusion_list,omitempty"`
+}
 
 type DhcpOptions struct {
 	BootFileName         string   `json:"boot_file_name"`
