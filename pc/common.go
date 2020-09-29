@@ -26,6 +26,9 @@ type Metadata struct {
 	CategoriesMapping    CategoriesMapping `json:"categories_mapping,omitempty"`
 	UseCategoriesMapping bool              `json:"use_categories_mapping,omitempty"`
 	EntityVersion        string            `json:"entity_version,omitempty"`
+	GroupMemberCount     int               `json:"group_member_count,omitempty"`
+	GroupMemberOffset    int               `json:"group_member_offset,omitempty"`
+	UsageType            string            `json:"usage_type,omitempty"`
 }
 
 // Config is the API response for Config used across all API requests
@@ -314,10 +317,14 @@ type Status struct {
 
 // Entities is the main Entities type across all Response calls
 type Entities struct {
-	Status     Status   `json:"status,omitempty"`
-	Spec       Spec     `json:"spec,omitempty"`
-	APIVersion string   `json:"api_version,omitempty"`
-	Metadata   Metadata `json:"metadata,omitempty"`
+	Status        Status       `json:"status,omitempty"`
+	Spec          Spec         `json:"spec,omitempty"`
+	APIVersion    string       `json:"api_version,omitempty"`
+	Metadata      Metadata     `json:"metadata,omitempty"`
+	Name          string       `json:"name,omitempty"`
+	Capabilities  Capabilities `json:"capabilities,omitempty"`
+	Description   string       `json:"description,omitempty"`
+	SystemDefined bool         `json:"system_defined,omitempty"`
 }
 
 // MessageList is the list of messages
@@ -439,6 +446,32 @@ type UseCategoriesMapping struct {
 	Type        string `json:"type,omitempty"`
 	Default     bool   `json:"default,omitempty"`
 	Description string `json:"description,omitempty"`
+}
+
+// Results is used for category query results
+type Results struct {
+	Kind                string              `json:"kind"`
+	TotalEntityCount    int                 `json:"total_entity_count"`
+	FilteredEntityCount int                 `json:"filtered_entity_count"`
+	KindReferenceList   []KindReferenceList `json:"kind_reference_list"`
+}
+
+// KindReferenceList is used for category query results
+type KindReferenceList struct {
+	Kind       string     `json:"kind"`
+	UUID       string     `json:"uuid"`
+	Name       string     `json:"name"`
+	Type       string     `json:"type"`
+	Categories Categories `json:"categories"`
+}
+
+type CategoryFilter struct {
+	Type     string   `json:"type"`
+	KindList []string `json:"kind_list"`
+	Params   Params   `json:"params"`
+}
+
+type Params struct {
 }
 
 // HypervisorServerList is the hyprevisor list of servers
@@ -949,4 +982,49 @@ type GuestTransitionConfig struct {
 type PowerStateMechanism struct {
 	GuestTransitionConfig GuestTransitionConfig `json:"guest_transition_config,omitempty"`
 	Mechanism             string                `json:"mechanism,omitempty"`
+}
+
+// Capabilities are used for categories
+type Capabilities struct {
+	Cardinality int `json:"cardinality,omitempty"`
+}
+
+// ExpressionList used for category get value results
+type ExpressionList struct {
+	PropertyName       string `json:"property_name,omitempty"`
+	Operator           string `json:"operator,omitempty"`
+	Value              string `json:"value,omitempty"`
+	DisplayForOperator string `json:"display_for_operator,omitempty"`
+	DisplayForValue    string `json:"display_for_value,omitempty"`
+}
+
+// SelectionCriteriaList used for category get value results
+type SelectionCriteriaList struct {
+	EntityType     string           `json:"entity_type,omitempty"`
+	ExpressionList []ExpressionList `json:"expression_list,omitempty"`
+}
+
+// ExclusionList used for category get value results
+type ExclusionList struct {
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+	URL  string `json:"url,omitempty"`
+}
+
+// InclusionList used for category get value results
+type InclusionList struct {
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+	URL  string `json:"url,omitempty"`
+}
+
+// AssignmentRule used for category get value results
+type AssignmentRule struct {
+	Name                  string                  `json:"name,omitempty"`
+	Description           string                  `json:"description,omitempty"`
+	SelectionCriteriaList []SelectionCriteriaList `json:"selection_criteria_list,omitempty"`
+	ExclusionList         []ExclusionList         `json:"exclusion_list,omitempty"`
+	InclusionList         []InclusionList         `json:"inclusion_list,omitempty"`
 }

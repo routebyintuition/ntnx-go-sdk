@@ -54,12 +54,13 @@ type Client struct {
 
 	common Service
 
-	Cluster *ClusterService
-	User    *UserService
-	VM      *VMService
-	Host    *HostService
-	ACPS    *AccessControlPoliciesService
-	Image   *ImageService
+	Cluster  *ClusterService
+	User     *UserService
+	VM       *VMService
+	Host     *HostService
+	ACPS     *AccessControlPoliciesService
+	Image    *ImageService
+	Category *CategoryService
 }
 
 // CheckConfig will ensure that the minimal amount of information is present in the config
@@ -126,6 +127,7 @@ func NewClient(httpClient *http.Client, conf *ServiceConfig) (*Client, error) {
 	c.Host = (*HostService)(&c.common)
 	c.ACPS = (*AccessControlPoliciesService)(&c.common)
 	c.Image = (*ImageService)(&c.common)
+	c.Category = (*CategoryService)(&c.common)
 
 	return c, nil
 }

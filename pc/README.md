@@ -8,20 +8,13 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
 
 - Clusters - functions available in 5.15
 - VMs - functions available in 5.15
-- Users
+- Users - functions available in 5.15
 - Hosts - functions available in 5.15
 - Images - functions available in 5.15
-
-- Users
-
-  - Create
-
+- Subnets - functions available in 5.15
+- Users - functions available in 5.15
+- Categories - functions available in 5.15
 - Access Control Policies
-  - Create
-  - List
-  - Update
-  - Delete
-  - Get
 
 ### Work in progress:
 
