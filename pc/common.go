@@ -136,6 +136,16 @@ type Resources struct {
 	VpcReference                     VpcReference                       `json:"vpc_reference"`
 	AvailabilityZoneReferenceList    []AvailabilityZoneReferenceList    `json:"availability_zone_reference_list"`
 	ExternalConnectivityState        string                             `json:"external_connectivity_state"`
+	ResourceDomain                   string                             `json:"resource_domain"`
+	DefaultSubnetReference           DefaultSubnetReference             `json:"default_subnet_reference"`
+	SubnetReferenceList              []SubnetReferenceList              `json:"subnet_reference_list"`
+	UserReferenceList                []UserReferenceList                `json:"user_reference_list"`
+	ExternalUserGroupReferenceList   []ExternalUserGroupReferenceList   `json:"external_user_group_reference_list"`
+	AccountReferenceList             []AccountReferenceList             `json:"account_reference_list"`
+	TunnelReferenceList              []TunnelReferenceList              `json:"tunnel_reference_list"`
+	ExternalNetworkList              []ExternalNetworkList              `json:"external_network_list"`
+	EnvironmentReferenceList         []EnvironmentReferenceList         `json:"environment_reference_list"`
+	DefaultEnvironmentReference      DefaultEnvironmentReference        `json:"default_environment_reference"`
 }
 
 // Spec is the main Spec type across all Response calls
@@ -712,151 +722,151 @@ type ACPMetadata struct {
 	EntityVersion        string            `json:"entity_version"`
 }
 type UserReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type UserGroupReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type RoleReference struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type RightHandSide struct {
-	Collection string     `json:"collection"`
-	Categories Categories `json:"categories"`
-	UUIDList   []string   `json:"uuid_list"`
+	Collection string     `json:"collection,omitempty"`
+	Categories Categories `json:"categories,omitempty"`
+	UUIDList   []string   `json:"uuid_list,omitempty"`
 }
 type ScopeFilterExpressionList struct {
-	LeftHandSide  string        `json:"left_hand_side"`
-	Operator      string        `json:"operator"`
-	RightHandSide RightHandSide `json:"right_hand_side"`
+	LeftHandSide  string        `json:"left_hand_side,omitempty"`
+	Operator      string        `json:"operator,omitempty"`
+	RightHandSide RightHandSide `json:"right_hand_side,omitempty"`
 }
 type LeftHandSide struct {
-	EntityType string `json:"entity_type"`
+	EntityType string `json:"entity_type,omitempty"`
 }
 type EntityFilterExpressionList struct {
-	LeftHandSide  LeftHandSide  `json:"left_hand_side"`
-	Operator      string        `json:"operator"`
-	RightHandSide RightHandSide `json:"right_hand_side"`
+	LeftHandSide  LeftHandSide  `json:"left_hand_side,omitempty"`
+	Operator      string        `json:"operator,omitempty"`
+	RightHandSide RightHandSide `json:"right_hand_side,omitempty"`
 }
 type ContextList struct {
-	ScopeFilterExpressionList  []ScopeFilterExpressionList  `json:"scope_filter_expression_list"`
-	EntityFilterExpressionList []EntityFilterExpressionList `json:"entity_filter_expression_list"`
+	ScopeFilterExpressionList  []ScopeFilterExpressionList  `json:"scope_filter_expression_list,omitempty"`
+	EntityFilterExpressionList []EntityFilterExpressionList `json:"entity_filter_expression_list,omitempty"`
 }
 type FilterList struct {
-	ContextList []ContextList `json:"context_list"`
+	ContextList []ContextList `json:"context_list,omitempty"`
 }
 type ACPResources struct {
-	UserReferenceList      []UserReferenceList      `json:"user_reference_list"`
-	UserGroupReferenceList []UserGroupReferenceList `json:"user_group_reference_list"`
-	RoleReference          RoleReference            `json:"role_reference"`
-	FilterList             FilterList               `json:"filter_list"`
+	UserReferenceList      []UserReferenceList      `json:"user_reference_list,omitempty"`
+	UserGroupReferenceList []UserGroupReferenceList `json:"user_group_reference_list,omitempty"`
+	RoleReference          RoleReference            `json:"role_reference,omitempty"`
+	FilterList             FilterList               `json:"filter_list,omitempty"`
 }
 type ACPSpec struct {
-	Name        string       `json:"name"`
-	Description string       `json:"description"`
-	Resources   ACPResources `json:"resources"`
+	Name        string       `json:"name,omitempty"`
+	Description string       `json:"description,omitempty"`
+	Resources   ACPResources `json:"resources,omitempty"`
 }
 
 type AutoGenerated struct {
-	APIVersion string     `json:"api_version"`
-	Metadata   Metadata   `json:"metadata"`
-	Entities   []Entities `json:"entities"`
+	APIVersion string     `json:"api_version,omitempty"`
+	Metadata   Metadata   `json:"metadata,omitempty"`
+	Entities   []Entities `json:"entities,omitempty"`
 }
 
 // OplogUsage produces the CVM OpLog utilization with a very precise result
 type OplogUsage struct {
-	OplogDiskPct  float64 `json:"oplog_disk_pct"`
-	OplogDiskSize int64   `json:"oplog_disk_size"`
+	OplogDiskPct  float64 `json:"oplog_disk_pct,omitempty"`
+	OplogDiskSize int64   `json:"oplog_disk_size,omitempty"`
 }
 
 // ControllerVM returns information about CVM and utilization
 type ControllerVM struct {
-	IP         string     `json:"ip"`
-	NatIP      string     `json:"nat_ip"`
-	NatPort    int        `json:"nat_port"`
-	OplogUsage OplogUsage `json:"oplog_usage"`
+	IP         string     `json:"ip,omitempty"`
+	NatIP      string     `json:"nat_ip,omitempty"`
+	NatPort    int        `json:"nat_port,omitempty"`
+	OplogUsage OplogUsage `json:"oplog_usage,omitempty"`
 }
 type DomainCredential struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
+	Username string `json:"username,omitempty"`
+	Password string `json:"password,omitempty"`
 }
 type WindowsDomain struct {
-	Name                 string           `json:"name"`
-	DomainName           string           `json:"domain_name"`
-	OrganizationUnitPath string           `json:"organization_unit_path"`
-	NamePrefix           string           `json:"name_prefix"`
-	NameServerIP         string           `json:"name_server_ip"`
-	DomainCredential     DomainCredential `json:"domain_credential"`
+	Name                 string           `json:"name,omitempty"`
+	DomainName           string           `json:"domain_name,omitempty"`
+	OrganizationUnitPath string           `json:"organization_unit_path,omitempty"`
+	NamePrefix           string           `json:"name_prefix,omitempty"`
+	NameServerIP         string           `json:"name_server_ip,omitempty"`
+	DomainCredential     DomainCredential `json:"domain_credential,omitempty"`
 }
 
 type ClusterReference struct {
-	Kind string `json:"kind"`
-	UUID string `json:"uuid"`
-	Name string `json:"name"`
-	URL  string `json:"url"`
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+	URL  string `json:"url",omitempty`
 }
 
 type Ipmi struct {
-	IP string `json:"ip"`
+	IP string `json:"ip,omitempty"`
 }
 type Hypervisor struct {
-	IP                 string `json:"ip"`
-	HypervisorFullName string `json:"hypervisor_full_name"`
-	NumVms             int    `json:"num_vms"`
+	IP                 string `json:"ip,omitempty"`
+	HypervisorFullName string `json:"hypervisor_full_name,omitempty"`
+	NumVms             int    `json:"num_vms,omitempty"`
 }
 type Block struct {
-	BlockSerialNumber string `json:"block_serial_number"`
-	BlockModel        string `json:"block_model"`
+	BlockSerialNumber string `json:"block_serial_number,omitempty"`
+	BlockModel        string `json:"block_model,omitempty"`
 }
 type RackableUnitReference struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type HostDisksReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type ConsumerReference struct {
-	Kind string `json:"kind"`
-	UUID string `json:"uuid"`
-	Name string `json:"name"`
-	URL  string `json:"url"`
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+	URL  string `json:"url,omitempty"`
 }
 type GpuList struct {
-	Name                   string            `json:"name"`
-	Mode                   string            `json:"mode"`
-	DeviceID               int               `json:"device_id"`
-	Vendor                 string            `json:"vendor"`
-	Status                 string            `json:"status"`
-	Index                  int               `json:"index"`
-	NumVgpusAllocated      int               `json:"num_vgpus_allocated"`
-	Assignable             bool              `json:"assignable"`
-	PciAddress             string            `json:"pci_address"`
-	NumaNode               int               `json:"numa_node"`
-	GuestDriverVersion     string            `json:"guest_driver_version"`
-	FrameBufferSizeMib     int               `json:"frame_buffer_size_mib"`
-	MaxInstancesPerVM      int               `json:"max_instances_per_vm"`
-	NumVirtualDisplayHeads int               `json:"num_virtual_display_heads"`
-	MaxResolution          string            `json:"max_resolution"`
-	Fraction               int               `json:"fraction"`
-	UUID                   string            `json:"uuid"`
-	LicenseList            []string          `json:"license_list"`
-	ConsumerReference      ConsumerReference `json:"consumer_reference"`
+	Name                   string            `json:"name,omitempty"`
+	Mode                   string            `json:"mode,omitempty"`
+	DeviceID               int               `json:"device_id,omitempty"`
+	Vendor                 string            `json:"vendor,omitempty"`
+	Status                 string            `json:"status,omitempty"`
+	Index                  int               `json:"index,omitempty"`
+	NumVgpusAllocated      int               `json:"num_vgpus_allocated,omitempty"`
+	Assignable             bool              `json:"assignable,omitempty"`
+	PciAddress             string            `json:"pci_address,omitempty"`
+	NumaNode               int               `json:"numa_node,omitempty"`
+	GuestDriverVersion     string            `json:"guest_driver_version,omitempty"`
+	FrameBufferSizeMib     int               `json:"frame_buffer_size_mib,omitempty"`
+	MaxInstancesPerVM      int               `json:"max_instances_per_vm,omitempty"`
+	NumVirtualDisplayHeads int               `json:"num_virtual_display_heads,omitempty"`
+	MaxResolution          string            `json:"max_resolution,omitempty"`
+	Fraction               int               `json:"fraction,omitempty"`
+	UUID                   string            `json:"uuid,omitempty"`
+	LicenseList            []string          `json:"license_list,omitempty"`
+	ConsumerReference      ConsumerReference `json:"consumer_reference,omitempty"`
 }
 
 type ParentReference struct {
-	Kind string `json:"kind"`
-	UUID string `json:"uuid"`
-	Name string `json:"name"`
-	URL  string `json:"url"`
+	Kind string `json:"kind,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+	Name string `json:"name,omitempty"`
+	URL  string `json:"url,omitempty"`
 }
 
 // DiskAddress is the DiskAddress
@@ -880,9 +890,9 @@ type VnumaConfig struct {
 type IPEndpointList struct {
 	IP                 string   `json:"ip,omitempty"`
 	Type               string   `json:"type,omitempty"`
-	IPType             string   `json:"ip_type"`
-	PrefixLength       int      `json:"prefix_length"`
-	GatewayAddressList []string `json:"gateway_address_list"`
+	IPType             string   `json:"ip_type,omitempty"`
+	PrefixLength       int      `json:"prefix_length,omitempty"`
+	GatewayAddressList []string `json:"gateway_address_list,omitempty"`
 }
 
 // SubnetReference is the SubnetReference
@@ -893,17 +903,17 @@ type SubnetReference struct {
 }
 
 type SerialPortList struct {
-	IsConnected bool `json:"is_connected"`
-	Index       int  `json:"index"`
+	IsConnected bool `json:"is_connected,omitempty"`
+	Index       int  `json:"index,omitempty"`
 }
 type QosPolicy struct {
-	ThrottledIops int `json:"throttled_iops"`
+	ThrottledIops int `json:"throttled_iops,omitempty"`
 }
 
 type NetworkFunctionChainReference struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 
 // NicList is the NicList
@@ -914,11 +924,11 @@ type NicList struct {
 	MacAddress                    string                        `json:"mac_address,omitempty"`
 	SubnetReference               SubnetReference               `json:"subnet_reference,omitempty"`
 	IsConnected                   bool                          `json:"is_connected,omitempty"`
-	VlanMode                      string                        `json:"vlan_mode"`
-	TrunkedVlanList               []int                         `json:"trunked_vlan_list"`
-	NetworkFunctionChainReference NetworkFunctionChainReference `json:"network_function_chain_reference"`
-	NetworkFunctionNicType        string                        `json:"network_function_nic_type"`
-	Model                         string                        `json:"model"`
+	VlanMode                      string                        `json:"vlan_mode,omitempty"`
+	TrunkedVlanList               []int                         `json:"trunked_vlan_list,omitempty"`
+	NetworkFunctionChainReference NetworkFunctionChainReference `json:"network_function_chain_reference,omitempty"`
+	NetworkFunctionNicType        string                        `json:"network_function_nic_type,omitempty"`
+	Model                         string                        `json:"model,omitempty"`
 }
 
 // HostReference is the HostReference
@@ -935,8 +945,8 @@ type DiskList struct {
 	UUID                 string               `json:"uuid,omitempty"`
 	DiskSizeBytes        int                  `json:"disk_size_bytes,omitempty"`
 	DiskSizeMib          int                  `json:"disk_size_mib,omitempty"`
-	VolumeGroupReference VolumeGroupReference `json:"volume_group_reference"`
-	StorageConfig        StorageConfig        `json:"storage_config"`
+	VolumeGroupReference VolumeGroupReference `json:"volume_group_reference,omitempty"`
+	StorageConfig        StorageConfig        `json:"storage_config,omitempty"`
 }
 
 // ExecutionContext is the ExecutionContext
@@ -946,39 +956,39 @@ type ExecutionContext struct {
 
 // Version is used for image version
 type Version struct {
-	ProductName    string `json:"product_name"`
-	ProductVersion string `json:"product_version"`
+	ProductName    string `json:"product_name,omitempty"`
+	ProductVersion string `json:"product_version,omitempty"`
 }
 
 // BootDevice is the BootDevice
 type BootDevice struct {
 	DiskAddress DiskAddress `json:"disk_address,omitempty"`
-	MacAddress  string      `json:"mac_address"`
+	MacAddress  string      `json:"mac_address,omitempty"`
 }
 type CustomKeyValues struct {
 }
 type Sysprep struct {
-	InstallType     string          `json:"install_type"`
-	UnattendXML     string          `json:"unattend_xml"`
-	CustomKeyValues CustomKeyValues `json:"custom_key_values"`
+	InstallType     string          `json:"install_type,omitempty"`
+	UnattendXML     string          `json:"unattend_xml,omitempty"`
+	CustomKeyValues CustomKeyValues `json:"custom_key_values,omitempty"`
 }
 type CloudInit struct {
-	MetaData        string          `json:"meta_data"`
-	UserData        string          `json:"user_data"`
-	CustomKeyValues CustomKeyValues `json:"custom_key_values"`
+	MetaData        string          `json:"meta_data,omitempty"`
+	UserData        string          `json:"user_data,omitempty"`
+	CustomKeyValues CustomKeyValues `json:"custom_key_values,omitempty"`
 }
 type GuestCustomization struct {
-	IsOverridable bool      `json:"is_overridable"`
-	Sysprep       Sysprep   `json:"sysprep"`
-	CloudInit     CloudInit `json:"cloud_init"`
+	IsOverridable bool      `json:"is_overridable,omitempty"`
+	Sysprep       Sysprep   `json:"sysprep,omitempty"`
+	CloudInit     CloudInit `json:"cloud_init,omitempty"`
 }
 
 // BootConfig is the BootConfig
 type BootConfig struct {
 	BootDevice          BootDevice          `json:"boot_device,omitempty"`
-	BootDeviceOrderList []string            `json:"boot_device_order_list"`
-	BootType            string              `json:"boot_type"`
-	DataSourceReference DataSourceReference `json:"data_source_reference"`
+	BootDeviceOrderList []string            `json:"boot_device_order_list,omitempty"`
+	BootType            string              `json:"boot_type,omitempty"`
+	DataSourceReference DataSourceReference `json:"data_source_reference,omitempty"`
 }
 
 // GuestTransitionConfig is the GuestTransitionConfig
@@ -1039,44 +1049,85 @@ type AssignmentRule struct {
 }
 
 type DhcpOptions struct {
-	BootFileName         string   `json:"boot_file_name"`
-	DomainName           string   `json:"domain_name"`
-	DomainNameServerList []string `json:"domain_name_server_list"`
-	DomainSearchList     []string `json:"domain_search_list"`
-	TftpServerName       string   `json:"tftp_server_name"`
+	BootFileName         string   `json:"boot_file_name,omitempty"`
+	DomainName           string   `json:"domain_name,omitempty"`
+	DomainNameServerList []string `json:"domain_name_server_list,omitempty"`
+	DomainSearchList     []string `json:"domain_search_list,omitempty"`
+	TftpServerName       string   `json:"tftp_server_name,omitempty"`
 }
 type DhcpServerAddress struct {
-	IP       string `json:"ip"`
-	Ipv6     string `json:"ipv6"`
-	Fqdn     string `json:"fqdn"`
-	Port     int    `json:"port"`
-	IsBackup bool   `json:"is_backup"`
+	IP       string `json:"ip,omitempty"`
+	Ipv6     string `json:"ipv6,omitempty"`
+	Fqdn     string `json:"fqdn,omitempty"`
+	Port     int    `json:"port,omitempty"`
+	IsBackup bool   `json:"is_backup,omitempty"`
 }
 
 type PoolList struct {
-	Range string `json:"range"`
+	Range string `json:"range,omitempty"`
 }
 type IPConfig struct {
-	SubnetIP          string            `json:"subnet_ip"`
-	PrefixLength      int               `json:"prefix_length"`
-	DefaultGatewayIP  string            `json:"default_gateway_ip"`
-	DhcpOptions       DhcpOptions       `json:"dhcp_options"`
-	DhcpServerAddress DhcpServerAddress `json:"dhcp_server_address"`
-	PoolList          []PoolList        `json:"pool_list"`
+	SubnetIP          string            `json:"subnet_ip,omitempty"`
+	PrefixLength      int               `json:"prefix_length,omitempty"`
+	DefaultGatewayIP  string            `json:"default_gateway_ip,omitempty"`
+	DhcpOptions       DhcpOptions       `json:"dhcp_options,omitempty"`
+	DhcpServerAddress DhcpServerAddress `json:"dhcp_server_address,omitempty"`
+	PoolList          []PoolList        `json:"pool_list,omitempty"`
 }
 
 type VirtualNetworkReference struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type VpcReference struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 type AvailabilityZoneReferenceList struct {
-	Kind string `json:"kind"`
-	Name string `json:"name"`
-	UUID string `json:"uuid"`
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+
+type DefaultSubnetReference struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+type SubnetReferenceList struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+
+type ExternalUserGroupReferenceList struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+type AccountReferenceList struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+type TunnelReferenceList struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+type ExternalNetworkList struct {
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+type EnvironmentReferenceList struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+type DefaultEnvironmentReference struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
