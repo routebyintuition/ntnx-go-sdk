@@ -146,6 +146,7 @@ type Resources struct {
 	ExternalNetworkList              []ExternalNetworkList              `json:"external_network_list,omitempty"`
 	EnvironmentReferenceList         []EnvironmentReferenceList         `json:"environment_reference_list,omitempty"`
 	DefaultEnvironmentReference      DefaultEnvironmentReference        `json:"default_environment_reference,omitempty"`
+	PermissionReferenceList          []PermissionReferenceList          `json:"permission_reference_list,omitempty"`
 }
 
 // Spec is the main Spec type across all Response calls
@@ -156,6 +157,13 @@ type Spec struct {
 	Name                      string                    `json:"name,omitempty"`
 	APIVersion                string                    `json:"api_version,omitempty"`
 	AvailabilityZoneReference AvailabilityZoneReference `json:"availability_zone_reference,omitempty"`
+}
+
+// PermissionReferenceList is used for role creation
+type PermissionReferenceList struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
 }
 
 // ImageReferenceList is used for image service details
