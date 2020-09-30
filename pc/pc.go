@@ -54,15 +54,18 @@ type Client struct {
 
 	common Service
 
-	Cluster  *ClusterService
-	User     *UserService
-	VM       *VMService
-	Host     *HostService
-	ACPS     *AccessControlPoliciesService
-	Image    *ImageService
-	Category *CategoryService
-	Subnet   *SubnetService
-	Project  *ProjectService
+	Cluster    *ClusterService
+	User       *UserService
+	VM         *VMService
+	Host       *HostService
+	ACPS       *AccessControlPoliciesService
+	Image      *ImageService
+	Category   *CategoryService
+	Subnet     *SubnetService
+	Project    *ProjectService
+	Task       *TaskService
+	Role       *RoleService
+	Permission *PermissionService
 }
 
 // CheckConfig will ensure that the minimal amount of information is present in the config
@@ -132,6 +135,9 @@ func NewClient(httpClient *http.Client, conf *ServiceConfig) (*Client, error) {
 	c.Category = (*CategoryService)(&c.common)
 	c.Subnet = (*SubnetService)(&c.common)
 	c.Project = (*ProjectService)(&c.common)
+	c.Task = (*TaskService)(&c.common)
+	c.Role = (*RoleService)(&c.common)
+	c.Permission = (*PermissionService)(&c.common)
 
 	return c, nil
 }

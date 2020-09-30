@@ -10,17 +10,17 @@ type RoleService Service
 
 // RoleCreateRequest provides role details for creation
 type RoleCreateRequest struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
 }
 
 // RoleCreateResponse proides the response from role create
 type RoleCreateResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // RoleDeleteRequest provides UUID of role to delete
@@ -30,10 +30,10 @@ type RoleDeleteRequest struct {
 
 // RoleDeleteResponse is the response and data for the role delete request
 type RoleDeleteResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // RoleGetRequest gets details on a role by UUID
@@ -43,10 +43,10 @@ type RoleGetRequest struct {
 
 // RoleGetResponse provides details on the role requested by UUID
 type RoleGetResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // RoleUpdateRequest updates the role identified by UUID with the data provided
@@ -57,34 +57,34 @@ type RoleUpdateRequest struct {
 
 // RoleUpdateRequestData is the data for the role to be updated
 type RoleUpdateRequestData struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
 }
 
 // RoleUpdateResponse is role data post update
 type RoleUpdateResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       Spec     `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       Spec     `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // RoleListRequest is the filter and sort for the list request
 type RoleListRequest struct {
-	Kind          string `json:"kind"`
-	Offset        int    `json:"offset"`
-	Length        int    `json:"length"`
-	Filter        string `json:"filter"`
-	SortOrder     string `json:"sort_order"`
-	SortAttribute string `json:"sort_attribute"`
+	Kind          string `json:"kind,omitempty"`
+	Offset        int    `json:"offset,omitempty"`
+	Length        int    `json:"length,omitempty"`
+	Filter        string `json:"filter,omitempty"`
+	SortOrder     string `json:"sort_order,omitempty"`
+	SortAttribute string `json:"sort_attribute,omitempty"`
 }
 
 // RoleListResponse is the list of roles
 type RoleListResponse struct {
-	APIVersion string     `json:"api_version"`
-	Metadata   Metadata   `json:"metadata"`
-	Entities   []Entities `json:"entities"`
+	APIVersion string     `json:"api_version,omitempty"`
+	Metadata   Metadata   `json:"metadata,omitempty"`
+	Entities   []Entities `json:"entities,omitempty"`
 }
 
 // List - request a list of roles
