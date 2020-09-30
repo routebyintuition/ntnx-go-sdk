@@ -147,6 +147,9 @@ type Resources struct {
 	EnvironmentReferenceList         []EnvironmentReferenceList         `json:"environment_reference_list,omitempty"`
 	DefaultEnvironmentReference      DefaultEnvironmentReference        `json:"default_environment_reference,omitempty"`
 	PermissionReferenceList          []PermissionReferenceList          `json:"permission_reference_list,omitempty"`
+	Operation                        string                             `json:"operation,omitempty"`
+	Kind                             string                             `json:"kind,omitempty"`
+	Fields                           Fields                             `json:"fields,omitempty"`
 }
 
 // Spec is the main Spec type across all Response calls
@@ -1178,4 +1181,10 @@ type EntityReferenceList struct {
 	UUID string `json:"uuid,omitempty"`
 	Name string `json:"name,omitempty"`
 	URL  string `json:"url,omitempty"`
+}
+
+// Fields is used for permission creation
+type Fields struct {
+	FieldMode     string   `json:"field_mode"`
+	FieldNameList []string `json:"field_name_list"`
 }
