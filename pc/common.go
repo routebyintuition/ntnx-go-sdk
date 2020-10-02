@@ -150,6 +150,12 @@ type Resources struct {
 	Operation                        string                             `json:"operation,omitempty"`
 	Kind                             string                             `json:"kind,omitempty"`
 	Fields                           Fields                             `json:"fields,omitempty"`
+	AllowIpv6Traffic                 bool                               `json:"allow_ipv6_traffic,omitempty"`
+	IsPolicyHitlogEnabled            bool                               `json:"is_policy_hitlog_enabled,omitempty"`
+	AdRule                           AdRule                             `json:"ad_rule,omitempty"`
+	AppRule                          AppRule                            `json:"app_rule,omitempty"`
+	IsolationRule                    IsolationRule                      `json:"isolation_rule,omitempty"`
+	QuarantineRule                   QuarantineRule                     `json:"quarantine_rule,omitempty"`
 }
 
 // Spec is the main Spec type across all Response calls
@@ -445,9 +451,13 @@ type TotalMatches struct {
 	Type        string `json:"type,omitempty"`
 	Description string `json:"description,omitempty"`
 }
+
+// Filter is used in NSR and other areas of List
 type Filter struct {
-	Type        string `json:"type,omitempty"`
-	Description string `json:"description,omitempty"`
+	Type        string   `json:"type,omitempty"`
+	Description string   `json:"description,omitempty"`
+	KindList    []string `json:"kind_list,omitempty"`
+	Params      Params   `json:"params,omitempty"`
 }
 type SortOrder struct {
 	Title       string   `json:"title,omitempty"`
@@ -1185,6 +1195,128 @@ type EntityReferenceList struct {
 
 // Fields is used for permission creation
 type Fields struct {
-	FieldMode     string   `json:"field_mode"`
-	FieldNameList []string `json:"field_name_list"`
+	FieldMode     string   `json:"field_mode,omitempty"`
+	FieldNameList []string `json:"field_name_list,omitempty"`
+}
+
+// TargetGroup used in NSR
+type TargetGroup struct {
+	PeerSpecificationType string `json:"peer_specification_type,omitempty"`
+	Filter                Filter `json:"filter,omitempty"`
+	DefaultInternalPolicy string `json:"default_internal_policy,omitempty"`
+}
+
+// AddressGroupInclusionList used for NSR
+type AddressGroupInclusionList struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+
+// IPSubnet used for NSR
+type IPSubnet struct {
+	IP           string `json:"ip,omitempty"`
+	PrefixLength int    `json:"prefix_length,omitempty"`
+}
+
+// ServiceGroupList used for NSR
+type ServiceGroupList struct {
+	Kind string `json:"kind,omitempty"`
+	Name string `json:"name,omitempty"`
+	UUID string `json:"uuid,omitempty"`
+}
+
+// TCPPortRangeList used for NSR
+type TCPPortRangeList struct {
+	StartPort int `json:"start_port,omitempty"`
+	EndPort   int `json:"end_port,omitempty"`
+}
+
+// UDPPortRangeList used for NSR
+type UDPPortRangeList struct {
+	StartPort int `json:"start_port,omitempty"`
+	EndPort   int `json:"end_port,omitempty"`
+}
+
+// IcmpTypeCodeList used for NSR
+type IcmpTypeCodeList struct {
+	Type int `json:"type,omitempty"`
+	Code int `json:"code,omitempty"`
+}
+
+// InboundAllowList used for NSR
+type InboundAllowList struct {
+	PeerSpecificationType         string                        `json:"peer_specification_type,omitempty"`
+	Filter                        Filter                        `json:"filter,omitempty"`
+	AddressGroupInclusionList     []AddressGroupInclusionList   `json:"address_group_inclusion_list,omitempty"`
+	IPSubnet                      IPSubnet                      `json:"ip_subnet,omitempty"`
+	ServiceGroupList              []ServiceGroupList            `json:"service_group_list,omitempty"`
+	Protocol                      string                        `json:"protocol,omitempty"`
+	TCPPortRangeList              []TCPPortRangeList            `json:"tcp_port_range_list,omitempty"`
+	UDPPortRangeList              []UDPPortRangeList            `json:"udp_port_range_list,omitempty"`
+	IcmpTypeCodeList              []IcmpTypeCodeList            `json:"icmp_type_code_list,omitempty"`
+	NetworkFunctionChainReference NetworkFunctionChainReference `json:"network_function_chain_reference,omitempty"`
+	ExpirationTime                string                        `json:"expiration_time,omitempty"`
+	Description                   string                        `json:"description,omitempty"`
+}
+
+// OutboundAllowList used for NSR
+type OutboundAllowList struct {
+	PeerSpecificationType         string                        `json:"peer_specification_type,omitempty"`
+	Filter                        Filter                        `json:"filter,omitempty"`
+	AddressGroupInclusionList     []AddressGroupInclusionList   `json:"address_group_inclusion_list,omitempty"`
+	IPSubnet                      IPSubnet                      `json:"ip_subnet,omitempty"`
+	ServiceGroupList              []ServiceGroupList            `json:"service_group_list,omitempty"`
+	Protocol                      string                        `json:"protocol,omitempty"`
+	TCPPortRangeList              []TCPPortRangeList            `json:"tcp_port_range_list,omitempty"`
+	UDPPortRangeList              []UDPPortRangeList            `json:"udp_port_range_list,omitempty"`
+	IcmpTypeCodeList              []IcmpTypeCodeList            `json:"icmp_type_code_list,omitempty"`
+	NetworkFunctionChainReference NetworkFunctionChainReference `json:"network_function_chain_reference,omitempty"`
+	ExpirationTime                string                        `json:"expiration_time,omitempty"`
+	Description                   string                        `json:"description,omitempty"`
+}
+
+// AdRule used for NSR
+type AdRule struct {
+	TargetGroup       TargetGroup         `json:"target_group,omitempty"`
+	InboundAllowList  []InboundAllowList  `json:"inbound_allow_list,omitempty"`
+	OutboundAllowList []OutboundAllowList `json:"outbound_allow_list,omitempty"`
+	Action            string              `json:"action,omitempty"`
+}
+
+// AppRule used for NSR
+type AppRule struct {
+	TargetGroup       TargetGroup         `json:"target_group,omitempty"`
+	InboundAllowList  []InboundAllowList  `json:"inbound_allow_list,omitempty"`
+	OutboundAllowList []OutboundAllowList `json:"outbound_allow_list,omitempty"`
+	Action            string              `json:"action,omitempty"`
+}
+
+// FirstEntityFilter used for NSR
+type FirstEntityFilter struct {
+	Type     string   `json:"type,omitempty"`
+	KindList []string `json:"kind_list,omitempty"`
+	Params   Params   `json:"params,omitempty"`
+}
+
+// SecondEntityFilter used for NSR
+type SecondEntityFilter struct {
+	Type     string   `json:"type,omitempty"`
+	KindList []string `json:"kind_list,omitempty"`
+	Params   Params   `json:"params,omitempty"`
+}
+
+// IsolationRule used for NSR
+type IsolationRule struct {
+	FirstEntityFilter  FirstEntityFilter  `json:"first_entity_filter,omitempty"`
+	SecondEntityFilter SecondEntityFilter `json:"second_entity_filter,omitempty"`
+	Action             string             `json:"action,omitempty"`
+}
+
+// QuarantineRule for NSR
+type QuarantineRule struct {
+	TargetGroup       TargetGroup         `json:"target_group,omitempty"`
+	InboundAllowList  []InboundAllowList  `json:"inbound_allow_list,omitempty"`
+	OutboundAllowList []OutboundAllowList `json:"outbound_allow_list,omitempty"`
+	Action            string              `json:"action,omitempty"`
 }
