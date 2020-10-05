@@ -18,4 +18,5 @@ This client API SDK for Go is based upon the Google, Github Go client SDK found 
 - Tasks - functions available in 5.15
 - Roles - functions available in 5.15
 - Permissions - functions available in 5.15
+- Network Security Rules - functions available in 5.15
 - Access Control Policies

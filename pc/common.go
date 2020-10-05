@@ -1320,3 +1320,10 @@ type QuarantineRule struct {
 	OutboundAllowList []OutboundAllowList `json:"outbound_allow_list,omitempty"`
 	Action            string              `json:"action,omitempty"`
 }
+
+// EntityList used for NSR import dry run request
+type EntityList struct {
+	EntityType       string `json:"entity_type,omitempty"`
+	EntityName       string `json:"entity_name,omitempty"`
+	EntityUpdateType string `json:"entity_update_type,omitempty"`
+}
