@@ -1327,3 +1327,25 @@ type EntityList struct {
 	EntityName       string `json:"entity_name,omitempty"`
 	EntityUpdateType string `json:"entity_update_type,omitempty"`
 }
+
+// Body used for batch submit request
+type Body struct {
+}
+
+// APIRequestList used for batch submit request
+type APIRequestList struct {
+	PathAndParams string `json:"path_and_params,omitempty"`
+	Operation     string `json:"operation,omitempty"`
+	Body          Body   `json:"body,omitempty"`
+}
+
+// APIResponse used for batch response
+type APIResponse struct {
+}
+
+// APIResponseList used for batch response
+type APIResponseList struct {
+	Status        string      `json:"status,omitempty"`
+	PathAndParams string      `json:"path_and_params,omitempty"`
+	APIResponse   APIResponse `json:"api_response,omitempty"`
+}
