@@ -59,7 +59,7 @@ type NSRImportDryRunRequest struct{}
 
 // NSRImportDryRunResponse provides entity details
 type NSRImportDryRunResponse struct {
-	EntityList []EntityList `json:"entity_list"`
+	EntityList []EntityList `json:"entity_list,omitempty"`
 }
 
 // NSRDeleteRequest provides UUID of NSR to delete
@@ -69,10 +69,10 @@ type NSRDeleteRequest struct {
 
 // NSRDeleteResponse provides details of deleted NSR
 type NSRDeleteResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       string   `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       string   `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // NSRGetRequest gets an NSR by provided UUID
@@ -82,10 +82,10 @@ type NSRGetRequest struct {
 
 // NSRGetResponse provides details on an NSR from provided UUID
 type NSRGetResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       string   `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       string   `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // NSRUpdateRequest updates a NSR identified by provided UUID with provided Data element details
@@ -96,17 +96,17 @@ type NSRUpdateRequest struct {
 
 // NSRUpdateRequestData data to use to update NSR identified by UUID
 type NSRUpdateRequestData struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       string   `json:"spec"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       string   `json:"spec,omitempty"`
 }
 
 // NSRUpdateResponse provides update details on NSR
 type NSRUpdateResponse struct {
-	APIVersion string   `json:"api_version"`
-	Metadata   Metadata `json:"metadata"`
-	Spec       string   `json:"spec"`
-	Status     Status   `json:"status"`
+	APIVersion string   `json:"api_version,omitempty"`
+	Metadata   Metadata `json:"metadata,omitempty"`
+	Spec       string   `json:"spec,omitempty"`
+	Status     Status   `json:"status,omitempty"`
 }
 
 // Update - This operation submits a request to update a existing Network security rule based on the input parameters.
