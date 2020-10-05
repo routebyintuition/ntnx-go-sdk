@@ -1363,15 +1363,6 @@ type PortRange struct {
 	StartPort *int64 `json:"start_port,omitempty" mapstructure:"start_port,omitempty"`
 }
 
-// IPSubnet IP subnet provided as an address and prefix length.
-type IPSubnet struct {
-
-	// IPV4 address.
-	IP *string `json:"ip,omitempty" mapstructure:"ip,omitempty"`
-
-	PrefixLength *int64 `json:"prefix_length,omitempty" mapstructure:"prefix_length,omitempty"`
-}
-
 // NetworkRuleIcmpTypeCodeList ..
 type NetworkRuleIcmpTypeCodeList struct {
 	Code *int64 `json:"code,omitempty" mapstructure:"code,omitempty"`
@@ -1407,19 +1398,6 @@ type NetworkRule struct {
 
 	// List of UDP ports that are allowed by this rule.
 	UDPPortRangeList []*PortRange `json:"udp_port_range_list,omitempty" mapstructure:"udp_port_range_list,omitempty"`
-}
-
-// TargetGroup ...
-type TargetGroup struct {
-
-	// Default policy for communication within target group.
-	DefaultInternalPolicy *string `json:"default_internal_policy,omitempty" mapstructure:"default_internal_policy,omitempty"`
-
-	// The set of categories that matching VMs need to have.
-	Filter *CategoryFilter `json:"filter,omitempty" mapstructure:"filter,omitempty"`
-
-	// Way to identify the object for which rule is applied.
-	PeerSpecificationType *string `json:"peer_specification_type,omitempty" mapstructure:"peer_specification_type,omitempty"`
 }
 
 // NetworkSecurityRuleResourcesRule These rules are used for quarantining suspected VMs. Target group is a required
