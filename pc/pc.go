@@ -68,6 +68,7 @@ type Client struct {
 	Permission *PermissionService
 	NSR        *NetworkSecurityRuleService
 	Batch      *BatchService
+	WhatIf     *WhatIfService
 }
 
 // CheckConfig will ensure that the minimal amount of information is present in the config
@@ -142,6 +143,7 @@ func NewClient(httpClient *http.Client, conf *ServiceConfig) (*Client, error) {
 	c.Permission = (*PermissionService)(&c.common)
 	c.Batch = (*BatchService)(&c.common)
 	c.NSR = (*NetworkSecurityRuleService)(&c.common)
+	c.WhatIf = (*WhatIfService)(&c.common)
 
 	return c, nil
 }
