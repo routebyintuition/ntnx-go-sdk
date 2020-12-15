@@ -26,9 +26,9 @@ type ImageUploadResponse struct{}
 
 // ImageCreateRequest provides am image configuration to create
 type ImageCreateRequest struct {
-	APIVersion string   `json:"api_version,omitempty"`
-	Metadata   Metadata `json:"metadata,omitempty"`
-	Spec       Spec     `json:"spec,omitempty"`
+	APIVersion *string   `json:"api_version,omitempty"`
+	Metadata   *Metadata `json:"metadata,omitempty"`
+	Spec       *Spec     `json:"spec,omitempty"`
 }
 
 // ImageCreateResponse is the response from an image create
