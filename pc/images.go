@@ -24,7 +24,7 @@ type ImageUploadRequest struct{
 type ImageUploadResponse struct{}
 */
 
-// ImageCreateRequest provides am image configuration to create
+// ImageCreateRequest provides am image configuration to create without including additional struct objects
 type ImageCreateRequest struct {
 	APIVersion *string   `json:"api_version,omitempty"`
 	Metadata   *Metadata `json:"metadata,omitempty"`
