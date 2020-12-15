@@ -57,12 +57,12 @@ type Config struct {
 
 // Resources is the main Resources type across all Response calls
 type Resources struct {
-	RetrievalURIList                 []string                           `json:"retrieval_uri_list,omitempty"`
-	SizeBytes                        int                                `json:"size_bytes,omitempty"`
-	CurrentClusterReferenceList      []CurrentClusterReferenceList      `json:"current_cluster_reference_list,omitempty"`
-	ImagePlacementPolicyStateList    []ImagePlacementPolicyStateList    `json:"image_placement_policy_state_list,omitempty"`
-	ImageType                        string                             `json:"image_type,omitempty"`
-	Checksum                         string                             `json:"checksum,omitempty"`
+	RetrievalURIList              []string                        `json:"retrieval_uri_list,omitempty"`
+	SizeBytes                     int                             `json:"size_bytes,omitempty"`
+	CurrentClusterReferenceList   []CurrentClusterReferenceList   `json:"current_cluster_reference_list,omitempty"`
+	ImagePlacementPolicyStateList []ImagePlacementPolicyStateList `json:"image_placement_policy_state_list,omitempty"`
+	ImageType                     string                          `json:"image_type,omitempty"`
+	// Checksum                         string                             `json:"checksum,omitempty"`
 	SourceURI                        string                             `json:"source_uri,omitempty"`
 	SourceOptions                    SourceOptions                      `json:"source_options,omitempty"`
 	InitialPlacementRefList          []InitialPlacementRefList          `json:"initial_placement_ref_list,omitempty"`
