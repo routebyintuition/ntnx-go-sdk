@@ -909,7 +909,7 @@ type ParentReference struct {
 
 // DiskAddress is the DiskAddress
 type DiskAddress struct {
-	DeviceIndex int    `json:"device_index,omitempty"`
+	DeviceIndex *int   `json:"device_index,omitempty"`
 	AdapterType string `json:"adapter_type,omitempty"`
 }
 
