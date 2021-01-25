@@ -340,14 +340,14 @@ type ErrorMessageList struct {
 
 // Status is the main Status type across all Response calls
 type Status struct {
-	State                     string                    `json:"state,omitempty"`
-	ClusterReference          ClusterReference          `json:"cluster_reference,omitempty"`
-	ExecutionContext          ExecutionContext          `json:"execution_context,omitempty"`
-	Description               string                    `json:"description,omitempty"`
-	Resources                 Resources                 `json:"resources,omitempty"`
-	Name                      string                    `json:"name,omitempty"`
-	MessageList               []MessageList             `json:"message_list,omitempty"`
-	AvailabilityZoneReference AvailabilityZoneReference `json:"availability_zone_reference,omitempty"`
+	State                     string                     `json:"state,omitempty"`
+	ClusterReference          *ClusterReference          `json:"cluster_reference,omitempty"`
+	ExecutionContext          *ExecutionContext          `json:"execution_context,omitempty"`
+	Description               string                     `json:"description,omitempty"`
+	Resources                 *Resources                 `json:"resources,omitempty"`
+	Name                      string                     `json:"name,omitempty"`
+	MessageList               []MessageList              `json:"message_list,omitempty"`
+	AvailabilityZoneReference *AvailabilityZoneReference `json:"availability_zone_reference,omitempty"`
 }
 
 // Entities is the main Entities type across all Response calls
@@ -367,7 +367,7 @@ type Entities struct {
 	PercentageComplete   int                    `json:"percentage_complete,omitempty"`
 	ParentTaskReference  ParentTaskReference    `json:"parent_task_reference,omitempty"`
 	SubtaskReferenceList []SubtaskReferenceList `json:"subtask_reference_list,omitempty"`
-	ClusterReference     ClusterReference       `json:"cluster_reference,omitempty"`
+	ClusterReference     *ClusterReference      `json:"cluster_reference,omitempty"`
 	CreationTime         string                 `json:"creation_time,omitempty"`
 	CreationTimeUsecs    int                    `json:"creation_time_usecs,omitempty"`
 	LastUpdateTime       string                 `json:"last_update_time,omitempty"`
@@ -915,8 +915,8 @@ type DiskAddress struct {
 
 // DeviceProperties is the DeviceProperties
 type DeviceProperties struct {
-	DiskAddress DiskAddress `json:"disk_address,omitempty"`
-	DeviceType  string      `json:"device_type,omitempty"`
+	DiskAddress *DiskAddress `json:"disk_address,omitempty"`
+	DeviceType  string       `json:"device_type,omitempty"`
 }
 
 // VnumaConfig is the VnumaConfig
@@ -956,17 +956,17 @@ type NetworkFunctionChainReference struct {
 
 // NicList is the NicList
 type NicList struct {
-	NicType                       string                        `json:"nic_type,omitempty"`
-	UUID                          string                        `json:"uuid,omitempty"`
-	IPEndpointList                []IPEndpointList              `json:"ip_endpoint_list,omitempty"`
-	MacAddress                    string                        `json:"mac_address,omitempty"`
-	SubnetReference               SubnetReference               `json:"subnet_reference,omitempty"`
-	IsConnected                   bool                          `json:"is_connected,omitempty"`
-	VlanMode                      string                        `json:"vlan_mode,omitempty"`
-	TrunkedVlanList               []int                         `json:"trunked_vlan_list,omitempty"`
-	NetworkFunctionChainReference NetworkFunctionChainReference `json:"network_function_chain_reference,omitempty"`
-	NetworkFunctionNicType        string                        `json:"network_function_nic_type,omitempty"`
-	Model                         string                        `json:"model,omitempty"`
+	NicType                       string                         `json:"nic_type,omitempty"`
+	UUID                          string                         `json:"uuid,omitempty"`
+	IPEndpointList                []IPEndpointList               `json:"ip_endpoint_list,omitempty"`
+	MacAddress                    string                         `json:"mac_address,omitempty"`
+	SubnetReference               SubnetReference                `json:"subnet_reference,omitempty"`
+	IsConnected                   bool                           `json:"is_connected,omitempty"`
+	VlanMode                      string                         `json:"vlan_mode,omitempty"`
+	TrunkedVlanList               []int                          `json:"trunked_vlan_list,omitempty"`
+	NetworkFunctionChainReference *NetworkFunctionChainReference `json:"network_function_chain_reference,omitempty"`
+	NetworkFunctionNicType        string                         `json:"network_function_nic_type,omitempty"`
+	Model                         string                         `json:"model,omitempty"`
 }
 
 // HostReference is the HostReference
@@ -978,13 +978,13 @@ type HostReference struct {
 
 // DiskList is the DiskList
 type DiskList struct {
-	DataSourceReference  DataSourceReference  `json:"data_source_reference,omitempty"`
-	DeviceProperties     DeviceProperties     `json:"device_properties,omitempty"`
-	UUID                 string               `json:"uuid,omitempty"`
-	DiskSizeBytes        int                  `json:"disk_size_bytes,omitempty"`
-	DiskSizeMib          int                  `json:"disk_size_mib,omitempty"`
-	VolumeGroupReference VolumeGroupReference `json:"volume_group_reference,omitempty"`
-	StorageConfig        StorageConfig        `json:"storage_config,omitempty"`
+	DataSourceReference  *DataSourceReference  `json:"data_source_reference,omitempty"`
+	DeviceProperties     *DeviceProperties     `json:"device_properties,omitempty"`
+	UUID                 string                `json:"uuid,omitempty"`
+	DiskSizeBytes        int                   `json:"disk_size_bytes,omitempty"`
+	DiskSizeMib          int                   `json:"disk_size_mib,omitempty"`
+	VolumeGroupReference *VolumeGroupReference `json:"volume_group_reference,omitempty"`
+	StorageConfig        *StorageConfig        `json:"storage_config,omitempty"`
 }
 
 // ExecutionContext is the ExecutionContext
@@ -1245,34 +1245,34 @@ type IcmpTypeCodeList struct {
 
 // InboundAllowList used for NSR
 type InboundAllowList struct {
-	PeerSpecificationType         string                        `json:"peer_specification_type,omitempty"`
-	Filter                        Filter                        `json:"filter,omitempty"`
-	AddressGroupInclusionList     []AddressGroupInclusionList   `json:"address_group_inclusion_list,omitempty"`
-	IPSubnet                      IPSubnet                      `json:"ip_subnet,omitempty"`
-	ServiceGroupList              []ServiceGroupList            `json:"service_group_list,omitempty"`
-	Protocol                      string                        `json:"protocol,omitempty"`
-	TCPPortRangeList              []TCPPortRangeList            `json:"tcp_port_range_list,omitempty"`
-	UDPPortRangeList              []UDPPortRangeList            `json:"udp_port_range_list,omitempty"`
-	IcmpTypeCodeList              []IcmpTypeCodeList            `json:"icmp_type_code_list,omitempty"`
-	NetworkFunctionChainReference NetworkFunctionChainReference `json:"network_function_chain_reference,omitempty"`
-	ExpirationTime                string                        `json:"expiration_time,omitempty"`
-	Description                   string                        `json:"description,omitempty"`
+	PeerSpecificationType         string                         `json:"peer_specification_type,omitempty"`
+	Filter                        *Filter                        `json:"filter,omitempty"`
+	AddressGroupInclusionList     []AddressGroupInclusionList    `json:"address_group_inclusion_list,omitempty"`
+	IPSubnet                      *IPSubnet                      `json:"ip_subnet,omitempty"`
+	ServiceGroupList              []ServiceGroupList             `json:"service_group_list,omitempty"`
+	Protocol                      string                         `json:"protocol,omitempty"`
+	TCPPortRangeList              []TCPPortRangeList             `json:"tcp_port_range_list,omitempty"`
+	UDPPortRangeList              []UDPPortRangeList             `json:"udp_port_range_list,omitempty"`
+	IcmpTypeCodeList              []IcmpTypeCodeList             `json:"icmp_type_code_list,omitempty"`
+	NetworkFunctionChainReference *NetworkFunctionChainReference `json:"network_function_chain_reference,omitempty"`
+	ExpirationTime                string                         `json:"expiration_time,omitempty"`
+	Description                   string                         `json:"description,omitempty"`
 }
 
 // OutboundAllowList used for NSR
 type OutboundAllowList struct {
-	PeerSpecificationType         string                        `json:"peer_specification_type,omitempty"`
-	Filter                        Filter                        `json:"filter,omitempty"`
-	AddressGroupInclusionList     []AddressGroupInclusionList   `json:"address_group_inclusion_list,omitempty"`
-	IPSubnet                      IPSubnet                      `json:"ip_subnet,omitempty"`
-	ServiceGroupList              []ServiceGroupList            `json:"service_group_list,omitempty"`
-	Protocol                      string                        `json:"protocol,omitempty"`
-	TCPPortRangeList              []TCPPortRangeList            `json:"tcp_port_range_list,omitempty"`
-	UDPPortRangeList              []UDPPortRangeList            `json:"udp_port_range_list,omitempty"`
-	IcmpTypeCodeList              []IcmpTypeCodeList            `json:"icmp_type_code_list,omitempty"`
-	NetworkFunctionChainReference NetworkFunctionChainReference `json:"network_function_chain_reference,omitempty"`
-	ExpirationTime                string                        `json:"expiration_time,omitempty"`
-	Description                   string                        `json:"description,omitempty"`
+	PeerSpecificationType         string                         `json:"peer_specification_type,omitempty"`
+	Filter                        *Filter                        `json:"filter,omitempty"`
+	AddressGroupInclusionList     []AddressGroupInclusionList    `json:"address_group_inclusion_list,omitempty"`
+	IPSubnet                      *IPSubnet                      `json:"ip_subnet,omitempty"`
+	ServiceGroupList              []ServiceGroupList             `json:"service_group_list,omitempty"`
+	Protocol                      string                         `json:"protocol,omitempty"`
+	TCPPortRangeList              []TCPPortRangeList             `json:"tcp_port_range_list,omitempty"`
+	UDPPortRangeList              []UDPPortRangeList             `json:"udp_port_range_list,omitempty"`
+	IcmpTypeCodeList              []IcmpTypeCodeList             `json:"icmp_type_code_list,omitempty"`
+	NetworkFunctionChainReference *NetworkFunctionChainReference `json:"network_function_chain_reference,omitempty"`
+	ExpirationTime                string                         `json:"expiration_time,omitempty"`
+	Description                   string                         `json:"description,omitempty"`
 }
 
 // AdRule used for NSR
