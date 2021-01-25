@@ -211,7 +211,7 @@ func (vms *VMService) Update(reqdata *VMUpdateRequest) (*VMUpdateResponse, *http
 		return nil, nil, err
 	}
 
-	req, err := vms.client.NewRequest("PUT", u, reqdata)
+	req, err := vms.client.NewRequest("PUT", u, reqdata.Data)
 	if err != nil {
 		return nil, nil, err
 	}
