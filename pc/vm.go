@@ -50,9 +50,9 @@ type VMUpdateRequest struct {
 
 // VMUpdateRequestData is the configuration of the VM being updated
 type VMUpdateRequestData struct {
-	APIVersion string   `json:"api_version,omitempty"`
-	Metadata   Metadata `json:"metadata,omitempty"`
-	Spec       Spec     `json:"spec,omitempty"`
+	APIVersion *string   `json:"api_version,omitempty"`
+	Metadata   *Metadata `json:"metadata,omitempty"`
+	Spec       *Spec     `json:"spec,omitempty"`
 }
 
 // VMUpdateResponse is an update response
