@@ -52,7 +52,7 @@ type VMUpdateRequest struct {
 type VMUpdateRequestData struct {
 	APIVersion *string   `json:"api_version,omitempty"`
 	Metadata   *Metadata `json:"metadata,omitempty"`
-	Spec       *Spec     `json:"spec,omitempty"`
+	Spec       Spec      `json:"spec,omitempty"`
 }
 
 // VMUpdateResponse is an update response
