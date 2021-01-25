@@ -1000,33 +1000,33 @@ type Version struct {
 
 // BootDevice is the BootDevice
 type BootDevice struct {
-	DiskAddress DiskAddress `json:"disk_address,omitempty"`
-	MacAddress  string      `json:"mac_address,omitempty"`
+	DiskAddress *DiskAddress `json:"disk_address,omitempty"`
+	MacAddress  string       `json:"mac_address,omitempty"`
 }
 type CustomKeyValues struct {
 }
 type Sysprep struct {
-	InstallType     string          `json:"install_type,omitempty"`
-	UnattendXML     string          `json:"unattend_xml,omitempty"`
-	CustomKeyValues CustomKeyValues `json:"custom_key_values,omitempty"`
+	InstallType     string           `json:"install_type,omitempty"`
+	UnattendXML     string           `json:"unattend_xml,omitempty"`
+	CustomKeyValues *CustomKeyValues `json:"custom_key_values,omitempty"`
 }
 type CloudInit struct {
-	MetaData        string          `json:"meta_data,omitempty"`
-	UserData        string          `json:"user_data,omitempty"`
-	CustomKeyValues CustomKeyValues `json:"custom_key_values,omitempty"`
+	MetaData        string           `json:"meta_data,omitempty"`
+	UserData        string           `json:"user_data,omitempty"`
+	CustomKeyValues *CustomKeyValues `json:"custom_key_values,omitempty"`
 }
 type GuestCustomization struct {
-	IsOverridable bool      `json:"is_overridable,omitempty"`
-	Sysprep       Sysprep   `json:"sysprep,omitempty"`
-	CloudInit     CloudInit `json:"cloud_init,omitempty"`
+	IsOverridable bool       `json:"is_overridable,omitempty"`
+	Sysprep       *Sysprep   `json:"sysprep,omitempty"`
+	CloudInit     *CloudInit `json:"cloud_init,omitempty"`
 }
 
 // BootConfig is the BootConfig
 type BootConfig struct {
-	BootDevice          BootDevice          `json:"boot_device,omitempty"`
-	BootDeviceOrderList []string            `json:"boot_device_order_list,omitempty"`
-	BootType            string              `json:"boot_type,omitempty"`
-	DataSourceReference DataSourceReference `json:"data_source_reference,omitempty"`
+	BootDevice          *BootDevice          `json:"boot_device,omitempty"`
+	BootDeviceOrderList []string             `json:"boot_device_order_list,omitempty"`
+	BootType            string               `json:"boot_type,omitempty"`
+	DataSourceReference *DataSourceReference `json:"data_source_reference,omitempty"`
 }
 
 // GuestTransitionConfig is the GuestTransitionConfig
@@ -1037,8 +1037,8 @@ type GuestTransitionConfig struct {
 
 // PowerStateMechanism is the PowerStateMechanism
 type PowerStateMechanism struct {
-	GuestTransitionConfig GuestTransitionConfig `json:"guest_transition_config,omitempty"`
-	Mechanism             string                `json:"mechanism,omitempty"`
+	GuestTransitionConfig *GuestTransitionConfig `json:"guest_transition_config,omitempty"`
+	Mechanism             string                 `json:"mechanism,omitempty"`
 }
 
 // Capabilities are used for categories
