@@ -847,7 +847,7 @@ type ClusterReference struct {
 	Kind string `json:"kind,omitempty"`
 	UUID string `json:"uuid,omitempty"`
 	Name string `json:"name,omitempty"`
-	URL  string `json:"url",omitempty`
+	URL  string `json:"url,omitempty"`
 }
 
 type Ipmi struct {
