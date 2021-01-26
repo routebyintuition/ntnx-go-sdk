@@ -230,10 +230,12 @@ type StorageContainerReference struct {
 	Name string `json:"name,omitempty"`
 	URL  string `json:"url,omitempty"`
 }
+
+// StorageConfig VM storage definitions
 type StorageConfig struct {
-	StorageContainerReference StorageContainerReference `json:"storage_container_reference,omitempty"`
-	FlashMode                 string                    `json:"flash_mode,omitempty"`
-	QosPolicy                 QosPolicy                 `json:"qos_policy,omitempty"`
+	StorageContainerReference *StorageContainerReference `json:"storage_container_reference,omitempty"`
+	FlashMode                 string                     `json:"flash_mode,omitempty"`
+	QosPolicy                 *QosPolicy                 `json:"qos_policy,omitempty"`
 }
 
 type DirectoryServiceReference struct {
@@ -242,9 +244,9 @@ type DirectoryServiceReference struct {
 	UUID string `json:"uuid,omitempty"`
 }
 type DirectoryServiceUser struct {
-	UserPrincipalName         string                    `json:"user_principal_name,omitempty"`
-	DefaultUserPrincipalName  string                    `json:"default_user_principal_name,omitempty"`
-	DirectoryServiceReference DirectoryServiceReference `json:"directory_service_reference,omitempty"`
+	UserPrincipalName         string                     `json:"user_principal_name,omitempty"`
+	DefaultUserPrincipalName  string                     `json:"default_user_principal_name,omitempty"`
+	DirectoryServiceReference *DirectoryServiceReference `json:"directory_service_reference,omitempty"`
 }
 type IdentityProviderReference struct {
 	Kind string `json:"kind,omitempty"`
@@ -252,8 +254,8 @@ type IdentityProviderReference struct {
 	UUID string `json:"uuid,omitempty"`
 }
 type IdentityProviderUser struct {
-	Username                  string                    `json:"username,omitempty"`
-	IdentityProviderReference IdentityProviderReference `json:"identity_provider_reference,omitempty"`
+	Username                  string                     `json:"username,omitempty"`
+	IdentityProviderReference *IdentityProviderReference `json:"identity_provider_reference,omitempty"`
 }
 
 // ProjectReference is the main ProjectReference type across all Response calls
