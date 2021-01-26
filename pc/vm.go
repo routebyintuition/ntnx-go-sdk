@@ -1,7 +1,6 @@
 package pc
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -211,10 +210,6 @@ func (vms *VMService) Update(reqdata *VMUpdateRequest) (*VMUpdateResponse, *http
 	if err != nil {
 		return nil, nil, err
 	}
-
-	updateRequestJSON, _ := json.Marshal(reqdata.Data)
-
-	fmt.Println(string(updateRequestJSON))
 
 	req, err := vms.client.NewRequest("PUT", u, reqdata.Data)
 	if err != nil {
