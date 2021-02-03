@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/routebyintuition/ntnx-go-sdk)](https://goreportcard.com/badge/github.com/routebyintuition/ntnx-go-sdk)
+
 # nutanix-go-sdk
 
 Go Client SDK for various Nutanix APIs. Currently, only Karbon is fully supported but additional APIs are being added.
