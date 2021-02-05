@@ -1,7 +1,6 @@
 package pe
 
 import (
-	"fmt"
 	"net/http"
 )
 
@@ -41,7 +40,6 @@ func (dsk *DiskService) List(reqdata *DiskListRequest) (*DiskListResponse, *http
 		return nil, nil, err
 	}
 
-	fmt.Println("URL: ", u)
 	req, err := dsk.client.NewRequest("GET", u, nil)
 	if err != nil {
 		return nil, nil, err
