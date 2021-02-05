@@ -22,8 +22,8 @@ type Client struct {
 
 	common Service
 
-	PC *pc.Client
-	// PE *pe.Service
+	PC     *pc.Client
+	PE     *pe.Client
 	Calm   *calm.Client
 	Karbon *karbon.Client
 	// VM      *pc.VMService
@@ -68,11 +68,19 @@ func NewClient(httpClient *http.Client, conf *Config) (*Client, error) {
 	c := &Client{client: httpClient, config: conf}
 
 	c.common.client = c
-	var pcError, calmError, karbonError error
+	var pcError, peError, calmError, karbonError error
 	if conf.PrismCentral != nil {
 		c.PC, pcError = pc.NewClient(httpClient, conf.PrismCentral)
 		if pcError != nil {
 			fmt.Println("error in configuring Prism Central connector: ", pcError)
+			os.Exit(1)
+		}
+	}
+
+	if conf.PrismElement != nil {
+		c.PE, peError = pe.NewClient(httpClient, conf.PrismElement)
+		if peError != nil {
+			fmt.Println("error in configuring Prism Element connector: ", peError)
 			os.Exit(1)
 		}
 	}
