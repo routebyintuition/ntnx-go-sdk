@@ -1,6 +1,7 @@
 package pe
 
 import (
+	"fmt"
 	"net/http"
 )
 
@@ -37,6 +38,22 @@ type DiskVirtualListRequest struct {
 
 // DiskVirtualListResponse provides details on all virtual disks including NFS paths
 type DiskVirtualListResponse struct {
+	Metadata Metadata   `json:"metadata"`
+	Entities []Entities `json:"entities"`
+}
+
+// DiskVirtualGetRequest provides GET parameters for vdisk get by UUID
+type DiskVirtualGetRequest struct {
+	Query *DiskVirtualGetRequestQuery
+}
+
+// DiskVirtualGetRequestQuery provides the UUID for the vdisk get
+type DiskVirtualGetRequestQuery struct {
+	UUID string `url:"uuid,omitempty"`
+}
+
+// DiskVirtualGetResponse provides details on all virtual disks including NFS paths
+type DiskVirtualGetResponse struct {
 	Metadata Metadata   `json:"metadata"`
 	Entities []Entities `json:"entities"`
 }
@@ -81,6 +98,30 @@ func (dsk *DiskService) ListVDisk(reqdata *DiskVirtualListRequest) (*DiskVirtual
 	}
 
 	var data *DiskVirtualListResponse
+	resp, err := dsk.client.Do(req, &data)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return data, resp, nil
+}
+
+// GetVDisk provides vdisk information based upon UUID
+func (dsk *DiskService) GetVDisk(reqdata *DiskVirtualGetRequest) (*DiskVirtualGetResponse, *http.Response, error) {
+
+	u := fmt.Sprintf("virtual_disks/%s", reqdata.Query.UUID)
+
+	u, err := addOptions(u, reqdata)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	req, err := dsk.client.NewRequest("GET", u, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var data *DiskVirtualGetResponse
 	resp, err := dsk.client.Do(req, &data)
 	if err != nil {
 		return nil, resp, err
