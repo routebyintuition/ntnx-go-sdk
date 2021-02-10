@@ -262,3 +262,158 @@ type HealthSummary struct {
 	HealthCheckSummaries *HealthCheckSummaries  `json:"health_check_summaries,omitempty"`
 	HealthStatus         *string                `json:"health_status,omitempty"`
 }
+
+// DiskAddress provides response on VM GET
+type DiskAddress struct {
+	DeviceBus       *string `json:"device_bus,omitempty"`
+	DeviceIndex     *int    `json:"device_index,omitempty"`
+	DeviceUUID      *string `json:"device_uuid,omitempty"`
+	DiskLabel       *string `json:"disk_label,omitempty"`
+	IsCdrom         *bool   `json:"is_cdrom,omitempty"`
+	NdfsFilepath    *string `json:"ndfs_filepath,omitempty"`
+	VmdiskUUID      *string `json:"vmdisk_uuid,omitempty"`
+	VolumeGroupUUID *string `json:"volume_group_uuid,omitempty"`
+}
+
+// Boot provides response on VM GET
+type Boot struct {
+	BootDeviceOrder        *[]string    `json:"boot_device_order,omitempty"`
+	BootDeviceType         *string      `json:"boot_device_type,omitempty"`
+	DiskAddress            *DiskAddress `json:"disk_address,omitempty"`
+	HardwareVirtualization *bool        `json:"hardware_virtualization,omitempty"`
+	MacAddr                *string      `json:"mac_addr,omitempty"`
+	SecureBoot             *bool        `json:"secure_boot,omitempty"`
+	UefiBoot               *bool        `json:"uefi_boot,omitempty"`
+}
+
+// SerialPorts provides response on VM GET
+type SerialPorts struct {
+	Index *int    `json:"index,omitempty"`
+	Type  *string `json:"type,omitempty"`
+}
+
+// FilesToInjectList provides response on VM GET
+type FilesToInjectList struct {
+	DestinationPath *string `json:"destination_path,omitempty"`
+	SourcePath      *string `json:"source_path,omitempty"`
+}
+
+// VMCustomizationConfig provides response on VM GET
+type VMCustomizationConfig struct {
+	DatasourceType    *string              `json:"datasource_type,omitempty"`
+	FilesToInjectList *[]FilesToInjectList `json:"files_to_inject_list,omitempty"`
+	FreshInstall      *bool                `json:"fresh_install,omitempty"`
+	Userdata          *string              `json:"userdata,omitempty"`
+	UserdataPath      *string              `json:"userdata_path,omitempty"`
+}
+
+// SourceDiskAddress provides response on VM GET
+type SourceDiskAddress struct {
+	DeviceBus       *string `json:"device_bus,omitempty"`
+	DeviceIndex     *int    `json:"device_index,omitempty"`
+	DeviceUUID      *string `json:"device_uuid,omitempty"`
+	DiskLabel       *string `json:"disk_label,omitempty"`
+	IsCdrom         *bool   `json:"is_cdrom,omitempty"`
+	NdfsFilepath    *string `json:"ndfs_filepath,omitempty"`
+	VmdiskUUID      *string `json:"vmdisk_uuid,omitempty"`
+	VolumeGroupUUID *string `json:"volume_group_uuid,omitempty"`
+}
+
+// VMDiskInfo provides response on VM GET
+type VMDiskInfo struct {
+	DataSourceURL        *string            `json:"data_source_url,omitempty"`
+	DiskAddress          *DiskAddress       `json:"disk_address,omitempty"`
+	FlashModeEnabled     *bool              `json:"flash_mode_enabled,omitempty"`
+	IsCdrom              *bool              `json:"is_cdrom,omitempty"`
+	IsEmpty              *bool              `json:"is_empty,omitempty"`
+	IsHotRemoveEnabled   *bool              `json:"is_hot_remove_enabled,omitempty"`
+	IsScsiPassthrough    *bool              `json:"is_scsi_passthrough,omitempty"`
+	IsThinProvisioned    *bool              `json:"is_thin_provisioned,omitempty"`
+	Shared               *bool              `json:"shared,omitempty"`
+	Size                 *int               `json:"size,omitempty"`
+	SourceDiskAddress    *SourceDiskAddress `json:"source_disk_address,omitempty"`
+	StorageContainerUUID *string            `json:"storage_container_uuid,omitempty"`
+}
+
+// VMDiskClone provides response on VM GET
+type VMDiskClone struct {
+	DiskAddress          *DiskAddress `json:"disk_address,omitempty"`
+	MinimumSize          *int         `json:"minimum_size,omitempty"`
+	SnapshotGroupUUID    *string      `json:"snapshot_group_uuid,omitempty"`
+	StorageContainerUUID *string      `json:"storage_container_uuid,omitempty"`
+}
+
+// VMDiskCloneExternal provides response from VM GET
+type VMDiskCloneExternal struct {
+	ExternalDiskURL      *string `json:"external_disk_url,omitempty"`
+	Size                 *int    `json:"size,omitempty"`
+	StorageContainerUUID *string `json:"storage_container_uuid,omitempty"`
+}
+
+// VMDiskCreate provides response from VM GET
+type VMDiskCreate struct {
+	Size                 *int    `json:"size,omitempty"`
+	StorageContainerUUID *string `json:"storage_container_uuid,omitempty"`
+}
+
+// VMDiskPassthruExternal provides response from VM GET
+type VMDiskPassthruExternal struct {
+	ExternalDiskURL      *string `json:"external_disk_url,omitempty"`
+	StorageContainerUUID *string `json:"storage_container_uuid,omitempty"`
+}
+
+// VMDisks provides VDISK information during VM GET
+type VMDisks struct {
+	DiskAddress            *DiskAddress            `json:"disk_address,omitempty"`
+	FlashModeEnabled       *bool                   `json:"flash_mode_enabled,omitempty"`
+	IsCdrom                *bool                   `json:"is_cdrom,omitempty"`
+	IsEmpty                *bool                   `json:"is_empty,omitempty"`
+	IsScsiPassThrough      *bool                   `json:"is_scsi_pass_through,omitempty"`
+	IsThinProvisioned      *bool                   `json:"is_thin_provisioned,omitempty"`
+	VMDiskClone            *VMDiskClone            `json:"vm_disk_clone,omitempty"`
+	VMDiskCloneExternal    *VMDiskCloneExternal    `json:"vm_disk_clone_external,omitempty"`
+	VMDiskCreate           *VMDiskCreate           `json:"vm_disk_create,omitempty"`
+	VMDiskPassthruExternal *VMDiskPassthruExternal `json:"vm_disk_passthru_external,omitempty"`
+}
+
+// VMFeatures response from VM GET
+type VMFeatures struct {
+}
+
+// VMGpus provides VM GPU information during VM GET
+type VMGpus struct {
+	Assignable             *bool     `json:"assignable,omitempty"`
+	DeviceID               *int      `json:"device_id,omitempty"`
+	DeviceName             *string   `json:"device_name,omitempty"`
+	Fraction               *int      `json:"fraction,omitempty"`
+	FrameBufferSizeBytes   *int      `json:"frame_buffer_size_bytes,omitempty"`
+	GpuMode                *string   `json:"gpu_mode,omitempty"`
+	GpuProfile             *string   `json:"gpu_profile,omitempty"`
+	GpuType                *string   `json:"gpu_type,omitempty"`
+	GpuVendor              *string   `json:"gpu_vendor,omitempty"`
+	GuestDriverVersion     *string   `json:"guest_driver_version,omitempty"`
+	InUse                  *bool     `json:"in_use,omitempty"`
+	Licenses               *[]string `json:"licenses,omitempty"`
+	MaxInstancesPerVM      *int      `json:"max_instances_per_vm,omitempty"`
+	MaxResolution          *string   `json:"max_resolution,omitempty"`
+	NumVirtualDisplayHeads *int      `json:"num_virtual_display_heads,omitempty"`
+	NumaNode               *int      `json:"numa_node,omitempty"`
+	Sbdf                   *string   `json:"sbdf,omitempty"`
+	VMUuids                *[]string `json:"vm_uuids,omitempty"`
+}
+
+// VMNics provides VM NIC information during VM calls
+type VMNics struct {
+	AdapterType        *string   `json:"adapter_type,omitempty"`
+	IPAddress          *string   `json:"ip_address,omitempty"`
+	IPAddresses        *[]string `json:"ip_addresses,omitempty"`
+	IsConnected        *bool     `json:"is_connected,omitempty"`
+	MacAddress         *string   `json:"mac_address,omitempty"`
+	Model              *string   `json:"model,omitempty"`
+	NetworkUUID        *string   `json:"network_uuid,omitempty"`
+	NicUUID            *string   `json:"nic_uuid,omitempty"`
+	PortID             *string   `json:"port_id,omitempty"`
+	RequestIP          *bool     `json:"request_ip,omitempty"`
+	RequestedIPAddress *string   `json:"requested_ip_address,omitempty"`
+	VlanMode           *string   `json:"vlan_mode,omitempty"`
+}

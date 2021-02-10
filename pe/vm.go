@@ -31,7 +31,39 @@ type VMGetRequestQuery struct {
 }
 
 // VMGetResponse gets the VM details
-type VMGetResponse struct{}
+type VMGetResponse struct {
+	AllowLiveMigrate      *bool                  `json:"allow_live_migrate,omitempty"`
+	Boot                  *Boot                  `json:"boot,omitempty"`
+	CbrNotCapableReason   *string                `json:"cbr_not_capable_reason,omitempty"`
+	ClearAffinity         *bool                  `json:"clear_affinity,omitempty"`
+	Description           *string                `json:"description,omitempty"`
+	GpusAssigned          *bool                  `json:"gpus_assigned,omitempty"`
+	GuestDriverVersion    *string                `json:"guest_driver_version,omitempty"`
+	GuestOs               *string                `json:"guest_os,omitempty"`
+	HaPriority            *int                   `json:"ha_priority,omitempty"`
+	HostUUID              *string                `json:"host_uuid,omitempty"`
+	MachineType           *string                `json:"machine_type,omitempty"`
+	MemoryMb              *int                   `json:"memory_mb,omitempty"`
+	MemoryReservationMb   *int                   `json:"memory_reservation_mb,omitempty"`
+	Name                  *string                `json:"name,omitempty"`
+	NumCoresPerVcpu       *int                   `json:"num_cores_per_vcpu,omitempty"`
+	NumVcpus              *int                   `json:"num_vcpus,omitempty"`
+	PowerState            *string                `json:"power_state,omitempty"`
+	SerialPorts           *[]SerialPorts         `json:"serial_ports,omitempty"`
+	StorageContainerUUID  *string                `json:"storage_container_uuid,omitempty"`
+	Timezone              *string                `json:"timezone,omitempty"`
+	ToolsInstallerMounted *bool                  `json:"tools_installer_mounted,omitempty"`
+	ToolsRunningStatus    *string                `json:"tools_running_status,omitempty"`
+	UUID                  *string                `json:"uuid,omitempty"`
+	VcpuReservationHz     *int                   `json:"vcpu_reservation_hz,omitempty"`
+	VMCustomizationConfig *VMCustomizationConfig `json:"vm_customization_config,omitempty"`
+	VMDiskInfo            *[]VMDiskInfo          `json:"vm_disk_info,omitempty"`
+	VMDisks               *[]VMDisks             `json:"vm_disks,omitempty"`
+	VMFeatures            *VMFeatures            `json:"vm_features,omitempty"`
+	VMGpus                *[]VMGpus              `json:"vm_gpus,omitempty"`
+	VMLogicalTimestamp    *int                   `json:"vm_logical_timestamp,omitempty"`
+	VMNics                *[]VMNics              `json:"vm_nics,omitempty"`
+}
 
 // List makes the call to list virtual machines
 func (vm *VMService) List(reqdata *VMListRequest) (*VMListResponse, *http.Response, error) {
