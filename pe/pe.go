@@ -51,7 +51,7 @@ type Client struct {
 	Cluster *ClusterService
 	Disk    *DiskService
 	// User    *UserService
-	// VM      *VMService
+	VM *VMService
 }
 
 // ServiceConfig is the configuration to use PC
@@ -83,7 +83,7 @@ func NewClient(httpClient *http.Client, conf *ServiceConfig) (*Client, error) {
 
 	c := &Client{client: httpClient, PEURL: baseURL, Login: login}
 	c.common.client = c
-	// c.VM = (*VMService)(&c.common)
+	c.VM = (*VMService)(&c.common)
 	c.Cluster = (*ClusterService)(&c.common)
 	c.Disk = (*DiskService)(&c.common)
 	//c.Apps = (*AppsService)(&c.common)

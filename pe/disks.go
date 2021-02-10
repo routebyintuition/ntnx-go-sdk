@@ -77,7 +77,7 @@ type DiskVirtualGetResponse struct {
 	VirtualDiskID         *string        `json:"virtual_disk_id"`
 }
 
-// List makes the call to list hardware disks
+// List makes the call to list hardware disk items
 func (dsk *DiskService) List(reqdata *DiskListRequest) (*DiskListResponse, *http.Response, error) {
 
 	u := "disks"
