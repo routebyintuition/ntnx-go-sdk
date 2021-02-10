@@ -417,3 +417,461 @@ type VMNics struct {
 	RequestedIPAddress *string   `json:"requested_ip_address,omitempty"`
 	VlanMode           *string   `json:"vlan_mode,omitempty"`
 }
+
+// ClusterDataState used for cluster details
+type ClusterDataState struct {
+	ClusterAvailable                 *bool   `json:"cluster_available,omitempty"`
+	ClusterDataAvailable             *bool   `json:"cluster_data_available,omitempty"`
+	ClusterRegisterTimeUsecs         *int    `json:"cluster_register_time_usecs,omitempty"`
+	ClusterUUID                      *string `json:"cluster_uuid,omitempty"`
+	FirstUnavailableTimeUsecs        *int    `json:"first_unavailable_time_usecs,omitempty"`
+	LastAlertsDataTransferredUsecs   *int    `json:"last_alerts_data_transferred_usecs,omitempty"`
+	LastArithmosDataTransferredUsecs *int    `json:"last_arithmos_data_transferred_usecs,omitempty"`
+}
+
+// Cache used for cluster details
+type Cache struct {
+}
+
+// AddressCache used for cluster details
+type AddressCache struct {
+	Cache *Cache  `json:"cache,omitempty"`
+	Type  *string `json:"type,omitempty"`
+}
+
+// CacheLock used for cluster details
+type CacheLock struct {
+}
+
+// Holder used for cluster details
+type Holder struct {
+	Address          *int    `json:"address,omitempty"`
+	Family           *int    `json:"family,omitempty"`
+	HostName         *string `json:"host_name,omitempty"`
+	OriginalHostName *string `json:"original_host_name,omitempty"`
+}
+
+// Impl used for cluster details
+type Impl struct {
+}
+
+// LookupTable used for cluster details
+type LookupTable struct {
+}
+
+// NameServices used for cluster details
+type NameServices struct {
+}
+
+// TheUnsafe used for cluster details
+type TheUnsafe struct {
+	AddressSize            *int    `json:"address_size,omitempty"`
+	ArrayBooleanBaseOffset *int    `json:"array_boolean_base_offset,omitempty"`
+	ArrayBooleanIndexScale *int    `json:"array_boolean_index_scale,omitempty"`
+	ArrayByteBaseOffset    *int    `json:"array_byte_base_offset,omitempty"`
+	ArrayByteIndexScale    *int    `json:"array_byte_index_scale,omitempty"`
+	ArrayCharBaseOffset    *int    `json:"array_char_base_offset,omitempty"`
+	ArrayCharIndexScale    *int    `json:"array_char_index_scale,omitempty"`
+	ArrayDoubleBaseOffset  *int    `json:"array_double_base_offset,omitempty"`
+	ArrayDoubleIndexScale  *int    `json:"array_double_index_scale,omitempty"`
+	ArrayFloatBaseOffset   *int    `json:"array_float_base_offset,omitempty"`
+	ArrayFloatIndexScale   *int    `json:"array_float_index_scale,omitempty"`
+	ArrayIntBaseOffset     *int    `json:"array_int_base_offset,omitempty"`
+	ArrayIntIndexScale     *int    `json:"array_int_index_scale,omitempty"`
+	ArrayLongBaseOffset    *int    `json:"array_long_base_offset,omitempty"`
+	ArrayLongIndexScale    *int    `json:"array_long_index_scale,omitempty"`
+	ArrayObjectBaseOffset  *int    `json:"array_object_base_offset,omitempty"`
+	ArrayObjectIndexScale  *int    `json:"array_object_index_scale,omitempty"`
+	ArrayShortBaseOffset   *int    `json:"array_short_base_offset,omitempty"`
+	ArrayShortIndexScale   *int    `json:"array_short_index_scale,omitempty"`
+	InvalidFieldOffset     *int    `json:"invalid_field_offset,omitempty"`
+	TheUnsafe              *string `json:"the_unsafe,omitempty"`
+}
+
+// Unsafe used for cluster details
+type Unsafe struct {
+	AddressSize            *int       `json:"address_size,omitempty"`
+	ArrayBooleanBaseOffset *int       `json:"array_boolean_base_offset,omitempty"`
+	ArrayBooleanIndexScale *int       `json:"array_boolean_index_scale,omitempty"`
+	ArrayByteBaseOffset    *int       `json:"array_byte_base_offset,omitempty"`
+	ArrayByteIndexScale    *int       `json:"array_byte_index_scale,omitempty"`
+	ArrayCharBaseOffset    *int       `json:"array_char_base_offset,omitempty"`
+	ArrayCharIndexScale    *int       `json:"array_char_index_scale,omitempty"`
+	ArrayDoubleBaseOffset  *int       `json:"array_double_base_offset,omitempty"`
+	ArrayDoubleIndexScale  *int       `json:"array_double_index_scale,omitempty"`
+	ArrayFloatBaseOffset   *int       `json:"array_float_base_offset,omitempty"`
+	ArrayFloatIndexScale   *int       `json:"array_float_index_scale,omitempty"`
+	ArrayIntBaseOffset     *int       `json:"array_int_base_offset,omitempty"`
+	ArrayIntIndexScale     *int       `json:"array_int_index_scale,omitempty"`
+	ArrayLongBaseOffset    *int       `json:"array_long_base_offset,omitempty"`
+	ArrayLongIndexScale    *int       `json:"array_long_index_scale,omitempty"`
+	ArrayObjectBaseOffset  *int       `json:"array_object_base_offset,omitempty"`
+	ArrayObjectIndexScale  *int       `json:"array_object_index_scale,omitempty"`
+	ArrayShortBaseOffset   *int       `json:"array_short_base_offset,omitempty"`
+	ArrayShortIndexScale   *int       `json:"array_short_index_scale,omitempty"`
+	InvalidFieldOffset     *int       `json:"invalid_field_offset,omitempty"`
+	TheUnsafe              *TheUnsafe `json:"the_unsafe,omitempty"`
+}
+
+// CachedLocalHost used for cluster details
+type CachedLocalHost struct {
+	AssertionsDisabled     *bool           `json:"$assertions_disabled,omitempty"`
+	AddressCache           *string         `json:"address_cache,omitempty"`
+	AddressCacheInit       *bool           `json:"address_cache_init,omitempty"`
+	CacheLock              *CacheLock      `json:"cache_lock,omitempty"`
+	CacheTime              *int            `json:"cache_time,omitempty"`
+	CachedLocalHost        *string         `json:"cached_local_host,omitempty"`
+	CanonicalHostName      *string         `json:"canonical_host_name,omitempty"`
+	FieldsOffset           *int            `json:"fields_offset,omitempty"`
+	Holder                 *Holder         `json:"holder,omitempty"`
+	Impl                   *Impl           `json:"impl,omitempty"`
+	Ipv4                   *int            `json:"ipv4,omitempty"`
+	Ipv6                   *int            `json:"ipv6,omitempty"`
+	LookupTable            *LookupTable    `json:"lookup_table,omitempty"`
+	MaxCacheTime           *int            `json:"max_cache_time,omitempty"`
+	NameServices           *[]NameServices `json:"name_services,omitempty"`
+	NegativeCache          *string         `json:"negative_cache,omitempty"`
+	PreferIpv6Address      *bool           `json:"prefer_ipv6_address,omitempty"`
+	SerialPersistentFields *[]interface{}  `json:"serial_persistent_fields,omitempty"`
+	UnknownArray           *[]interface{}  `json:"unknown_array,omitempty"`
+	Unsafe                 *Unsafe         `json:"unsafe,omitempty"`
+}
+
+// NegativeCache used for cluster details
+type NegativeCache struct {
+	Cache *Cache  `json:"cache,omitempty"`
+	Type  *string `json:"type,omitempty"`
+}
+
+// SerialPersistentFields used for cluster details
+type SerialPersistentFields struct {
+	Field     *string `json:"field,omitempty"`
+	Name      *string `json:"name,omitempty"`
+	Offset    *int    `json:"offset,omitempty"`
+	Signature *string `json:"signature,omitempty"`
+	Type      *string `json:"type,omitempty"`
+	Unshared  *bool   `json:"unshared,omitempty"`
+}
+
+// UnknownArray used for cluster details
+type UnknownArray struct {
+	AssertionsDisabled     *bool           `json:"$assertions_disabled,omitempty"`
+	AddressCache           *string         `json:"address_cache,omitempty"`
+	AddressCacheInit       *bool           `json:"address_cache_init,omitempty"`
+	CacheLock              *CacheLock      `json:"cache_lock,omitempty"`
+	CacheTime              *int            `json:"cache_time,omitempty"`
+	CachedLocalHost        *string         `json:"cached_local_host,omitempty"`
+	CanonicalHostName      *string         `json:"canonical_host_name,omitempty"`
+	FieldsOffset           *int            `json:"fields_offset,omitempty"`
+	Holder                 *Holder         `json:"holder,omitempty"`
+	Impl                   *Impl           `json:"impl,omitempty"`
+	Ipv4                   *int            `json:"ipv4,omitempty"`
+	Ipv6                   *int            `json:"ipv6,omitempty"`
+	LookupTable            *LookupTable    `json:"lookup_table,omitempty"`
+	MaxCacheTime           *int            `json:"max_cache_time,omitempty"`
+	NameServices           *[]NameServices `json:"name_services,omitempty"`
+	NegativeCache          *string         `json:"negative_cache,omitempty"`
+	PreferIpv6Address      *bool           `json:"prefer_ipv6_address,omitempty"`
+	SerialPersistentFields *[]interface{}  `json:"serial_persistent_fields,omitempty"`
+	UnknownArray           *[]interface{}  `json:"unknown_array,omitempty"`
+	Unsafe                 *Unsafe         `json:"unsafe,omitempty"`
+}
+
+// Value used for cluster details
+type Value struct {
+	AssertionsDisabled     *bool                     `json:"$assertions_disabled,omitempty"`
+	AddressCache           *AddressCache             `json:"address_cache,omitempty"`
+	AddressCacheInit       *bool                     `json:"address_cache_init,omitempty"`
+	CacheLock              *CacheLock                `json:"cache_lock,omitempty"`
+	CacheTime              *int                      `json:"cache_time,omitempty"`
+	CachedLocalHost        *CachedLocalHost          `json:"cached_local_host,omitempty"`
+	CanonicalHostName      *string                   `json:"canonical_host_name,omitempty"`
+	FieldsOffset           *int                      `json:"fields_offset,omitempty"`
+	Holder                 *Holder                   `json:"holder,omitempty"`
+	Impl                   *Impl                     `json:"impl,omitempty"`
+	Ipv4                   *int                      `json:"ipv4,omitempty"`
+	Ipv6                   *int                      `json:"ipv6,omitempty"`
+	LookupTable            *LookupTable              `json:"lookup_table,omitempty"`
+	MaxCacheTime           *int                      `json:"max_cache_time,omitempty"`
+	NameServices           *[]NameServices           `json:"name_services,omitempty"`
+	NegativeCache          *NegativeCache            `json:"negative_cache,omitempty"`
+	PreferIpv6Address      *bool                     `json:"prefer_ipv6_address,omitempty"`
+	SerialPersistentFields *[]SerialPersistentFields `json:"serial_persistent_fields,omitempty"`
+	UnknownArray           *[]UnknownArray           `json:"unknown_array,omitempty"`
+	Unsafe                 *Unsafe                   `json:"unsafe,omitempty"`
+}
+
+// Empty is used for cluster details
+type Empty struct {
+	Empty *Empty  `json:"empty,omitempty"`
+	Value *string `json:"value,omitempty"`
+}
+
+// InetAddress used for cluster details
+type InetAddress struct {
+	Empty *Empty `json:"empty,omitempty"`
+	Value *Value `json:"value,omitempty"`
+}
+
+// Log used for cluster details
+type Log struct {
+	RootLoggerName *string `json:"root_logger_name,omitempty"`
+}
+
+// ClusterExternalAddress used for cluster details
+type ClusterExternalAddress struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// ClusterExternalDataServicesAddress used for cluster details
+type ClusterExternalDataServicesAddress struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// ClusterMasqueradingAddress used for cluster details
+type ClusterMasqueradingAddress struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// RedundancyStatus used for cluster details
+type RedundancyStatus struct {
+}
+
+// ClusterRedundancyState used for cluster details
+type ClusterRedundancyState struct {
+	CurrentRedundancyFactor *int              `json:"current_redundancy_factor,omitempty"`
+	DesiredRedundancyFactor *int              `json:"desired_redundancy_factor,omitempty"`
+	RedundancyStatus        *RedundancyStatus `json:"redundancy_status,omitempty"`
+}
+
+// Credential used for cluster details
+type Credential struct {
+	LogonName *string `json:"logon_name,omitempty"`
+	Password  *string `json:"password,omitempty"`
+}
+
+// ExternalAddress used for cluster details
+type ExternalAddress struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// GlobalNfsWhiteListAddress used for cluster details
+type GlobalNfsWhiteListAddress struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// AddressValue used for cluster details
+type AddressValue struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// HTTPProxies used for cluster details
+type HTTPProxies struct {
+	Address      *string       `json:"address,omitempty"`
+	AddressValue *AddressValue `json:"address_value,omitempty"`
+	Name         *string       `json:"name,omitempty"`
+	Password     *string       `json:"password,omitempty"`
+	Port         *int          `json:"port,omitempty"`
+	ProxyTypes   *[]string     `json:"proxy_types,omitempty"`
+	Username     *string       `json:"username,omitempty"`
+}
+
+// HypervisorLldpConfig used for cluster details
+type HypervisorLldpConfig struct {
+}
+
+// HypervisorSecurityComplianceConfig used for cluster details
+type HypervisorSecurityComplianceConfig struct {
+}
+
+// InternalAddress used for cluster details
+type InternalAddress struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// IscsiConfig used for cluster details
+type IscsiConfig struct {
+	ExternalClientEnabled *bool `json:"external_client_enabled,omitempty"`
+}
+
+// ManagementServers used for cluster details
+type ManagementServers struct {
+	DrsEnabled           *bool   `json:"drs_enabled,omitempty"`
+	DrsVMBehaviour       *string `json:"drs_vm_behaviour,omitempty"`
+	HaEnabled            *bool   `json:"ha_enabled,omitempty"`
+	InUse                *bool   `json:"in_use,omitempty"`
+	IPAddress            *string `json:"ip_address,omitempty"`
+	ManagementServerType *string `json:"management_server_type,omitempty"`
+	Registered           *bool   `json:"registered,omitempty"`
+}
+
+// NameServersList used for cluster details
+type NameServersList struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// NtpServersList used for cluster details
+type NtpServersList struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string",omitempty`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// PublicKeys used for cluster details
+type PublicKeys struct {
+	Key  *string `json:"key,omitempty"`
+	Name *string `json:"name,omitempty"`
+}
+
+// RackableUnits used for cluster details
+type RackableUnits struct {
+	ID               *int      `json:"id,omitempty"`
+	Location         *string   `json:"location,omitempty"`
+	Model            *string   `json:"model,omitempty"`
+	ModelName        *string   `json:"model_name,omitempty"`
+	NodeUuids        *[]string `json:"node_uuids,omitempty"`
+	Nodes            *[]int    `json:"node,omitemptys"`
+	Positions        *[]string `json:"positions,omitempty"`
+	RackableUnitUUID *string   `json:"rackable_unit_uuid,omitempty"`
+	Serial           *string   `json:"serial,omitempty"`
+}
+
+// SecurityComplianceConfig used for cluster details
+type SecurityComplianceConfig struct {
+	EnableSnmpv3Only *bool `json:"enable_snmpv3_only,omitempty"`
+}
+
+// SegmentedIscsiDataServicesAddress used for cluster details
+type SegmentedIscsiDataServicesAddress struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// ServiceCenters used for cluster details
+type ServiceCenters struct {
+	IPAddress *string `json:"ip_address,omitempty"`
+	Name      *string `json:"name,omitempty"`
+	Port      *int    `json:"port,omitempty"`
+	Username  *string `json:"username,omitempty"`
+}
+
+// Attributes used for cluster details
+type Attributes struct {
+}
+
+// Message used for cluster details
+type Message struct {
+	Attributes *Attributes `json:"attributes,omitempty"`
+	Message    *string     `json:"message,omitempty"`
+}
+
+// EmailStatus used for cluster details
+type EmailStatus struct {
+	LastChangedTimeStampUsecs                *int     `json:"last_changed_time_stamp_usecs,omitempty"`
+	LastCheckedTimeStampUsecs                *int     `json:"last_checked_time_stamp_usecs,omitempty"`
+	LastSuccessfulTransmissionTimeStampUsecs *int     `json:"last_successful_transmission_time_stamp_usecs,omitempty"`
+	Message                                  *Message `json:"message,omitempty"`
+	Status                                   *string  `json:"status,omitempty"`
+}
+
+// ServerAddress used for cluster details
+type ServerAddress struct {
+	Hostname    *string      `json:"hostname,omitempty"`
+	InetAddress *InetAddress `json:"inet_address,omitempty"`
+	Ipv4        *string      `json:"ipv4,omitempty"`
+	Ipv6        *string      `json:"ipv6,omitempty"`
+	Log         *Log         `json:"log,omitempty"`
+	Port        *int         `json:"port,omitempty"`
+	RawString   *string      `json:"raw_string,omitempty"`
+	Subnet      *string      `json:"subnet,omitempty"`
+	SubnetSep   *string      `json:"subnet_sep,omitempty"`
+}
+
+// SMTPServer used for cluster details
+type SMTPServer struct {
+	Address          *string        `json:"address,omitempty"`
+	EmailStatus      *EmailStatus   `json:"email_status,omitempty"`
+	FromEmailAddress *string        `json:"from_email_address,omitempty"`
+	Password         *string        `json:"password,omitempty"`
+	Port             *int           `json:"port,omitempty"`
+	SecureMode       *string        `json:"secure_mode,omitempty"`
+	ServerAddress    *ServerAddress `json:"server_address,omitempty"`
+	Username         *string        `json:"username,omitempty"`
+}
