@@ -26,8 +26,8 @@ type VMGetRequestParams struct {
 
 // VMGetRequestQuery provides vm search criteria - VM UUID
 type VMGetRequestQuery struct {
-	IncludeVMDiskConfig bool `json:"include_vm_disk_config,omitempty"`
-	IncludeVMNICConfig  bool `json:"include_vm_nic_config,omitempty"`
+	IncludeVMDiskConfig bool `url:"include_vm_disk_config,omitempty"`
+	IncludeVMNICConfig  bool `url:"include_vm_nic_config,omitempty"`
 }
 
 // VMGetResponse gets the VM details
