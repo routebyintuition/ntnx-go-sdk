@@ -224,3 +224,41 @@ type Entities struct {
 	FlashModeEnabled        *interface{}        `json:"flash_mode_enabled,omitempty"`
 	DataSourceURL           *interface{}        `json:"data_source_url,omitempty"`
 }
+
+// AlertSummaries used in vdisk get request
+type AlertSummaries struct {
+}
+
+// AlertSummary used in vdisk get request
+type AlertSummary struct {
+	AlertSummaries *AlertSummaries `json:"alert_summaries,omitempty"`
+	Count          *int            `json:"count,omitempty"`
+}
+
+// ChecksInError used in vdisk get request
+type ChecksInError struct {
+}
+
+// DetailedCheckSummary used in vdisk get request
+type DetailedCheckSummary struct {
+}
+
+// EntityTypeSummaries used in vdisk get request
+type EntityTypeSummaries struct {
+	ChecksInError        *ChecksInError        `json:"checks_in_error,omitempty"`
+	DetailedCheckSummary *DetailedCheckSummary `json:"detailed_check_summary,omitempty"`
+	EntityType           *string               `json:"entity_type,omitempty"`
+	FilterCriteria       *string               `json:"filter_criteria,omitempty"`
+	HealthSummary        *HealthSummary        `json:"health_summary,omitempty"`
+}
+
+// HealthCheckSummaries used in vdisk get request
+type HealthCheckSummaries struct {
+}
+
+// HealthSummary is used in vdisk get request
+type HealthSummary struct {
+	EntityTypeSummaries  *[]EntityTypeSummaries `json:"entity_type_summaries,omitempty"`
+	HealthCheckSummaries *HealthCheckSummaries  `json:"health_check_summaries,omitempty"`
+	HealthStatus         *string                `json:"health_status,omitempty"`
+}

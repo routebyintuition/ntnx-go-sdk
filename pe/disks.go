@@ -54,8 +54,27 @@ type DiskVirtualGetRequestQuery struct {
 
 // DiskVirtualGetResponse provides details on all virtual disks including NFS paths
 type DiskVirtualGetResponse struct {
-	Metadata Metadata   `json:"metadata"`
-	Entities []Entities `json:"entities"`
+	AlertSummary          *AlertSummary  `json:"alert_summary"`
+	AttachedVMID          *string        `json:"attached_vm_id"`
+	AttachedVMUUID        *string        `json:"attached_vm_uuid"`
+	AttachedVmname        *string        `json:"attached_vmname"`
+	AttachedVolumeGroupID *string        `json:"attached_volume_group_id"`
+	ClusterUUID           *string        `json:"cluster_uuid"`
+	ContainerID           *string        `json:"container_id"`
+	ContainerUUID         *string        `json:"container_uuid"`
+	DataSourceURL         *string        `json:"data_source_url"`
+	DeviceUUID            *string        `json:"device_uuid"`
+	DiskAddress           *string        `json:"disk_address"`
+	DiskCapacityInBytes   *int           `json:"disk_capacity_in_bytes"`
+	FlashModeEnabled      *bool          `json:"flash_mode_enabled"`
+	HealthSummary         *HealthSummary `json:"health_summary"`
+	NutanixNfsfilePath    *string        `json:"nutanix_nfsfile_path"`
+	Stats                 *Stats         `json:"stats"`
+	StorageContainerID    *string        `json:"storage_container_id"`
+	StorageContainerUUID  *string        `json:"storage_container_uuid"`
+	UsageStats            *UsageStats    `json:"usage_stats"`
+	UUID                  *string        `json:"uuid"`
+	VirtualDiskID         *string        `json:"virtual_disk_id"`
 }
 
 // List makes the call to list hardware disks
