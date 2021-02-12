@@ -56,6 +56,7 @@ type Config struct {
 }
 
 // Resources is the main Resources type across all Response calls
+// used for JSON and YAML decoder
 type Resources struct {
 	RetrievalURIList                 *[]string                           `json:"retrieval_uri_list,omitempty" yaml:"retrieval_uri_list,omitempty"`
 	SizeBytes                        *int                                `json:"size_bytes,omitempty" yaml:"size_bytes,omitempty"`
@@ -1350,4 +1351,3 @@ type APIResponseList struct {
 	PathAndParams string      `json:"path_and_params,omitempty" yaml:"path_and_params,omitempty"`
 	APIResponse   APIResponse `json:"api_response,omitempty" yaml:"api_response,omitempty"`
 }
-

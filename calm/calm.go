@@ -16,6 +16,15 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
+// NUTANIX_CALM_URL used to define custom calm URL endpoint
+const NUTANIX_CALM_URL = "NUTANIX_CALM_URL"
+
+// NUTANIX_CALM_USER used to define calm login user via env
+const NUTANIX_CALM_USER = "NUTANIX_CALM_USER"
+
+// NUTANIX_CALM_PASS used to define calm login password via env
+const NUTANIX_CALM_PASS = "NUTANIX_CALM_PASS"
+
 // Service is used to create endpoint specific services to utilize concurrency with timeouts
 type Service struct {
 	client *Client
@@ -52,23 +61,38 @@ type Client struct {
 // CheckConfig will ensure that the minimal amount of information is present in the config
 func CheckConfig(conf *ServiceConfig) error {
 	errOut := errors.New("insufficient data for Calm service config")
-
 	if conf == nil {
 		return errOut
 	}
 	if conf.URL == nil {
-		return errOut
+		URL := os.Getenv(NUTANIX_CALM_URL)
+		if len(URL) < 3 {
+			return errors.New("insufficient data for Calm config: no URL")
+		}
+		conf.URL = &URL
 	}
 	if conf.User == nil {
-		return errOut
+		Username := os.Getenv(NUTANIX_CALM_USER)
+		if len(Username) < 3 {
+			return errors.New("insufficient data for Calm config: no username")
+		}
+		conf.User = &Username
 	}
 	if conf.Pass == nil {
+		Password := os.Getenv(NUTANIX_CALM_PASS)
+		if len(Password) < 8 {
+			return errors.New("insufficient data for Calm config: no password")
+		}
+		conf.Pass = &Password
+	}
+	if len(*conf.URL) < 8 || len(*conf.User) < 3 || len(*conf.Pass) < 8 {
 		return errOut
 	}
+
 	return nil
 }
 
-// NewClient is used for Nutanix Prism client instantiation
+// NewClient is used for Nutanix Calm client instantiation
 func NewClient(httpClient *http.Client, conf *ServiceConfig) (*Client, error) {
 	err := CheckConfig(conf)
 	if err != nil {
@@ -76,7 +100,7 @@ func NewClient(httpClient *http.Client, conf *ServiceConfig) (*Client, error) {
 		return nil, err
 	}
 	if len(*conf.URL) == 0 {
-		return nil, errors.New("URL should be specified in the format: https://{host}:{port}/api/nutanix/v3/")
+		return nil, errors.New("URL should be specified in the format: https://{host}:{port}/")
 	}
 	if httpClient == nil {
 		httpClient = &http.Client{}
@@ -134,10 +158,14 @@ func GetCredentials(conf *ServiceConfig) (AuthCredentials, error) {
 	a := AuthCredentials{}
 
 	if len(*conf.User) < 3 {
-		a.Username = os.Getenv("NutanixCalmUser")
+		a.Username = os.Getenv(NUTANIX_CALM_USER)
+	} else {
+		a.Username = *conf.User
 	}
 	if len(*conf.Pass) < 8 {
-		a.Password = os.Getenv("NutanixCalmPass")
+		a.Password = os.Getenv(NUTANIX_CALM_PASS)
+	} else {
+		a.Password = *conf.Pass
 	}
 
 	if len(a.Username) == 0 {
